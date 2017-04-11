@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+
+	<persistence-unit name="Park">
+
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+		<class>entities.Address</class>
+		<class>entities.CreditCard</class>
+		<class>entities.Lister</class>
+		<class>entities.ParkingSensor</class>
+		<class>entities.ParkingSpot</class>
+		<class>entities.ParkingTag</class>
+		<class>entities.PaymentToLister</class>
+		<class>entities.Reservation</class>
+		<class>entities.User</class>
+		<class>entities.UserPayment</class>
+		<class>entities.Vehicle</class>
+
+		
+		<!-- Put entity classes in here -->
+
+		<properties>
+			<!-- make connection to data base -->
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/frugaldb" />
+			<property name="javax.persistence.jdbc.user" value="student" />
+			<property name="javax.persistence.jdbc.password" value="student" />
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+
+			<!-- config for dbug -->
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+
+			<!-- config for c3p0 -->
+			<property name="hibernate.connection.provider_class"
+				value="org.hibernate.connection.C3P0ConnectionProvider" />
+			<property name="hibernate.c3p0.max_size" value="5" />
+			<property name="hibernate.c3p0.min_size" value="0" />
+			<property name="hibernate.c3p0.acquire_increment" value="1" />
+			<property name="hibernate.c3p0.idle_test_period" value="300" />
+			<property name="hibernate.c3p0.max_statements" value="0" />
+			<property name="hibernate.c3p0.timeout" value="60" />
+		</properties>
+
+	</persistence-unit>
+</persistence>
