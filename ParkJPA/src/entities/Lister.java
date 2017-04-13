@@ -1,9 +1,14 @@
 package entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Lister {
@@ -11,12 +16,17 @@ public class Lister {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	private ParkingSpot parkingSpot;
 		
 	private Integer socialSecurity;
 	
+	private String payPalAccount;
+	
+	@OneToOne
+	@JoinColumn(name="userId")
 	private User user;
+
+	@OneToMany(mappedBy="lister")
+	private List<ParkingSpot> parkingSpot;
 
 	
 	
@@ -24,14 +34,6 @@ public class Lister {
 	
 	public Integer getId() {
 		return id;
-	}
-
-	public ParkingSpot getParkingSpot() {
-		return parkingSpot;
-	}
-
-	public void setParkingSpot(ParkingSpot parkingSpot) {
-		this.parkingSpot = parkingSpot;
 	}
 
 	public Integer getSocialSecurity() {
@@ -42,6 +44,14 @@ public class Lister {
 		this.socialSecurity = socialSecurity;
 	}
 
+	public String getPayPalAccount() {
+		return payPalAccount;
+	}
+
+	public void setPayPalAccount(String payPalAccount) {
+		this.payPalAccount = payPalAccount;
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -50,9 +60,17 @@ public class Lister {
 		this.user = user;
 	}
 
+	public List<ParkingSpot> getParkingSpot() {
+		return parkingSpot;
+	}
+
+	public void setParkingSpot(List<ParkingSpot> parkingSpot) {
+		this.parkingSpot = parkingSpot;
+	}
+
 	@Override
 	public String toString() {
-		return "Lister [id=" + id + ", parkingSpot=" + parkingSpot + ", socialSecurity=" + socialSecurity + ", user="
-				+ user + "]";
+		return "Lister [id=" + id + ", socialSecurity=" + socialSecurity + ", payPalAccount=" + payPalAccount
+				+ ", user=" + user + ", parkingSpot=" + parkingSpot + "]";
 	}
 }

@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class UserPayment {
@@ -14,28 +17,40 @@ public class UserPayment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private Date date;
-	
 	private Double rate;
 	
-	private CreditCard creditCard;
-	
-	private ParkingSpot parkingSpot;
-	
-	private Lister lister;
-	
-	private User user;
-	
-	
-	
-	
+	private Date date;
+		
+	private Double amount;
 
+	@ManyToOne
+	@JoinColumn(name="userId")
+	private User user;
+
+	@OneToOne(mappedBy="creditCardId")	
+	private CreditCard creditCard;
+
+	@OneToOne(mappedBy="parkingSpotId")
+	private ParkingSpot parkingSpot;
+
+	
+	
+	
+	
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Double getRate() {
+		return rate;
+	}
+
+	public void setRate(Double rate) {
+		this.rate = rate;
 	}
 
 	public Date getDate() {
@@ -46,12 +61,20 @@ public class UserPayment {
 		this.date = date;
 	}
 
-	public Double getRate() {
-		return rate;
+	public Double getAmount() {
+		return amount;
 	}
 
-	public void setRate(Double rate) {
-		this.rate = rate;
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public CreditCard getCreditCard() {
@@ -70,25 +93,9 @@ public class UserPayment {
 		this.parkingSpot = parkingSpot;
 	}
 
-	public Lister getLister() {
-		return lister;
-	}
-
-	public void setLister(Lister lister) {
-		this.lister = lister;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	@Override
 	public String toString() {
-		return "UserPayment [id=" + id + ", date=" + date + ", rate=" + rate + ", creditCard=" + creditCard
-				+ ", parkingSpot=" + parkingSpot + ", lister=" + lister + ", user=" + user + "]";
+		return "UserPayment [id=" + id + ", rate=" + rate + ", date=" + date + ", amount=" + amount + ", user=" + user
+				+ ", creditCard=" + creditCard + ", parkingSpot=" + parkingSpot + "]";
 	}
 }

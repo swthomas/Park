@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class PaymentToLister {
@@ -14,44 +15,19 @@ public class PaymentToLister {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String paypalAccount;
-	
-	private Lister lister;
-	
-	private CreditCard creditCard;
-	
 	private Date date;
-	
-	
-	
-	
+		
+	private Double amount;
+		
+	@OneToOne(mappedBy="listerId")
+	private Lister lister;
 
+	
+	
+	
+	
 	public Integer getId() {
 		return id;
-	}
-
-	public String getPaypalAccount() {
-		return paypalAccount;
-	}
-
-	public void setPaypalAccount(String paypalAccount) {
-		this.paypalAccount = paypalAccount;
-	}
-
-	public Lister getLister() {
-		return lister;
-	}
-
-	public void setLister(Lister lister) {
-		this.lister = lister;
-	}
-
-	public CreditCard getCreditCard() {
-		return creditCard;
-	}
-
-	public void setCreditCard(CreditCard creditCard) {
-		this.creditCard = creditCard;
 	}
 
 	public Date getDate() {
@@ -62,9 +38,24 @@ public class PaymentToLister {
 		this.date = date;
 	}
 
+	public Double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+
+	public Lister getLister() {
+		return lister;
+	}
+
+	public void setLister(Lister lister) {
+		this.lister = lister;
+	}
+
 	@Override
 	public String toString() {
-		return "PaymentToLister [id=" + id + ", paypalAccount=" + paypalAccount + ", lister=" + lister + ", creditCard="
-				+ creditCard + ", date=" + date + "]";
+		return "PaymentToLister [id=" + id + ", date=" + date + ", amount=" + amount + ", lister=" + lister + "]";
 	}
 }

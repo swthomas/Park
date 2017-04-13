@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Vehicle {
@@ -22,6 +24,8 @@ public class Vehicle {
 	
 	private String licensePlate;
 	
+	@ManyToOne
+	@JoinColumn(name="userId")
 	private User user;
 
 	
@@ -30,10 +34,6 @@ public class Vehicle {
 	
 	public Integer getId() {
 		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public Integer getYear() {

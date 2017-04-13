@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class ParkingSpot {
@@ -12,17 +15,23 @@ public class ParkingSpot {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private Address address;
-	
 	private String description;
 	
 	private String pictureURL;
 	
 	private Double rate;
 	
+	@OneToOne
+    @JoinColumn(name="parkingTagId")
+	private ParkingTag parkingTag;
+
+	@ManyToOne
+	@JoinColumn(name="listerId") 
 	private Lister lister;
 	
-	private ParkingTag parkingTag;
+	@ManyToOne
+	@JoinColumn(name="addressId")  
+	private Address address;
 
 	
 	
@@ -30,14 +39,6 @@ public class ParkingSpot {
 	
 	public Integer getId() {
 		return id;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
 	}
 
 	public String getDescription() {
@@ -64,6 +65,14 @@ public class ParkingSpot {
 		this.rate = rate;
 	}
 
+	public ParkingTag getParkingTag() {
+		return parkingTag;
+	}
+
+	public void setParkingTag(ParkingTag parkingTag) {
+		this.parkingTag = parkingTag;
+	}
+
 	public Lister getLister() {
 		return lister;
 	}
@@ -72,9 +81,17 @@ public class ParkingSpot {
 		this.lister = lister;
 	}
 
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@Override
 	public String toString() {
-		return "ParkingSpot [id=" + id + ", address=" + address + ", description=" + description + ", pictureURL="
-				+ pictureURL + ", rate=" + rate + ", lister=" + lister + "]";
+		return "ParkingSpot [id=" + id + ", description=" + description + ", pictureURL=" + pictureURL + ", rate="
+				+ rate + ", parkingTag=" + parkingTag + ", lister=" + lister + ", address=" + address + "]";
 	}
 }

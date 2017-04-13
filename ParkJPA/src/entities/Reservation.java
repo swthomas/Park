@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Reservation {
@@ -20,11 +23,17 @@ public class Reservation {
 	
 	private Double rate;
 	
-	private CreditCard creditCard;
-	
-	private User user;
-
+	@OneToOne
+    @JoinColumn(name="parkingSpotId")
 	private ParkingSpot parkingSpot;
+
+	@OneToOne
+    @JoinColumn(name="creditCardId")
+	private CreditCard creditCard;
+
+	@ManyToOne
+	@JoinColumn(name="userId")
+	private User user;
 
 	
 	
@@ -58,6 +67,14 @@ public class Reservation {
 		this.rate = rate;
 	}
 
+	public ParkingSpot getParkingSpot() {
+		return parkingSpot;
+	}
+
+	public void setParkingSpot(ParkingSpot parkingSpot) {
+		this.parkingSpot = parkingSpot;
+	}
+
 	public CreditCard getCreditCard() {
 		return creditCard;
 	}
@@ -74,19 +91,11 @@ public class Reservation {
 		this.user = user;
 	}
 
-	public ParkingSpot getParkingSpot() {
-		return parkingSpot;
-	}
-
-	public void setParkingSpot(ParkingSpot parkingSpot) {
-		this.parkingSpot = parkingSpot;
-	}
-
 	@Override
 	public String toString() {
 		return "Reservation [id=" + id + ", reservedFromDate=" + reservedFromDate + ", reservedToDate=" + reservedToDate
-				+ ", rate=" + rate + ", creditCard=" + creditCard + ", user=" + user + ", parkingSpot=" + parkingSpot
+				+ ", rate=" + rate + ", parkingSpot=" + parkingSpot + ", creditCard=" + creditCard + ", user=" + user
 				+ "]";
-	}
+	}	
 }
 

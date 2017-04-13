@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -24,15 +27,14 @@ public class Address {
 	private String city;
 	
 	private String state;
-	
-	private User user;
-	
-	
-	
-	
-	
-	private List<CreditCard> creditCards;
 
+	@OneToMany(mappedBy="address")
+	private List<ParkingSpot> parkingSpot;
+
+	
+	
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -77,25 +79,17 @@ public class Address {
 		this.state = state;
 	}
 
-	public User getUser() {
-		return user;
+	public List<ParkingSpot> getParkingSpot() {
+		return parkingSpot;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public List<CreditCard> getCreditCards() {
-		return creditCards;
-	}
-
-	public void setCreditCards(List<CreditCard> creditCards) {
-		this.creditCards = creditCards;
+	public void setParkingSpot(List<ParkingSpot> parkingSpot) {
+		this.parkingSpot = parkingSpot;
 	}
 
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", street=" + street + ", street2=" + street2 + ", postalCode=" + postalCode
-				+ ", city=" + city + ", state=" + state + ", user=" + user + ", creditCards=" + creditCards + "]";
+				+ ", city=" + city + ", state=" + state + ", parkingSpot=" + parkingSpot + "]";
 	}
 }
