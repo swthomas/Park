@@ -27,12 +27,14 @@ public class UserPayment {
 	@JoinColumn(name="userId")
 	private User user;
 
-	@OneToOne(mappedBy="creditCardId")	
+	@OneToOne
+	@JoinColumn(name="creditCardId")	
 	private CreditCard creditCard;
 
-	@OneToOne(mappedBy="parkingSpotId")
+	@OneToOne
+	@JoinColumn(name="parkingSpotId")
 	private ParkingSpot parkingSpot;
-
+	
 	
 	
 	

@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="2.0">
 	<wb-module deploy-name="ParkMVC">
 		<property name="context-root" value="ParkMVC"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="src"/>
 		<wb-resource deploy-path="/" source-path="WebContent"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/ParkJPA/ParkJPA">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
