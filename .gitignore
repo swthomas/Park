@@ -1,1 +1,13 @@
+<<<<<<< HEAD
 /.metadata/
+=======
+.DS_STORE
+bin
+target
+build
+/.gradle/
+.gradle
+.metadata
+.recommenders/
+Servers*
+>>>>>>> 5751470a61d97ac445627ed5bf637d576e597974

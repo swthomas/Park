@@ -39,7 +39,6 @@ public class CreditCard {
 	
 	@OneToOne
     @JoinColumn(name="addressId")
-	@JsonIgnore
 	private Address address;
 
 	// gets and sets
