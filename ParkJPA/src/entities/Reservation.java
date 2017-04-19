@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Reservation {
 	
+	// fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -27,18 +28,15 @@ public class Reservation {
     @JoinColumn(name="parkingSpotId")
 	private ParkingSpot parkingSpot;
 
-//	@OneToOne
-//    @JoinColumn(name="creditCardId")
-//	private CreditCard creditCard;
+	@OneToOne
+    @JoinColumn(name="creditCardId")
+	private CreditCard creditCard;
 
 	@ManyToOne
 	@JoinColumn(name="userId")
 	private User user;
 
-	
-	
-	
-	
+	// gets and sets
 	public Integer getId() {
 		return id;
 	}
@@ -75,13 +73,13 @@ public class Reservation {
 		this.parkingSpot = parkingSpot;
 	}
 
-//	public CreditCard getCreditCard() {
-//		return creditCard;
-//	}
-//
-//	public void setCreditCard(CreditCard creditCard) {
-//		this.creditCard = creditCard;
-//	}
+	public CreditCard getCreditCard() {
+		return creditCard;
+	}
+
+	public void setCreditCard(CreditCard creditCard) {
+		this.creditCard = creditCard;
+	}
 
 	public User getUser() {
 		return user;
@@ -91,11 +89,12 @@ public class Reservation {
 		this.user = user;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Reservation [id=" + id + ", reservedFromDate=" + reservedFromDate + ", reservedToDate=" + reservedToDate
-//				+ ", rate=" + rate + ", parkingSpot=" + parkingSpot + ", creditCard=" + creditCard + ", user=" + user
-//				+ "]";
-//	}	
+	// toString
+	@Override
+	public String toString() {
+		return "Reservation [id=" + id + ", reservedFromDate=" + reservedFromDate + ", reservedToDate=" + reservedToDate
+				+ ", rate=" + rate + ", parkingSpot=" + parkingSpot + ", creditCard=" + creditCard + ", user=" + user
+				+ "]";
+	}	
 }
 

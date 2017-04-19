@@ -16,7 +16,7 @@ public class ParkingSpotTest {
 
 	@Before
 	public void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("Park");
+		emf = Persistence.createEntityManagerFactory("Parkr");
 		em = emf.createEntityManager();
 
 	}

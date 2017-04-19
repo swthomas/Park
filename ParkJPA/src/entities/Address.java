@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Address {
 	
+	// fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -31,10 +32,7 @@ public class Address {
 	@OneToMany(mappedBy="address")
 	private List<ParkingSpot> parkingSpot;
 
-	
-	
-	
-	
+	// gets and sets
 	public Integer getId() {
 		return id;
 	}
@@ -87,6 +85,7 @@ public class Address {
 		this.parkingSpot = parkingSpot;
 	}
 
+	// toString
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", street=" + street + ", street2=" + street2 + ", postalCode=" + postalCode

@@ -7,9 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class ParkingSensor {
 	
+	// fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -18,16 +21,12 @@ public class ParkingSensor {
 	
 	@OneToOne
 	@JoinColumn(name="parkingSpotId")
+	@JsonIgnore
 	private ParkingSpot parkingSpot;
 	
-	@OneToOne
-    @JoinColumn(name="parkingTagId")
-	private ParkingTag parkingTag;
-
 	
 	
-	
-	
+	// gets and sets
 	public Integer getId() {
 		return id;
 	}
@@ -48,17 +47,10 @@ public class ParkingSensor {
 		this.parkingSpot = parkingSpot;
 	}
 
-	public ParkingTag getParkingTag() {
-		return parkingTag;
-	}
 
-	public void setParkingTag(ParkingTag parkingTag) {
-		this.parkingTag = parkingTag;
-	}
-
+	// toString
 	@Override
 	public String toString() {
-		return "ParkingSensor [id=" + id + ", occupied=" + occupied + ", parkingSpot=" + parkingSpot + ", parkingTag="
-				+ parkingTag + "]";
+		return "ParkingSensor [id=" + id + ", occupied=" + occupied + ", parkingSpot=" + parkingSpot + "]";
 	}
 }	

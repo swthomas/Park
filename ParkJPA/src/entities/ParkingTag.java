@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class ParkingTag {
 	
+	// fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -23,7 +24,7 @@ public class ParkingTag {
 	
 	
 	
-	
+	// gets and sets
 	public Integer getId() {
 		return id;
 	}
@@ -44,6 +45,7 @@ public class ParkingTag {
 		this.user = user;
 	}
 
+	// toString
 	@Override
 	public String toString() {
 		return "ParkingTag [id=" + id + ", serialNumber=" + serialNumber + ", user=" + user + "]";

@@ -10,13 +10,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import entities.Lister;
+
 public class ListerTest {
 	private EntityManagerFactory emf = null;
 	private EntityManager em = null;
 
 	@Before
 	public void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("Park");
+		emf = Persistence.createEntityManagerFactory("Parkr");
 		em = emf.createEntityManager();
 
 	}
@@ -30,8 +32,8 @@ public class ListerTest {
 	// --------------------------------Test go Here--------------------------------//
 	
 	@Test
-	public void test_something() {
-		
+	public void test_lister_mapping() {
+		assertEquals("111223333",em.find(Lister.class, 1).getSocialSecurity().toString());
 	}
 	
 	

@@ -1,6 +1,5 @@
 package data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,54 +9,68 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.CreditCard;
-import entities.ParkingTag;
-import entities.Reservation;
+import entities.Lister;
 import entities.User;
-import entities.UserPayment;
-import entities.Vehicle;
 
 @Transactional
 @Repository
 public class UserDAOImpl implements UserDAO {
-
+	
 	@PersistenceContext
 	private EntityManager em;
 	
 	@Override
-	public User createNewUser(User user) {
-		
-		User newUser = new User();
-		
-		List<Vehicle> vehicles = new ArrayList<>();
-		List<ParkingTag> parkingTags = new ArrayList<>();
-		List<CreditCard> creditCards = new ArrayList<>();
-		List<Reservation> reservations = new ArrayList<>();
-		List<UserPayment> userPayments = new ArrayList<>();
-		
-		newUser = user;
-		
-		newUser.setVehicles(vehicles);
-		newUser.setParkingTags(parkingTags);
-		newUser.setCreditCard(creditCards);
-		newUser.setReservations(reservations);
-		newUser.setUserPayments(userPayments);
-		
-		em.persist(newUser);
+	public List<User> index() {
+		String q = "SELECT u FROM User u";
+		return em.createQuery(q, User.class).getResultList();
+	}
+	
+	@Override
+	public User show(Integer id) {
+		return em.find(User.class, id);
+	}
+	
+	@Override
+	public User show(String username, String password) {
+		String query = "SELECT u FROM User u WHERE u.username = :username AND u.password = :password";
+		return em.createQuery(query, User.class).setParameter("username", username).setParameter("password", password).getSingleResult();
+	}
+	
+	@Override
+	public User create(User u) {
+		em.persist(u);
 		em.flush();
-		
-		return newUser;
+		return u;
+	}
+	
+	@Override
+	public User update(User u) {
+		em.persist(u);
+		em.flush();
+		return u;
 	}
 
 	@Override
-	public User getUserById(Integer id) {
-		User user = null;
-		
-		try {
-			String q = "SELECT u FROM User u WHERE u.id = :id";
-			user = em.createQuery(q, User.class).setParameter("id", id).getSingleResult();
-		} catch (Exception e) {
-			
+	public Boolean destroy(Integer id) {
+		em.remove(em.find(User.class, id));
+		if (em.find(CreditCard.class, id) == null) {
+			return true;
 		}
-		return user;
+		return false;
+	}
+	
+	// creditCards
+	@Override
+	public List<CreditCard> creditCardsIndex(Integer userId) {
+		String query = "SELECT c FROM CreditCard c WHERE c.user.id = :userId";
+		return em.createQuery(query, CreditCard.class).setParameter("userId", userId).getResultList();
+	}
+	
+	// listers
+	
+	@Override
+	public Lister listersIndex(Integer userId) {
+		String query = "SELECT l FROM Lister l WHERE l.user.id = :userId";
+		return em.createQuery(query, Lister.class).setParameter("userId", userId).getSingleResult();
 	}
 }

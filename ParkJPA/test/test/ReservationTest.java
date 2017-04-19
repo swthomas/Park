@@ -10,13 +10,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import entities.CreditCard;
+import entities.Reservation;
+
 public class ReservationTest {
 	private EntityManagerFactory emf = null;
 	private EntityManager em = null;
 
 	@Before
 	public void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("Park");
+		emf = Persistence.createEntityManagerFactory("Parkr");
 		em = emf.createEntityManager();
 
 	}
@@ -30,8 +33,8 @@ public class ReservationTest {
 	// --------------------------------Test go Here--------------------------------//
 	
 	@Test
-	public void test_something() {
-		
+	public void test_reservation_mapping() {
+		assertEquals("2017-01-01",em.find(Reservation.class, 1).getReservedFromDate().toString());
 	}
 	
 	
