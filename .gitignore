@@ -1,0 +1,9 @@
+.DS_STORE
+bin
+target
+build
+/.gradle/
+.gradle
+.metadata
+.recommenders/
+Servers*

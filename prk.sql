@@ -184,7 +184,7 @@ CREATE INDEX `fk_parkingSpot_address1_idx` ON `parkingSpot` (`addressId` ASC);
 DROP TABLE IF EXISTS `creditCard` ;
 
 CREATE TABLE IF NOT EXISTS `creditCard` (
-  `Id` INT NOT NULL,
+  `Id` INT NOT NULL AUTO_INCREMENT,
   `creditCardNumber` INT NOT NULL,
   `expirationDate` DATE NOT NULL,
   `cvv` INT NOT NULL,
