@@ -10,9 +10,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Lister {
 	
+	// fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -23,15 +26,14 @@ public class Lister {
 	
 	@OneToOne
 	@JoinColumn(name="userId")
+	@JsonIgnore
 	private User user;
 
 	@OneToMany(mappedBy="lister")
+	@JsonIgnore
 	private List<ParkingSpot> parkingSpot;
 
-	
-	
-	
-	
+	// gets and sets
 	public Integer getId() {
 		return id;
 	}
@@ -68,6 +70,7 @@ public class Lister {
 		this.parkingSpot = parkingSpot;
 	}
 
+	// toString
 	@Override
 	public String toString() {
 		return "Lister [id=" + id + ", socialSecurity=" + socialSecurity + ", payPalAccount=" + payPalAccount

@@ -6,11 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
 public class PaymentToLister {
 	
+	// fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -19,13 +21,11 @@ public class PaymentToLister {
 		
 	private Double amount;
 		
-	@OneToOne(mappedBy="listerId")
+	@OneToOne
+	@JoinColumn(name="listerId")
 	private Lister lister;
 
-	
-	
-	
-	
+	// gets and sets
 	public Integer getId() {
 		return id;
 	}
@@ -54,6 +54,7 @@ public class PaymentToLister {
 		this.lister = lister;
 	}
 
+	// toString
 	@Override
 	public String toString() {
 		return "PaymentToLister [id=" + id + ", date=" + date + ", amount=" + amount + ", lister=" + lister + "]";

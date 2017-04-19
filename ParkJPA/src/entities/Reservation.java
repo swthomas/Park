@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Reservation {
 	
+	// fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -35,10 +36,7 @@ public class Reservation {
 	@JoinColumn(name="userId")
 	private User user;
 
-	
-	
-	
-	
+	// gets and sets
 	public Integer getId() {
 		return id;
 	}
@@ -91,6 +89,7 @@ public class Reservation {
 		this.user = user;
 	}
 
+	// toString
 	@Override
 	public String toString() {
 		return "Reservation [id=" + id + ", reservedFromDate=" + reservedFromDate + ", reservedToDate=" + reservedToDate

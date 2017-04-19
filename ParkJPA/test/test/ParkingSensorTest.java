@@ -10,13 +10,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import entities.Address;
+import entities.ParkingSensor;
+
 public class ParkingSensorTest {
 	private EntityManagerFactory emf = null;
 	private EntityManager em = null;
 
 	@Before
 	public void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("Park");
+		emf = Persistence.createEntityManagerFactory("Parkr");
 		em = emf.createEntityManager();
 
 	}
@@ -30,11 +33,9 @@ public class ParkingSensorTest {
 	// --------------------------------Test go Here--------------------------------//
 	
 	@Test
-	public void test_something() {
-		
+	public void test_parkingSensor_mapping() {
+		assertEquals(Boolean.TRUE,em.find(ParkingSensor.class, 1).getOccupied());
 	}
-	
-	
 	
 	//----------------------------------------------------------------------------// 
 	

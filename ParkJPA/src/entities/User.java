@@ -6,13 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User {
 
+	// fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -31,28 +33,31 @@ public class User {
 
 	private Boolean isLister;
 	
+	@JsonIgnore
 	@OneToOne(mappedBy="user")
 	private Lister lister;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Vehicle> vehicles;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<ParkingTag> parkingTags;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
-	private List<CreditCard> creditCard;
+	private List<CreditCard> creditCards;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Reservation> reservations;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<UserPayment> userPayments;
 
-	
-	
-	
-	
+	// gets and sets
 	public Integer getId() {
 		return id;
 	}
@@ -137,12 +142,12 @@ public class User {
 		this.parkingTags = parkingTags;
 	}
 
-	public List<CreditCard> getCreditCard() {
-		return creditCard;
+	public List<CreditCard> getCreditCards() {
+		return creditCards;
 	}
 
-	public void setCreditCard(List<CreditCard> creditCard) {
-		this.creditCard = creditCard;
+	public void setCreditCard(List<CreditCard> creditCards) {
+		this.creditCards = creditCards;
 	}
 
 	public List<Reservation> getReservations() {
@@ -161,11 +166,12 @@ public class User {
 		this.userPayments = userPayments;
 	}
 
+	// toString
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber
 				+ ", email=" + email + ", username=" + username + ", password=" + password + ", isLister=" + isLister
-				+ ", lister=" + lister + ", vehicles=" + vehicles + ", parkingTags=" + parkingTags + ", creditCard="
-				+ creditCard + ", reservations=" + reservations + ", userPayments=" + userPayments + "]";
+				+ ", lister=" + lister + ", vehicles=" + vehicles + ", parkingTags=" + parkingTags + ", creditCards="
+				+ creditCards + ", reservations=" + reservations + ", userPayments=" + userPayments + "]";
 	}
 }

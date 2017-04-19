@@ -10,13 +10,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import entities.Address;
+
 public class AddressTest {
 	private EntityManagerFactory emf = null;
 	private EntityManager em = null;
 
 	@Before
 	public void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("Park");
+		emf = Persistence.createEntityManagerFactory("Parkr");
 		em = emf.createEntityManager();
 
 	}
@@ -30,11 +32,9 @@ public class AddressTest {
 	// --------------------------------Test go Here--------------------------------//
 	
 	@Test
-	public void test_something() {
-		
+	public void test_address_mapping() {
+		assertEquals("111 1st st.",em.find(Address.class, 1).getStreet());
 	}
-	
-	
 	
 	//----------------------------------------------------------------------------// 
 	

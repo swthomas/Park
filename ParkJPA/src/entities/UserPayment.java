@@ -1,6 +1,7 @@
 package entities;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,16 +10,20 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class UserPayment {
 	
+	// fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private Double rate;
 	
+	@Temporal(TemporalType.DATE)
 	private Date date;
 		
 	private Double amount;
@@ -27,16 +32,15 @@ public class UserPayment {
 	@JoinColumn(name="userId")
 	private User user;
 
-	@OneToOne(mappedBy="creditCardId")	
+	@OneToOne
+	@JoinColumn(name="creditCardId")	
 	private CreditCard creditCard;
 
-	@OneToOne(mappedBy="parkingSpotId")
+	@OneToOne
+	@JoinColumn(name="parkingSpotId")
 	private ParkingSpot parkingSpot;
-
 	
-	
-	
-	
+	// gets and sets
 	public Integer getId() {
 		return id;
 	}
@@ -93,6 +97,7 @@ public class UserPayment {
 		this.parkingSpot = parkingSpot;
 	}
 
+	// toString
 	@Override
 	public String toString() {
 		return "UserPayment [id=" + id + ", rate=" + rate + ", date=" + date + ", amount=" + amount + ", user=" + user

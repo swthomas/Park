@@ -11,6 +11,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class ParkingSpot {
 	
+	// fields 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -33,10 +34,7 @@ public class ParkingSpot {
 	@JoinColumn(name="addressId")  
 	private Address address;
 
-	
-	
-	
-	
+	// gets and sets
 	public Integer getId() {
 		return id;
 	}
@@ -89,6 +87,7 @@ public class ParkingSpot {
 		this.address = address;
 	}
 
+	// toString
 	@Override
 	public String toString() {
 		return "ParkingSpot [id=" + id + ", description=" + description + ", pictureURL=" + pictureURL + ", rate="

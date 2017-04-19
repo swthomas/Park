@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Vehicle {
 	
+	// fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -28,10 +29,7 @@ public class Vehicle {
 	@JoinColumn(name="userId")
 	private User user;
 
-	
-	
-	
-	
+	// gets and sets
 	public Integer getId() {
 		return id;
 	}
@@ -84,6 +82,7 @@ public class Vehicle {
 		this.user = user;
 	}
 
+	// toString
 	@Override
 	public String toString() {
 		return "Vehicle [id=" + id + ", year=" + year + ", color=" + color + ", make=" + make + ", model=" + model

@@ -10,13 +10,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import entities.CreditCard;
+
 public class CreditCardTest {
 	private EntityManagerFactory emf = null;
 	private EntityManager em = null;
 
 	@Before
 	public void setUp() throws Exception {
-		emf = Persistence.createEntityManagerFactory("Park");
+		emf = Persistence.createEntityManagerFactory("Parkr");
 		em = emf.createEntityManager();
 
 	}
@@ -30,8 +32,8 @@ public class CreditCardTest {
 	// --------------------------------Test go Here--------------------------------//
 	
 	@Test
-	public void test_something() {
-		
+	public void test_creditCard_mapping() {
+		assertEquals("2147483647",em.find(CreditCard.class, 1).getCreditCardNumber().toString());
 	}
 	
 	

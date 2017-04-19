@@ -1,22 +1,31 @@
 package entities;
 
-import java.sql.Date;
 
+import java.util.Date;
+
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 public class CreditCard {
 	
+	// fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	private Integer creditCardNumber;
 	
+	@Temporal(TemporalType.DATE)
 	private Date expirationDate;
 	
 	private Integer cvv;
@@ -25,16 +34,15 @@ public class CreditCard {
 	
 	@ManyToOne
 	@JoinColumn(name="userId")
+	@JsonIgnore
 	private User user;
 	
 	@OneToOne
     @JoinColumn(name="addressId")
+	@JsonIgnore
 	private Address address;
 
-	
-	
-	
-	
+	// gets and sets
 	public Integer getId() {
 		return id;
 	}
@@ -87,6 +95,7 @@ public class CreditCard {
 		this.address = address;
 	}
 
+	// toString
 	@Override
 	public String toString() {
 		return "CreditCard [id=" + id + ", creditCardNumber=" + creditCardNumber + ", expirationDate=" + expirationDate
