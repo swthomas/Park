@@ -13,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class UserPayment {
 	
@@ -30,6 +32,7 @@ public class UserPayment {
 
 	@ManyToOne
 	@JoinColumn(name="userId")
+    @JsonBackReference(value="userToUserPayments")
 	private User user;
 
 	@OneToOne

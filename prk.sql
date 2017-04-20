@@ -184,9 +184,9 @@ DROP TABLE IF EXISTS `creditCard` ;
 
 CREATE TABLE IF NOT EXISTS `creditCard` (
   `Id` INT NOT NULL AUTO_INCREMENT,
-  `creditCardNumber` INT NOT NULL,
+  `creditCardNumber` DOUBLE NOT NULL,
   `expirationDate` DATE NOT NULL,
-  `cvv` INT NOT NULL,
+  `cvv` INT(3) NOT NULL,
   `activeStatus` TINYINT(1) NOT NULL DEFAULT 1,
   `addressId` INT NOT NULL,
   `userId` INT NOT NULL,

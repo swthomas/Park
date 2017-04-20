@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class User {
@@ -37,23 +38,23 @@ public class User {
 	@OneToOne(mappedBy="user")
 	private Lister lister;
 	
-	@JsonIgnore
+	@JsonManagedReference(value="userToVehicles")
 	@OneToMany(mappedBy="user")
 	private List<Vehicle> vehicles;
 	
-	@JsonIgnore
+	@JsonManagedReference(value="userToParkingTags")
 	@OneToMany(mappedBy="user")
 	private List<ParkingTag> parkingTags;
 	
-	@JsonIgnore
+	@JsonManagedReference(value="userToCreditCards")
 	@OneToMany(mappedBy="user")
 	private List<CreditCard> creditCards;
 	
-	@JsonIgnore
+	@JsonManagedReference(value="userToReservations")
 	@OneToMany(mappedBy="user")
 	private List<Reservation> reservations;
 	
-	@JsonIgnore
+	@JsonManagedReference(value="userToUserPayments")
 	@OneToMany(mappedBy="user")
 	private List<UserPayment> userPayments;
 

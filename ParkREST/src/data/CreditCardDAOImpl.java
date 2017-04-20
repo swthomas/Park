@@ -1,15 +1,13 @@
 package data;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.CreditCard;
+import entities.User;
 
 @Transactional
 @Repository
@@ -17,9 +15,6 @@ public class CreditCardDAOImpl implements CreditCardDAO{
 
 	@PersistenceContext
 	private EntityManager em;
-	
-	@Autowired
-	private UserDAO userDAO;
 
 	@Override
 	public CreditCard show(Integer id) {
@@ -37,11 +32,10 @@ public class CreditCardDAOImpl implements CreditCardDAO{
 
 	@Override
 	public CreditCard create(Integer userId, CreditCard c) {
-		CreditCard newCard = c;
-		newCard.setUser(userDAO.show(userId));
-		em.persist(newCard);
+		c.setUser(em.find(User.class, userId));
+		em.persist(c);
 		em.flush();
-		return newCard;
+		return c;
 	}
 
 	@Override

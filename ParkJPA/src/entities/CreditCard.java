@@ -13,7 +13,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class CreditCard {
@@ -23,7 +25,7 @@ public class CreditCard {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private Integer creditCardNumber;
+	private Double creditCardNumber;
 	
 	@Temporal(TemporalType.DATE)
 	private Date expirationDate;
@@ -34,6 +36,8 @@ public class CreditCard {
 	
 	@ManyToOne
 	@JoinColumn(name="userId")
+    @JsonBackReference(value="userToCreditCards")
+
 	private User user;
 	
 	@OneToOne
@@ -45,11 +49,11 @@ public class CreditCard {
 		return id;
 	}
 
-	public Integer getCreditCardNumber() {
+	public Double getCreditCardNumber() {
 		return creditCardNumber;
 	}
 
-	public void setCreditCardNumber(Integer creditCardNumber) {
+	public void setCreditCardNumber(Double creditCardNumber) {
 		this.creditCardNumber = creditCardNumber;
 	}
 

@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Reservation {
 	
@@ -34,6 +36,7 @@ public class Reservation {
 
 	@ManyToOne
 	@JoinColumn(name="userId")
+    @JsonBackReference(value="userToReservations")
 	private User user;
 
 	// gets and sets

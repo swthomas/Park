@@ -43,7 +43,7 @@ public class VehicleController {
 		}
 	}
 	
-	@RequestMapping(value="users/{id}", method= RequestMethod.DELETE)
+	@RequestMapping(value="vehicles/{id}", method= RequestMethod.DELETE)
 	public Boolean destroy(@PathVariable Integer id) {
 		return vehicleDAO.destroy(id);
 	}

@@ -13,7 +13,7 @@ import data.ListerDAO;
 import entities.Lister;
 
 @RestController
-public class Listercontroller {
+public class ListerController {
 	
 	@Autowired
 	private ListerDAO listerDAO;
@@ -35,12 +35,12 @@ public class Listercontroller {
 		}
 	}
 
-	@RequestMapping(value="listers/{userId}", method=RequestMethod.PUT)
-	public Lister update(@PathVariable Integer userId, @RequestBody String jsonLister) {
+	@RequestMapping(value="listers/{id}", method=RequestMethod.PUT)
+	public Lister update(@PathVariable Integer id, @RequestBody String jsonLister) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			Lister mappedLister = mapper.readValue(jsonLister, Lister.class);
-			return listerDAO.update(userId, mappedLister);
+			return listerDAO.update(id, mappedLister);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

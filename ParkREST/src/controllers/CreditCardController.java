@@ -1,7 +1,5 @@
 package controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,7 +35,7 @@ public class CreditCardController {
 		}
 	}
 	
-	@RequestMapping(value="creditcards/{userId}", method=RequestMethod.PUT)
+	@RequestMapping(value="creditcards/{id}", method=RequestMethod.PUT)
 	public CreditCard update(@PathVariable Integer id, @RequestBody String jsonUser) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
