@@ -14,7 +14,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import data.UserDAO;
 import entities.CreditCard;
 import entities.Lister;
+import entities.ParkingTag;
+import entities.Reservation;
 import entities.User;
+import entities.UserPayment;
+import entities.Vehicle;
 
 @RestController
 public class UserController {
@@ -49,12 +53,12 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value="users", method=RequestMethod.PUT)
-	public User update(@RequestBody String jsonUser) {
+	@RequestMapping(value="users/{id}", method=RequestMethod.PUT)
+	public User update(@PathVariable Integer id, @RequestBody String jsonUser) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			User mappedUser = mapper.readValue(jsonUser, User.class);
-			return userDAO.update(mappedUser);
+			return userDAO.update(id, mappedUser);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -66,18 +70,42 @@ public class UserController {
 		return userDAO.destroy(id);
 	}
 	
-	// creditCards methods
 	
-	@RequestMapping(value="users/{userId}/creditcards", method= RequestMethod.GET)
-	public List<CreditCard> index(@PathVariable Integer userId) {
-		return userDAO.creditCardsIndex(userId);
-	}
 	
 	// listers methods
-	
 	@RequestMapping(value="users/{userId}/listers", method= RequestMethod.GET)
 	public Lister listersIndex(@PathVariable Integer userId) {
 		return userDAO.listersIndex(userId);
+	}
+	
+	// listers methods
+	@RequestMapping(value="users/{userId}/vehicles", method= RequestMethod.GET)
+	public List<Vehicle> vehiclesIndex(@PathVariable Integer userId) {
+		return userDAO.vehiclesIndex(userId);
+	}
+	
+	// parkingTags methods
+	@RequestMapping(value="users/{userId}/parkingtags", method= RequestMethod.GET)
+	public List<ParkingTag> parkingTagsIndex(@PathVariable Integer userId) {
+		return userDAO.parkingTagsIndex(userId);
+	}
+	
+	// creditCards methods
+	@RequestMapping(value="users/{userId}/creditcards", method= RequestMethod.GET)
+	public List<CreditCard> creditCardIndex(@PathVariable Integer userId) {
+		return userDAO.creditCardsIndex(userId);
+	}
+	
+	// reservations methods
+	@RequestMapping(value="users/{userId}/reservations", method= RequestMethod.GET)
+	public List<Reservation> reservationsIndex(@PathVariable Integer userId) {
+		return userDAO.reservationsIndex(userId);
+	}
+	
+	// userPayments methods
+	@RequestMapping(value="users/{userId}/userpayments", method= RequestMethod.GET)
+	public List<UserPayment> userPaymentsIndex(@PathVariable Integer userId) {
+		return userDAO.userPaymentsIndex(userId);
 	}
 	
 }

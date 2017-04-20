@@ -23,7 +23,7 @@ public class User {
 
 	private String lastName;
 
-	private Integer phoneNumber;
+	private Double phoneNumber;
 
 	private String email;
 
@@ -78,11 +78,11 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public Integer getPhoneNumber() {
+	public Double getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(Integer phoneNumber) {
+	public void setPhoneNumber(Double phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 

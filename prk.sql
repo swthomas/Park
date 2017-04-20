@@ -24,8 +24,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `firstName` VARCHAR(45) NOT NULL,
   `lastName` VARCHAR(45) NOT NULL,
-  `addressId` INT NOT NULL,
-  `phoneNumber` INT NOT NULL,
+  `phoneNumber` DOUBLE NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
@@ -353,7 +352,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `prk`;
-INSERT INTO `user` (`id`, `firstName`, `lastName`, `addressId`, `phoneNumber`, `email`, `username`, `password`, `isLister`) VALUES (1, 'Steve', 'Thompson', 1, 1112223333, 'steveThompson@sd.com', 'sthompson', 'password', 1);
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `phoneNumber`, `email`, `username`, `password`, `isLister`) VALUES (1, 'Steve', 'Thompson', 1112223333, 'steveThompson@sd.com', 'sthompson', 'password', 1);
 
 COMMIT;
 
