@@ -34,7 +34,6 @@ public class CreditCard {
 	
 	@ManyToOne
 	@JoinColumn(name="userId")
-	@JsonIgnore
 	private User user;
 	
 	@OneToOne

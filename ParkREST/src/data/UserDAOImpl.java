@@ -1,5 +1,6 @@
 package data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,7 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import entities.CreditCard;
 import entities.Lister;
+import entities.ParkingTag;
+import entities.Reservation;
 import entities.User;
+import entities.UserPayment;
+import entities.Vehicle;
 
 @Transactional
 @Repository
@@ -37,17 +42,31 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
-	public User create(User u) {
-		em.persist(u);
+	public User create(User user) {
+		List<Vehicle> vehicles = new ArrayList<>();
+		List<ParkingTag> parkingTags = new ArrayList<>();
+		List<CreditCard> creditCards = new ArrayList<>();
+		List<Reservation> reservations = new ArrayList<>();
+		List<UserPayment> userPayments = new ArrayList<>();
+		user.setCreditCard(creditCards);
+		user.setParkingTags(parkingTags);
+		user.setReservations(reservations);
+		user.setVehicles(vehicles);
+		user.setUserPayments(userPayments);
+		em.persist(user);
 		em.flush();
-		return u;
+		return user;
 	}
 	
 	@Override
-	public User update(User u) {
-		em.persist(u);
-		em.flush();
-		return u;
+	public User update(Integer id, User u) {
+		User user = em.find(User.class, id);
+		user.setFirstName(u.getFirstName());
+		user.setLastName(u.getLastName());
+		user.setEmail(u.getEmail());
+		user.setPassword(u.getPassword());
+		user.setPhoneNumber(u.getPhoneNumber());
+		return user;
 	}
 
 	@Override
@@ -59,6 +78,27 @@ public class UserDAOImpl implements UserDAO {
 		return false;
 	}
 	
+	// listers
+	@Override
+	public Lister listersIndex(Integer userId) {
+		String query = "SELECT l FROM Lister l WHERE l.user.id = :userId";
+		return em.createQuery(query, Lister.class).setParameter("userId", userId).getSingleResult();
+	}
+	
+	// vehicles
+	@Override
+	public List<Vehicle> vehiclesIndex(Integer userId) {
+		String query = "SELECT v FROM Vehicle v WHERE v.user.id = :userId";
+		return em.createQuery(query, Vehicle.class).setParameter("userId", userId).getResultList();
+	}
+
+	// parkingTags
+	@Override
+	public List<ParkingTag> parkingTagsIndex(Integer userId) {
+		String query = "SELECT p FROM ParkingTag p WHERE p.user.id = :userId";
+		return em.createQuery(query, ParkingTag.class).setParameter("userId", userId).getResultList();
+	}
+	
 	// creditCards
 	@Override
 	public List<CreditCard> creditCardsIndex(Integer userId) {
@@ -66,11 +106,18 @@ public class UserDAOImpl implements UserDAO {
 		return em.createQuery(query, CreditCard.class).setParameter("userId", userId).getResultList();
 	}
 	
-	// listers
-	
+	// reservations
 	@Override
-	public Lister listersIndex(Integer userId) {
-		String query = "SELECT l FROM Lister l WHERE l.user.id = :userId";
-		return em.createQuery(query, Lister.class).setParameter("userId", userId).getSingleResult();
+	public List<Reservation> reservationsIndex(Integer userId) {
+		String query = "SELECT r FROM Reservation r WHERE r.user.id = :userId";
+		return em.createQuery(query, Reservation.class).setParameter("userId", userId).getResultList();
 	}
+
+	// userPayments
+	@Override
+	public List<UserPayment> userPaymentsIndex(Integer userId) {
+		String query = "SELECT p FROM UserPayment p WHERE p.user.id = :userId";
+		return em.createQuery(query, UserPayment.class).setParameter("userId", userId).getResultList();
+	}
+	
 }
