@@ -34,12 +34,12 @@ public class CreditCard {
 	
 	private Boolean activeStatus;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="userId")
-    @JsonBackReference(value="userToCreditCards")
-
 	private User user;
 	
+	@JsonIgnore
 	@OneToOne
     @JoinColumn(name="addressId")
 	private Address address;

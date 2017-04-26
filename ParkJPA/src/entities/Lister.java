@@ -24,14 +24,19 @@ public class Lister {
 	
 	private String payPalAccount;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="userId")
-	@JsonIgnore
 	private User user;
 
-	@OneToMany(mappedBy="lister")
 	@JsonIgnore
+	@OneToMany(mappedBy="lister")
 	private List<ParkingSpot> parkingSpot;
+	
+	@JsonIgnore
+	@OneToOne
+    @JoinColumn(name="addressId")
+	private Address address;
 
 	// gets and sets
 	public Integer getId() {

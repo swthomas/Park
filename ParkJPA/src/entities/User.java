@@ -38,23 +38,19 @@ public class User {
 	@OneToOne(mappedBy="user")
 	private Lister lister;
 	
-	@JsonManagedReference(value="userToVehicles")
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Vehicle> vehicles;
 	
-	@JsonManagedReference(value="userToParkingTags")
-	@OneToMany(mappedBy="user")
-	private List<ParkingTag> parkingTags;
-	
-	@JsonManagedReference(value="userToCreditCards")
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<CreditCard> creditCards;
 	
-	@JsonManagedReference(value="userToReservations")
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Reservation> reservations;
 	
-	@JsonManagedReference(value="userToUserPayments")
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<UserPayment> userPayments;
 
@@ -135,14 +131,6 @@ public class User {
 		this.vehicles = vehicles;
 	}
 
-	public List<ParkingTag> getParkingTags() {
-		return parkingTags;
-	}
-
-	public void setParkingTags(List<ParkingTag> parkingTags) {
-		this.parkingTags = parkingTags;
-	}
-
 	public List<CreditCard> getCreditCards() {
 		return creditCards;
 	}
@@ -172,7 +160,7 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber
 				+ ", email=" + email + ", username=" + username + ", password=" + password + ", isLister=" + isLister
-				+ ", lister=" + lister + ", vehicles=" + vehicles + ", parkingTags=" + parkingTags + ", creditCards="
+				+ ", lister=" + lister + ", vehicles=" + vehicles + ", creditCards="
 				+ creditCards + ", reservations=" + reservations + ", userPayments=" + userPayments + "]";
 	}
 }

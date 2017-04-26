@@ -24,10 +24,10 @@ public class CreditCardController {
 	}
 	
 	@RequestMapping(value="creditcards/{userId}", method=RequestMethod.POST)
-	public CreditCard create(@PathVariable Integer userId, @RequestBody String jsonUser) {
+	public CreditCard create(@PathVariable Integer userId, @RequestBody String jsonCard) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
-			CreditCard mappedCreditCard = mapper.readValue(jsonUser, CreditCard.class);
+			CreditCard mappedCreditCard = mapper.readValue(jsonCard, CreditCard.class);
 			return creditCardDAO.create(userId, mappedCreditCard);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -36,10 +36,10 @@ public class CreditCardController {
 	}
 	
 	@RequestMapping(value="creditcards/{id}", method=RequestMethod.PUT)
-	public CreditCard update(@PathVariable Integer id, @RequestBody String jsonUser) {
+	public CreditCard update(@PathVariable Integer id, @RequestBody String jsonCard) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
-			CreditCard mappedCreditCard = mapper.readValue(jsonUser, CreditCard.class);
+			CreditCard mappedCreditCard = mapper.readValue(jsonCard, CreditCard.class);
 			return creditCardDAO.update(id, mappedCreditCard);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Vehicle {
@@ -26,10 +26,10 @@ public class Vehicle {
 	private String model;
 	
 	private String licensePlate;
-	
+
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="userId")
-    @JsonBackReference(value="userToVehicles")
 	private User user;
 
 	// gets and sets

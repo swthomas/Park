@@ -28,8 +28,8 @@ public class Address {
 	
 	private String state;
 
-	@OneToMany(mappedBy="address")
 	@JsonIgnore
+	@OneToMany(mappedBy="address")
 	private List<ParkingSpot> parkingSpot;
 
 	// gets and sets

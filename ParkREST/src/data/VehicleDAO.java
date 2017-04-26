@@ -9,7 +9,7 @@ public interface VehicleDAO {
 
 	public Vehicle show(int id);
 
-	public Vehicle create(Vehicle v);
+	public Vehicle create(Vehicle v, Integer userId);
 
 	public Vehicle update(int id, Vehicle v);
 

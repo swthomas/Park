@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import data.VehicleDAO;
-import entities.User;
 import entities.Vehicle;
 
 @RestController
@@ -19,12 +18,17 @@ public class VehicleController {
 	@Autowired
 	private VehicleDAO vehicleDAO;
 	
-	@RequestMapping(value="vehicles", method=RequestMethod.POST)
-	public Vehicle create(@RequestBody String jsonVehicle) {
+	@RequestMapping(value = "vehicles/{id}", method = RequestMethod.GET)
+	public Vehicle show(@PathVariable Integer id) {
+		return vehicleDAO.show(id);
+	}
+	
+	@RequestMapping(value="vehicles/{userId}", method=RequestMethod.POST)
+	public Vehicle create(@PathVariable Integer userId, @RequestBody String jsonVehicle) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			Vehicle mappedUser = mapper.readValue(jsonVehicle, Vehicle.class);
-			return vehicleDAO.create(mappedUser);
+			return vehicleDAO.create(mappedUser, userId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

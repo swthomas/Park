@@ -118,6 +118,28 @@ CREATE INDEX `fk_vehicle_customer1_idx` ON `vehicle` (`userId` ASC);
 
 
 -- -----------------------------------------------------
+-- Table `parkingTag`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `parkingTag` ;
+
+CREATE TABLE IF NOT EXISTS `parkingTag` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `serialNumber` VARCHAR(45) NOT NULL,
+  `userId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_parkingTag_user1`
+    FOREIGN KEY (`userId`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `serialNumber_UNIQUE` ON `parkingTag` (`serialNumber` ASC);
+
+CREATE INDEX `fk_parkingTag_user1_idx` ON `parkingTag` (`userId` ASC);
+
+
+-- -----------------------------------------------------
 -- Table `parkingSpot`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `parkingSpot` ;
@@ -128,11 +150,17 @@ CREATE TABLE IF NOT EXISTS `parkingSpot` (
   `pictureURL` VARCHAR(45) NULL,
   `rate` DOUBLE NOT NULL,
   `listerId` INT NOT NULL,
+  `parkingTagId` INT NULL,
   `addressId` INT NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_parkingSpot_lister1`
     FOREIGN KEY (`listerId`)
     REFERENCES `lister` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_parkingSpot_parkingTag1`
+    FOREIGN KEY (`parkingTagId`)
+    REFERENCES `parkingTag` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_parkingSpot_address1`
@@ -143,6 +171,8 @@ CREATE TABLE IF NOT EXISTS `parkingSpot` (
 ENGINE = InnoDB;
 
 CREATE INDEX `fk_parkingSpot_lister1_idx` ON `parkingSpot` (`listerId` ASC);
+
+CREATE INDEX `fk_parkingSpot_parkingTag1_idx` ON `parkingSpot` (`parkingTagId` ASC);
 
 CREATE INDEX `fk_parkingSpot_address1_idx` ON `parkingSpot` (`addressId` ASC);
 
@@ -291,6 +321,28 @@ CREATE INDEX `fk_reservation_creditCard1_idx` ON `reservation` (`creditCardId` A
 CREATE INDEX `fk_reservation_user1_idx` ON `reservation` (`userId` ASC);
 
 
+-- -----------------------------------------------------
+-- Table `parkingSensor`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `parkingSensor` ;
+
+CREATE TABLE IF NOT EXISTS `parkingSensor` (
+  `id` INT NOT NULL,
+  `occupied` TINYINT(1) NOT NULL,
+  `parkingSpotId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_parkingSensor_parkingSpot1`
+    FOREIGN KEY (`parkingSpotId`)
+    REFERENCES `parkingSpot` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `parkingSensorId_UNIQUE` ON `parkingSensor` (`id` ASC);
+
+CREATE INDEX `fk_parkingSensor_parkingSpot1_idx` ON `parkingSensor` (`parkingSpotId` ASC);
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
@@ -337,11 +389,21 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `parkingTag`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `prk`;
+INSERT INTO `parkingTag` (`id`, `serialNumber`, `userId`) VALUES (1, '1234567890abcd', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `parkingSpot`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `prk`;
-INSERT INTO `parkingSpot` (`id`, `description`, `pictureURL`, `rate`, `listerId`, `addressId`) VALUES (1, 'Parking spot for your car at my house', NULL, 2.99, 1, 1);
+INSERT INTO `parkingSpot` (`id`, `description`, `pictureURL`, `rate`, `listerId`, `parkingTagId`, `addressId`) VALUES (1, 'Parking spot for your car at my house', NULL, 2.99, 1, 1, 1);
 
 COMMIT;
 
@@ -351,7 +413,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `prk`;
-INSERT INTO `creditCard` (`Id`, `creditCardNumber`, `expirationDate`, `cvv`, `activeStatus`, `addressId`, `userId`) VALUES (1, 2147483647, '2019-05-01', 111, 1, 1, 1);
+INSERT INTO `creditCard` (`Id`, `creditCardNumber`, `expirationDate`, `cvv`, `activeStatus`, `addressId`, `userId`) VALUES (1, 1111222233334444, '2019-05-01', 111, 1, 1, 1);
 
 COMMIT;
 
@@ -382,6 +444,16 @@ COMMIT;
 START TRANSACTION;
 USE `prk`;
 INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `parkingSpotId`, `creditCardId`, `userId`) VALUES (1, '2017-01-01 12:00:00', '2017-01-01 02:00:00', 2.99, 1, 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `parkingSensor`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `prk`;
+INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`) VALUES (1, 1, 1);
 
 COMMIT;
 

@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class UserPayment {
@@ -30,15 +30,17 @@ public class UserPayment {
 		
 	private Double amount;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="userId")
-    @JsonBackReference(value="userToUserPayments")
 	private User user;
 
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="creditCardId")	
 	private CreditCard creditCard;
 
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="parkingSpotId")
 	private ParkingSpot parkingSpot;

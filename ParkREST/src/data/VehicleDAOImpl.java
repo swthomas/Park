@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import entities.User;
 import entities.Vehicle;
 
 @Transactional
@@ -29,7 +30,8 @@ public class VehicleDAOImpl implements VehicleDAO {
 	}
 
 	@Override
-	public Vehicle create(Vehicle v) {
+	public Vehicle create(Vehicle v, Integer userId) {
+		v.setUser(em.find(User.class, userId));
 		em.persist(v);
 		em.flush();
 		return v;

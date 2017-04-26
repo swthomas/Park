@@ -15,8 +15,11 @@
   	<bean id="userdao" class="data.UserDAOImpl" />
    	<bean id="creditcarddao" class="data.CreditCardDAOImpl" /> 	
    	<bean id="listerdao" class="data.ListerDAOImpl" /> 	
-   	<bean id="parkingsensordao" class="data.ParkingSensorDAOImpl" /> 	
    	<bean id="vehicledao" class="data.VehicleDAOImpl" /> 	
+   	<bean id="addressdao" class="data.AddressDAOImpl" /> 	
+   	<bean id="parkingspotdao" class="data.ParkingSpotDAOImpl" /> 	
+   	<bean id="reservationdao" class="data.ReservationDAOImpl" /> 	
+   	<bean id="userpaymentdao" class="data.UserPaymentDAOImpl" /> 	
   
 	<context:component-scan base-package="controllers" />
 

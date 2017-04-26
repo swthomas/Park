@@ -6,7 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class ParkingSpot {
@@ -22,14 +23,12 @@ public class ParkingSpot {
 	
 	private Double rate;
 	
-	@OneToOne
-    @JoinColumn(name="parkingTagId")
-	private ParkingTag parkingTag;
-
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="listerId") 
 	private Lister lister;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="addressId")  
 	private Address address;
@@ -63,14 +62,6 @@ public class ParkingSpot {
 		this.rate = rate;
 	}
 
-	public ParkingTag getParkingTag() {
-		return parkingTag;
-	}
-
-	public void setParkingTag(ParkingTag parkingTag) {
-		this.parkingTag = parkingTag;
-	}
-
 	public Lister getLister() {
 		return lister;
 	}
@@ -91,6 +82,6 @@ public class ParkingSpot {
 	@Override
 	public String toString() {
 		return "ParkingSpot [id=" + id + ", description=" + description + ", pictureURL=" + pictureURL + ", rate="
-				+ rate + ", parkingTag=" + parkingTag + ", lister=" + lister + ", address=" + address + "]";
+				+ rate + ", lister=" + lister + ", address=" + address + "]";
 	}
 }

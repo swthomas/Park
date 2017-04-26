@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import entities.CreditCard;
 import entities.Lister;
-import entities.ParkingTag;
 import entities.Reservation;
 import entities.User;
 import entities.UserPayment;
@@ -44,12 +43,10 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User create(User user) {
 		List<Vehicle> vehicles = new ArrayList<>();
-		List<ParkingTag> parkingTags = new ArrayList<>();
 		List<CreditCard> creditCards = new ArrayList<>();
 		List<Reservation> reservations = new ArrayList<>();
 		List<UserPayment> userPayments = new ArrayList<>();
 		user.setCreditCard(creditCards);
-		user.setParkingTags(parkingTags);
 		user.setReservations(reservations);
 		user.setVehicles(vehicles);
 		user.setUserPayments(userPayments);
@@ -91,13 +88,6 @@ public class UserDAOImpl implements UserDAO {
 		String query = "SELECT v FROM Vehicle v WHERE v.user.id = :userId";
 		return em.createQuery(query, Vehicle.class).setParameter("userId", userId).getResultList();
 	}
-
-	// parkingTags
-	@Override
-	public List<ParkingTag> parkingTagsIndex(Integer userId) {
-		String query = "SELECT p FROM ParkingTag p WHERE p.user.id = :userId";
-		return em.createQuery(query, ParkingTag.class).setParameter("userId", userId).getResultList();
-	}
 	
 	// creditCards
 	@Override
@@ -119,5 +109,4 @@ public class UserDAOImpl implements UserDAO {
 		String query = "SELECT p FROM UserPayment p WHERE p.user.id = :userId";
 		return em.createQuery(query, UserPayment.class).setParameter("userId", userId).getResultList();
 	}
-	
 }

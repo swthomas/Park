@@ -10,9 +10,7 @@
 		<class>entities.Address</class>
 		<class>entities.CreditCard</class>
 		<class>entities.Lister</class>
-		<class>entities.ParkingSensor</class>
 		<class>entities.ParkingSpot</class>
-		<class>entities.ParkingTag</class>
 		<class>entities.PaymentToLister</class>
 		<class>entities.Reservation</class>
 		<class>entities.User</class>

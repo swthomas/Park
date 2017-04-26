@@ -14,7 +14,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import data.UserDAO;
 import entities.CreditCard;
 import entities.Lister;
-import entities.ParkingTag;
 import entities.Reservation;
 import entities.User;
 import entities.UserPayment;
@@ -82,12 +81,6 @@ public class UserController {
 	@RequestMapping(value="users/{userId}/vehicles", method= RequestMethod.GET)
 	public List<Vehicle> vehiclesIndex(@PathVariable Integer userId) {
 		return userDAO.vehiclesIndex(userId);
-	}
-	
-	// parkingTags methods
-	@RequestMapping(value="users/{userId}/parkingtags", method= RequestMethod.GET)
-	public List<ParkingTag> parkingTagsIndex(@PathVariable Integer userId) {
-		return userDAO.parkingTagsIndex(userId);
 	}
 	
 	// creditCards methods

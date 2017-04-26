@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Reservation {
@@ -26,17 +27,19 @@ public class Reservation {
 	
 	private Double rate;
 	
+	@JsonIgnore
 	@OneToOne
     @JoinColumn(name="parkingSpotId")
 	private ParkingSpot parkingSpot;
 
+	@JsonIgnore
 	@OneToOne
     @JoinColumn(name="creditCardId")
 	private CreditCard creditCard;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="userId")
-    @JsonBackReference(value="userToReservations")
 	private User user;
 
 	// gets and sets
