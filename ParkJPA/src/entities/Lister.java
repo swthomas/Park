@@ -75,6 +75,14 @@ public class Lister {
 		this.parkingSpot = parkingSpot;
 	}
 
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	// toString
 	@Override
 	public String toString() {

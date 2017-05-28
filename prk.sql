@@ -118,6 +118,28 @@ CREATE INDEX `fk_vehicle_customer1_idx` ON `vehicle` (`userId` ASC);
 
 
 -- -----------------------------------------------------
+-- Table `parkingTag`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `parkingTag` ;
+
+CREATE TABLE IF NOT EXISTS `parkingTag` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `serialNumber` VARCHAR(45) NOT NULL,
+  `userId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_parkingTag_user1`
+    FOREIGN KEY (`userId`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `serialNumber_UNIQUE` ON `parkingTag` (`serialNumber` ASC);
+
+CREATE INDEX `fk_parkingTag_user1_idx` ON `parkingTag` (`userId` ASC);
+
+
+-- -----------------------------------------------------
 -- Table `parkingSpot`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `parkingSpot` ;
@@ -125,14 +147,19 @@ DROP TABLE IF EXISTS `parkingSpot` ;
 CREATE TABLE IF NOT EXISTS `parkingSpot` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(45) NOT NULL,
-  `pictureURL` VARCHAR(45) NULL,
   `rate` DOUBLE NOT NULL,
   `listerId` INT NOT NULL,
+  `parkingTagId` INT NULL,
   `addressId` INT NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_parkingSpot_lister1`
     FOREIGN KEY (`listerId`)
     REFERENCES `lister` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_parkingSpot_parkingTag1`
+    FOREIGN KEY (`parkingTagId`)
+    REFERENCES `parkingTag` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_parkingSpot_address1`
@@ -144,67 +171,9 @@ ENGINE = InnoDB;
 
 CREATE INDEX `fk_parkingSpot_lister1_idx` ON `parkingSpot` (`listerId` ASC);
 
+CREATE INDEX `fk_parkingSpot_parkingTag1_idx` ON `parkingSpot` (`parkingTagId` ASC);
+
 CREATE INDEX `fk_parkingSpot_address1_idx` ON `parkingSpot` (`addressId` ASC);
-
-
--- -----------------------------------------------------
--- Table `creditCard`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `creditCard` ;
-
-CREATE TABLE IF NOT EXISTS `creditCard` (
-  `Id` INT NOT NULL AUTO_INCREMENT,
-  `creditCardNumber` DOUBLE NOT NULL,
-  `expirationDate` DATE NOT NULL,
-  `cvv` INT(3) NOT NULL,
-  `activeStatus` TINYINT(1) NOT NULL DEFAULT 1,
-  `addressId` INT NOT NULL,
-  `userId` INT NOT NULL,
-  PRIMARY KEY (`Id`),
-  CONSTRAINT `fk_creditCard_address1`
-    FOREIGN KEY (`addressId`)
-    REFERENCES `address` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_creditCard_user1`
-    FOREIGN KEY (`userId`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE INDEX `fk_creditCard_address1_idx` ON `creditCard` (`addressId` ASC);
-
-CREATE INDEX `fk_creditCard_user1_idx` ON `creditCard` (`userId` ASC);
-
-
--- -----------------------------------------------------
--- Table `paymentToLister`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `paymentToLister` ;
-
-CREATE TABLE IF NOT EXISTS `paymentToLister` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `listerId` INT NOT NULL,
-  `date` DATE NOT NULL,
-  `creditCardId` INT NOT NULL,
-  `amount` DOUBLE NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_payment_lister1`
-    FOREIGN KEY (`listerId`)
-    REFERENCES `lister` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_payment_creditCard1`
-    FOREIGN KEY (`creditCardId`)
-    REFERENCES `creditCard` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE INDEX `fk_payment_lister1_idx` ON `paymentToLister` (`listerId` ASC);
-
-CREATE INDEX `fk_payment_creditCard1_idx` ON `paymentToLister` (`creditCardId` ASC);
 
 
 -- -----------------------------------------------------
@@ -216,25 +185,13 @@ CREATE TABLE IF NOT EXISTS `userPayment` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `date` DATE NOT NULL,
   `rate` DOUBLE NOT NULL,
-  `creditCardId` INT NOT NULL,
   `parkingSpotId` INT NOT NULL,
-  `listerId` INT NOT NULL,
   `userId` INT NOT NULL,
   `amount` DOUBLE NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_payments_creditCard1`
-    FOREIGN KEY (`creditCardId`)
-    REFERENCES `creditCard` (`Id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_payments_parkingSpot1`
     FOREIGN KEY (`parkingSpotId`)
     REFERENCES `parkingSpot` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_payments_lister1`
-    FOREIGN KEY (`listerId`)
-    REFERENCES `lister` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_userPayment_user1`
@@ -244,13 +201,38 @@ CREATE TABLE IF NOT EXISTS `userPayment` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE INDEX `fk_payments_creditCard1_idx` ON `userPayment` (`creditCardId` ASC);
-
 CREATE INDEX `fk_payments_parkingSpot1_idx` ON `userPayment` (`parkingSpotId` ASC);
 
-CREATE INDEX `fk_payments_lister1_idx` ON `userPayment` (`listerId` ASC);
-
 CREATE INDEX `fk_userPayment_user1_idx` ON `userPayment` (`userId` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `paymentToLister`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `paymentToLister` ;
+
+CREATE TABLE IF NOT EXISTS `paymentToLister` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `listerId` INT NOT NULL,
+  `date` DATE NOT NULL,
+  `amount` DOUBLE NOT NULL,
+  `userPaymentId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_payment_lister1`
+    FOREIGN KEY (`listerId`)
+    REFERENCES `lister` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_paymentToLister_userPayment1`
+    FOREIGN KEY (`userPaymentId`)
+    REFERENCES `userPayment` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_payment_lister1_idx` ON `paymentToLister` (`listerId` ASC);
+
+CREATE INDEX `fk_paymentToLister_userPayment1_idx` ON `paymentToLister` (`userPaymentId` ASC);
 
 
 -- -----------------------------------------------------
@@ -264,17 +246,11 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `reservedToDate` DATETIME NOT NULL,
   `rate` DOUBLE NOT NULL,
   `parkingSpotId` INT NOT NULL,
-  `creditCardId` INT NOT NULL,
   `userId` INT NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_reservation_parkingSpot1`
     FOREIGN KEY (`parkingSpotId`)
     REFERENCES `parkingSpot` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_reservation_creditCard1`
-    FOREIGN KEY (`creditCardId`)
-    REFERENCES `creditCard` (`Id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_reservation_user1`
@@ -286,9 +262,49 @@ ENGINE = InnoDB;
 
 CREATE INDEX `fk_reservation_parkingSpot1_idx` ON `reservation` (`parkingSpotId` ASC);
 
-CREATE INDEX `fk_reservation_creditCard1_idx` ON `reservation` (`creditCardId` ASC);
-
 CREATE INDEX `fk_reservation_user1_idx` ON `reservation` (`userId` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `parkingSensor`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `parkingSensor` ;
+
+CREATE TABLE IF NOT EXISTS `parkingSensor` (
+  `id` INT NOT NULL,
+  `occupied` TINYINT(1) NOT NULL,
+  `parkingSpotId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_parkingSensor_parkingSpot1`
+    FOREIGN KEY (`parkingSpotId`)
+    REFERENCES `parkingSpot` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `parkingSensorId_UNIQUE` ON `parkingSensor` (`id` ASC);
+
+CREATE INDEX `fk_parkingSensor_parkingSpot1_idx` ON `parkingSensor` (`parkingSpotId` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `photos`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `photos` ;
+
+CREATE TABLE IF NOT EXISTS `photos` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `parkingSpotId` INT NOT NULL,
+  `image` LONGBLOB NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_photos_parkingSpot1`
+    FOREIGN KEY (`parkingSpotId`)
+    REFERENCES `parkingSpot` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_photos_parkingSpot1_idx` ON `photos` (`parkingSpotId` ASC);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
@@ -337,31 +353,21 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `parkingTag`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `prk`;
+INSERT INTO `parkingTag` (`id`, `serialNumber`, `userId`) VALUES (1, '1234567890abcd', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `parkingSpot`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `prk`;
-INSERT INTO `parkingSpot` (`id`, `description`, `pictureURL`, `rate`, `listerId`, `addressId`) VALUES (1, 'Parking spot for your car at my house', NULL, 2.99, 1, 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `creditCard`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `prk`;
-INSERT INTO `creditCard` (`Id`, `creditCardNumber`, `expirationDate`, `cvv`, `activeStatus`, `addressId`, `userId`) VALUES (1, 2147483647, '2019-05-01', 111, 1, 1, 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `paymentToLister`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `prk`;
-INSERT INTO `paymentToLister` (`id`, `listerId`, `date`, `creditCardId`, `amount`) VALUES (1, 1, '2017-01-01', 1, 45.54);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingTagId`, `addressId`) VALUES (1, 'Parking spot for your car at my house', 2.99, 1, 1, 1);
 
 COMMIT;
 
@@ -371,7 +377,17 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `prk`;
-INSERT INTO `userPayment` (`id`, `date`, `rate`, `creditCardId`, `parkingSpotId`, `listerId`, `userId`, `amount`) VALUES (1, '2019-05-01', 2.99, 1, 1, 1, 1, 23.12);
+INSERT INTO `userPayment` (`id`, `date`, `rate`, `parkingSpotId`, `userId`, `amount`) VALUES (1, '2019-05-01', 2.99, 1, 1, 23.12);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `paymentToLister`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `prk`;
+INSERT INTO `paymentToLister` (`id`, `listerId`, `date`, `amount`, `userPaymentId`) VALUES (1, 1, '2017-01-01', 45.54, 1);
 
 COMMIT;
 
@@ -381,7 +397,17 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `prk`;
-INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `parkingSpotId`, `creditCardId`, `userId`) VALUES (1, '2017-01-01 12:00:00', '2017-01-01 02:00:00', 2.99, 1, 1, 1);
+INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `parkingSpotId`, `userId`) VALUES (1, '2017-01-01 12:00:00', '2017-01-01 02:00:00', 2.99, 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `parkingSensor`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `prk`;
+INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`) VALUES (1, 1, 1);
 
 COMMIT;
 

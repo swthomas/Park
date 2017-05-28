@@ -18,24 +18,24 @@ public class ReservationController {
 	@Autowired
 	private ReservationDAO reservationDAO;
 
-	@RequestMapping(value="reservations/{id}", method= RequestMethod.GET)
+	@RequestMapping(value="reservation/{id}", method= RequestMethod.GET)
 	public Reservation show(@PathVariable Integer id) {
 		return reservationDAO.show(id);
 	}
 	
-	@RequestMapping(value="reservations/{uId}/{pId}/{cId}", method=RequestMethod.POST)
-	public Reservation create(@RequestBody String jsonReservation, @PathVariable Integer uId, @PathVariable Integer pId, @PathVariable Integer cId) {
+	@RequestMapping(value="reservation/{userId}/{parkginSpotId}/{creditCardId}", method=RequestMethod.POST)
+	public Reservation create(@RequestBody String jsonReservation, @PathVariable Integer userId, @PathVariable Integer parkingSpotId, @PathVariable Integer creditCardId) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			Reservation mappedReservation = mapper.readValue(jsonReservation, Reservation.class);
-			return reservationDAO.create(mappedReservation, uId, pId, cId);
+			return reservationDAO.create(mappedReservation, userId, parkingSpotId, creditCardId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	@RequestMapping(value="reservations/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="reservation/{id}", method=RequestMethod.PUT)
 	public Reservation update(@PathVariable Integer id, @RequestBody String jsonReservation) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
@@ -47,7 +47,7 @@ public class ReservationController {
 		}
 	}
 	
-	@RequestMapping(value="reservations/{id}", method= RequestMethod.DELETE)
+	@RequestMapping(value="reservation/{id}", method= RequestMethod.DELETE)
 	public Boolean destroy(@PathVariable Integer id) {
 		return reservationDAO.destroy(id);
 	}

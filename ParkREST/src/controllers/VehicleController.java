@@ -18,12 +18,12 @@ public class VehicleController {
 	@Autowired
 	private VehicleDAO vehicleDAO;
 	
-	@RequestMapping(value = "vehicles/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "vehicle/{id}", method = RequestMethod.GET)
 	public Vehicle show(@PathVariable Integer id) {
 		return vehicleDAO.show(id);
 	}
 	
-	@RequestMapping(value="vehicles/{userId}", method=RequestMethod.POST)
+	@RequestMapping(value="vehicle/{userId}", method=RequestMethod.POST)
 	public Vehicle create(@PathVariable Integer userId, @RequestBody String jsonVehicle) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
@@ -35,7 +35,7 @@ public class VehicleController {
 		}
 	}
 	
-	@RequestMapping(value="vehicles/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="vehicle/{id}", method=RequestMethod.PUT)
 	public Vehicle update(@RequestBody String jsonUser, @PathVariable int id) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
@@ -47,7 +47,7 @@ public class VehicleController {
 		}
 	}
 	
-	@RequestMapping(value="vehicles/{id}", method= RequestMethod.DELETE)
+	@RequestMapping(value="vehicle/{id}", method= RequestMethod.DELETE)
 	public Boolean destroy(@PathVariable Integer id) {
 		return vehicleDAO.destroy(id);
 	}

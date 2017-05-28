@@ -25,22 +25,22 @@ public class UserController {
 	@Autowired
 	private UserDAO userDAO;
 	
-	@RequestMapping(value="users", method= RequestMethod.GET)
+	@RequestMapping(value="user", method= RequestMethod.GET)
 	public List<User> index() {
 		return userDAO.index();
 	}
 
-	@RequestMapping(value="users/{id}", method= RequestMethod.GET)
+	@RequestMapping(value="user/{id}", method= RequestMethod.GET)
 	public User show(@PathVariable Integer id) {
 		return userDAO.show(id);
 	}
 	
-	@RequestMapping(value="users/{username}{password}", method= RequestMethod.GET)
+	@RequestMapping(value="user/{username}{password}", method= RequestMethod.GET)
 	public User show(@PathVariable String username, @PathVariable String password) {
 		return userDAO.show(username, password);
 	}
 	
-	@RequestMapping(value="users", method=RequestMethod.POST)
+	@RequestMapping(value="user", method=RequestMethod.POST)
 	public User create(@RequestBody String jsonUser) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
@@ -52,7 +52,7 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value="users/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="user/{id}", method=RequestMethod.PUT)
 	public User update(@PathVariable Integer id, @RequestBody String jsonUser) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
@@ -64,7 +64,7 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value="users/{id}", method= RequestMethod.DELETE)
+	@RequestMapping(value="user/{id}", method= RequestMethod.DELETE)
 	public Boolean destroy(@PathVariable Integer id) {
 		return userDAO.destroy(id);
 	}
@@ -72,31 +72,31 @@ public class UserController {
 	
 	
 	// listers methods
-	@RequestMapping(value="users/{userId}/listers", method= RequestMethod.GET)
+	@RequestMapping(value="user/{userId}/listers", method= RequestMethod.GET)
 	public Lister listersIndex(@PathVariable Integer userId) {
 		return userDAO.listersIndex(userId);
 	}
 	
 	// listers methods
-	@RequestMapping(value="users/{userId}/vehicles", method= RequestMethod.GET)
+	@RequestMapping(value="user/{userId}/vehicles", method= RequestMethod.GET)
 	public List<Vehicle> vehiclesIndex(@PathVariable Integer userId) {
 		return userDAO.vehiclesIndex(userId);
 	}
 	
 	// creditCards methods
-	@RequestMapping(value="users/{userId}/creditcards", method= RequestMethod.GET)
+	@RequestMapping(value="user/{userId}/creditcards", method= RequestMethod.GET)
 	public List<CreditCard> creditCardIndex(@PathVariable Integer userId) {
 		return userDAO.creditCardsIndex(userId);
 	}
 	
 	// reservations methods
-	@RequestMapping(value="users/{userId}/reservations", method= RequestMethod.GET)
+	@RequestMapping(value="user/{userId}/reservations", method= RequestMethod.GET)
 	public List<Reservation> reservationsIndex(@PathVariable Integer userId) {
 		return userDAO.reservationsIndex(userId);
 	}
 	
 	// userPayments methods
-	@RequestMapping(value="users/{userId}/userpayments", method= RequestMethod.GET)
+	@RequestMapping(value="user/{userId}/userpayments", method= RequestMethod.GET)
 	public List<UserPayment> userPaymentsIndex(@PathVariable Integer userId) {
 		return userDAO.userPaymentsIndex(userId);
 	}

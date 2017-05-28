@@ -16,12 +16,12 @@ public class UserPaymentController {
 	@Autowired
 	private UserPaymentDAO userpaymentDAO;
 	
-	@RequestMapping(value = "userpayments/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "userpayment/{id}", method = RequestMethod.GET)
 	public UserPayment show(@PathVariable Integer id) {
 		return userpaymentDAO.show(id);
 	}
 	
-	@RequestMapping(value="userpayments/{userId}", method=RequestMethod.POST)
+	@RequestMapping(value="userpayment/{userId}", method=RequestMethod.POST)
 	public UserPayment create(@PathVariable Integer userId, @RequestBody String jsonPayment) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
@@ -33,7 +33,7 @@ public class UserPaymentController {
 		}
 	}
 	
-	@RequestMapping(value="userpayments/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="userpayment/{id}", method=RequestMethod.PUT)
 	public UserPayment update(@RequestBody String jsonPayment, @PathVariable int id) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
@@ -45,7 +45,7 @@ public class UserPaymentController {
 		}
 	}
 	
-	@RequestMapping(value="userpayments/{id}", method= RequestMethod.DELETE)
+	@RequestMapping(value="userpayment/{id}", method= RequestMethod.DELETE)
 	public Boolean destroy(@PathVariable Integer id) {
 		return userpaymentDAO.destroy(id);
 	}

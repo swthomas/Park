@@ -18,12 +18,12 @@ public class CreditCardController {
 	@Autowired
 	private CreditCardDAO creditCardDAO;
 	
-	@RequestMapping(value="creditcards/{id}", method= RequestMethod.GET)
+	@RequestMapping(value="creditcard/{id}", method= RequestMethod.GET)
 	public CreditCard show(@PathVariable Integer id) {
 		return creditCardDAO.show(id);
 	}
 	
-	@RequestMapping(value="creditcards/{userId}", method=RequestMethod.POST)
+	@RequestMapping(value="creditcard/{userId}", method=RequestMethod.POST)
 	public CreditCard create(@PathVariable Integer userId, @RequestBody String jsonCard) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
@@ -35,7 +35,7 @@ public class CreditCardController {
 		}
 	}
 	
-	@RequestMapping(value="creditcards/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="creditcard/{id}", method=RequestMethod.PUT)
 	public CreditCard update(@PathVariable Integer id, @RequestBody String jsonCard) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
@@ -47,7 +47,7 @@ public class CreditCardController {
 		}
 	}
 	
-	@RequestMapping(value="creditcards/{id}", method= RequestMethod.DELETE)
+	@RequestMapping(value="creditcard/{id}", method= RequestMethod.DELETE)
 	public Boolean destroy(@PathVariable Integer id) {
 		return creditCardDAO.destroy(id);
 	}

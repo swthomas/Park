@@ -18,12 +18,12 @@ public class ParkingSpotController {
 	@Autowired
 	private ParkingSpotDAO parkingSpotDAO;
 
-	@RequestMapping(value="parkingspots/{id}", method= RequestMethod.GET)
+	@RequestMapping(value="parkingspot/{id}", method= RequestMethod.GET)
 	public ParkingSpot show(@PathVariable Integer id) {
 		return parkingSpotDAO.show(id);
 	}
 	
-	@RequestMapping(value="parkingspots/{listerId}/{addressId}", method=RequestMethod.POST)
+	@RequestMapping(value="parkingspot/{listerId}/{addressId}", method=RequestMethod.POST)
 	public ParkingSpot create(@PathVariable Integer listerId, @PathVariable Integer addressId, @RequestBody String jsonSpot) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
@@ -35,7 +35,7 @@ public class ParkingSpotController {
 		}
 	}
 	
-	@RequestMapping(value="parkingspots/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="parkingspot/{id}", method=RequestMethod.PUT)
 	public ParkingSpot update(@PathVariable Integer id, @RequestBody String jsonSpot) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
@@ -47,7 +47,7 @@ public class ParkingSpotController {
 		}
 	}
 	
-	@RequestMapping(value="parkingspots/{id}", method= RequestMethod.DELETE)
+	@RequestMapping(value="parkingspot/{id}", method= RequestMethod.DELETE)
 	public Boolean destroy(@PathVariable Integer id) {
 		return parkingSpotDAO.destroy(id);
 	}

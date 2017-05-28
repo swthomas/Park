@@ -18,12 +18,12 @@ public class ListerController {
 	@Autowired
 	private ListerDAO listerDAO;
 	
-	@RequestMapping(value="listers/{id}", method= RequestMethod.GET)
+	@RequestMapping(value="lister/{id}", method= RequestMethod.GET)
 	public Lister show(@PathVariable Integer id) {
 		return listerDAO.show(id);
 	}
 
-	@RequestMapping(value="listers/{userId}", method=RequestMethod.POST)
+	@RequestMapping(value="lister/{userId}", method=RequestMethod.POST)
 	public Lister create(@PathVariable Integer userId, @RequestBody String jsonLister) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
@@ -35,7 +35,7 @@ public class ListerController {
 		}
 	}
 
-	@RequestMapping(value="listers/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="lister/{id}", method=RequestMethod.PUT)
 	public Lister update(@PathVariable Integer id, @RequestBody String jsonLister) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();

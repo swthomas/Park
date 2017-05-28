@@ -18,12 +18,12 @@ public class AddressController {
 	@Autowired
 	private AddressDAO addressDAO;
 	
-	@RequestMapping(value = "addresses/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "address/{id}", method = RequestMethod.GET)
 	public Address show(@PathVariable Integer id) {
 		return addressDAO.show(id);
 	}
 
-	@RequestMapping(value = "addresses/{userId}", method = RequestMethod.POST)
+	@RequestMapping(value = "address/{userId}", method = RequestMethod.POST)
 	public Address create(@PathVariable Integer userId, @RequestBody String jsonAddress) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
@@ -34,8 +34,44 @@ public class AddressController {
 			return null;
 		}
 	}
+	
+	@RequestMapping(value = "addressCreditCard/{creditCardId}", method = RequestMethod.POST)
+	public Address createCreditCardAddress(@PathVariable Integer creditCardId, @RequestBody String jsonAddress) {
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			Address mappedAddress = mapper.readValue(jsonAddress, Address.class);
+			return addressDAO.createCreditCardAddress(creditCardId, mappedAddress);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@RequestMapping(value = "addressLister/{addressId}", method = RequestMethod.POST)
+	public Address createListerAddress(@PathVariable Integer addressId, @RequestBody String jsonAddress) {
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			Address mappedAddress = mapper.readValue(jsonAddress, Address.class);
+			return addressDAO.createListerAddress(addressId, mappedAddress);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@RequestMapping(value = "addressParkingSpot/{parkingSpotId}", method = RequestMethod.POST)
+	public Address createParkingSpotAddress(@PathVariable Integer parkingSpotId, @RequestBody String jsonAddress) {
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			Address mappedAddress = mapper.readValue(jsonAddress, Address.class);
+			return addressDAO.createParkingSpotAddress(parkingSpotId, mappedAddress);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
-	@RequestMapping(value = "addresses/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "address/{id}", method = RequestMethod.PUT)
 	public Address update(@PathVariable Integer id, @RequestBody String jsonAddress) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
@@ -47,7 +83,7 @@ public class AddressController {
 		}
 	}
 
-	@RequestMapping(value="addresses/{id}", method= RequestMethod.DELETE)
+	@RequestMapping(value="address/{id}", method= RequestMethod.DELETE)
 		public Boolean destroy(@PathVariable Integer id) {
 			return addressDAO.destroy(id);
 		}	

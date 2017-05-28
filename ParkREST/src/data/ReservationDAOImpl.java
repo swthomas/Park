@@ -24,12 +24,14 @@ public class ReservationDAOImpl implements ReservationDAO {
 	}
 
 	@Override
-	public Reservation create(Reservation r, Integer uId, Integer pId, Integer cId) {
-		r.setUser(em.find(User.class, uId));
-		r.setParkingSpot(em.find(ParkingSpot.class, pId));
-		r.setCreditCard(em.find(CreditCard.class, cId));
+	public Reservation create(Reservation r, Integer userId, Integer parkingSpotId, Integer creditCardId) {
+		r.setUser(em.find(User.class, userId));
+		User u = em.find(User.class, userId);
+		r.setParkingSpot(em.find(ParkingSpot.class, parkingSpotId));
+		r.setCreditCard(em.find(CreditCard.class, creditCardId));
 		em.persist(r);
 		em.flush();
+		u.getReservations().add(r);
 		return r;
 	}
 
