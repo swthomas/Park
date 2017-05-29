@@ -2,7 +2,6 @@ package data;
 
 import java.util.List;
 
-import entities.CreditCard;
 import entities.Lister;
 import entities.Reservation;
 import entities.User;
@@ -12,7 +11,6 @@ import entities.Vehicle;
 public interface UserDAO {
 	public List<User> index();
 	public List<Vehicle> vehiclesIndex(Integer userId);
-	public List<CreditCard> creditCardsIndex(Integer userId);
 	public List<Reservation> reservationsIndex(Integer userId);
 	public List<UserPayment> userPaymentsIndex(Integer userId);
 	public Lister listersIndex(Integer userId);

@@ -10,7 +10,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.CreditCard;
 import entities.User;
 
 public class UserTest {

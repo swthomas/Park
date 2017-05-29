@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Address;
-import entities.CreditCard;
 import entities.Lister;
 import entities.ParkingSpot;
 
@@ -27,15 +26,6 @@ public class AddressDAOImpl implements AddressDAO {
 	public Address create(Integer userId, Address a) {
 		em.persist(a);
 		em.flush();
-		return a;
-	}
-	
-	@Override
-	public Address createCreditCardAddress(Integer creditCardId, Address a) {
-		CreditCard c = em.find(CreditCard.class, creditCardId);
-		em.persist(a);
-		em.flush();
-		c.setAddress(a);
 		return a;
 	}
 	

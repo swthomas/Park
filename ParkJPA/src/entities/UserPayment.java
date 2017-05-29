@@ -37,21 +37,17 @@ public class UserPayment {
 
 	@JsonIgnore
 	@OneToOne
-	@JoinColumn(name="creditCardId")	
-	private CreditCard creditCard;
-
-	@JsonIgnore
-	@OneToOne
 	@JoinColumn(name="parkingSpotId")
 	private ParkingSpot parkingSpot;
+	
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name="userPaymentId")
+	private PaymentToLister paymentToLister;
 	
 	// gets and sets
 	public Integer getId() {
 		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public Double getRate() {
@@ -86,14 +82,6 @@ public class UserPayment {
 		this.user = user;
 	}
 
-	public CreditCard getCreditCard() {
-		return creditCard;
-	}
-
-	public void setCreditCard(CreditCard creditCard) {
-		this.creditCard = creditCard;
-	}
-
 	public ParkingSpot getParkingSpot() {
 		return parkingSpot;
 	}
@@ -102,10 +90,20 @@ public class UserPayment {
 		this.parkingSpot = parkingSpot;
 	}
 
+	public PaymentToLister getPaymentToLister() {
+		return paymentToLister;
+	}
+
+	public void setPaymentToLister(PaymentToLister paymentToLister) {
+		this.paymentToLister = paymentToLister;
+	}
+	
 	// toString
 	@Override
 	public String toString() {
 		return "UserPayment [id=" + id + ", rate=" + rate + ", date=" + date + ", amount=" + amount + ", user=" + user
-				+ ", creditCard=" + creditCard + ", parkingSpot=" + parkingSpot + "]";
+				+ ", parkingSpot=" + parkingSpot + ", paymentToLister=" + paymentToLister + "]";
 	}
+
+	
 }

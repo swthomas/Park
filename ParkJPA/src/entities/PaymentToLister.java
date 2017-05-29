@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -27,6 +28,10 @@ public class PaymentToLister {
 	@OneToOne
 	@JoinColumn(name="listerId")
 	private Lister lister;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="PaymentToLister")
+	private UserPayment userPayment;
 
 	// gets and sets
 	public Integer getId() {
@@ -57,9 +62,18 @@ public class PaymentToLister {
 		this.lister = lister;
 	}
 
+	public UserPayment getUserPayment() {
+		return userPayment;
+	}
+
+	public void setUserPayment(UserPayment userPayment) {
+		this.userPayment = userPayment;
+	}
+
 	// toString
 	@Override
 	public String toString() {
-		return "PaymentToLister [id=" + id + ", date=" + date + ", amount=" + amount + ", lister=" + lister + "]";
+		return "PaymentToLister [id=" + id + ", date=" + date + ", amount=" + amount + ", lister=" + lister
+				+ ", userPayment=" + userPayment + "]";
 	}
 }

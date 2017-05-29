@@ -9,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import entities.CreditCard;
 import entities.Lister;
 import entities.Reservation;
 import entities.User;
@@ -43,10 +42,8 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User create(User user) {
 		List<Vehicle> vehicles = new ArrayList<>();
-		List<CreditCard> creditCards = new ArrayList<>();
 		List<Reservation> reservations = new ArrayList<>();
 		List<UserPayment> userPayments = new ArrayList<>();
-		user.setCreditCard(creditCards);
 		user.setReservations(reservations);
 		user.setVehicles(vehicles);
 		user.setUserPayments(userPayments);
@@ -69,7 +66,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public Boolean destroy(Integer id) {
 		em.remove(em.find(User.class, id));
-		if (em.find(CreditCard.class, id) == null) {
+		if (em.find(User.class, id) == null) {
 			return true;
 		}
 		return false;
@@ -87,13 +84,6 @@ public class UserDAOImpl implements UserDAO {
 	public List<Vehicle> vehiclesIndex(Integer userId) {
 		String query = "SELECT v FROM Vehicle v WHERE v.user.id = :userId";
 		return em.createQuery(query, Vehicle.class).setParameter("userId", userId).getResultList();
-	}
-	
-	// creditCards
-	@Override
-	public List<CreditCard> creditCardsIndex(Integer userId) {
-		String query = "SELECT c FROM CreditCard c WHERE c.user.id = :userId";
-		return em.createQuery(query, CreditCard.class).setParameter("userId", userId).getResultList();
 	}
 	
 	// reservations

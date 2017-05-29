@@ -24,11 +24,11 @@ public class ReservationController {
 	}
 	
 	@RequestMapping(value="reservation/{userId}/{parkginSpotId}/{creditCardId}", method=RequestMethod.POST)
-	public Reservation create(@RequestBody String jsonReservation, @PathVariable Integer userId, @PathVariable Integer parkingSpotId, @PathVariable Integer creditCardId) {
+	public Reservation create(@RequestBody String jsonReservation, @PathVariable Integer userId, @PathVariable Integer parkingSpotId) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			Reservation mappedReservation = mapper.readValue(jsonReservation, Reservation.class);
-			return reservationDAO.create(mappedReservation, userId, parkingSpotId, creditCardId);
+			return reservationDAO.create(mappedReservation, userId, parkingSpotId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

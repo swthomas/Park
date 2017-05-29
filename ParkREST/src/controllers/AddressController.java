@@ -35,18 +35,6 @@ public class AddressController {
 		}
 	}
 	
-	@RequestMapping(value = "addressCreditCard/{creditCardId}", method = RequestMethod.POST)
-	public Address createCreditCardAddress(@PathVariable Integer creditCardId, @RequestBody String jsonAddress) {
-		try {
-			ObjectMapper mapper = new ObjectMapper();
-			Address mappedAddress = mapper.readValue(jsonAddress, Address.class);
-			return addressDAO.createCreditCardAddress(creditCardId, mappedAddress);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
 	@RequestMapping(value = "addressLister/{addressId}", method = RequestMethod.POST)
 	public Address createListerAddress(@PathVariable Integer addressId, @RequestBody String jsonAddress) {
 		try {

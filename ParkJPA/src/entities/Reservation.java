@@ -32,11 +32,6 @@ public class Reservation {
 	private ParkingSpot parkingSpot;
 
 	@JsonIgnore
-	@OneToOne
-    @JoinColumn(name="creditCardId")
-	private CreditCard creditCard;
-
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="userId")
 	private User user;
@@ -78,14 +73,6 @@ public class Reservation {
 		this.parkingSpot = parkingSpot;
 	}
 
-	public CreditCard getCreditCard() {
-		return creditCard;
-	}
-
-	public void setCreditCard(CreditCard creditCard) {
-		this.creditCard = creditCard;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -98,7 +85,7 @@ public class Reservation {
 	@Override
 	public String toString() {
 		return "Reservation [id=" + id + ", reservedFromDate=" + reservedFromDate + ", reservedToDate=" + reservedToDate
-				+ ", rate=" + rate + ", parkingSpot=" + parkingSpot + ", creditCard=" + creditCard + ", user=" + user
+				+ ", rate=" + rate + ", parkingSpot=" + parkingSpot + ", user=" + user
 				+ "]";
 	}	
 }

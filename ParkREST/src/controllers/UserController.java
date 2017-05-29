@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import data.UserDAO;
-import entities.CreditCard;
 import entities.Lister;
 import entities.Reservation;
 import entities.User;
@@ -81,12 +80,6 @@ public class UserController {
 	@RequestMapping(value="user/{userId}/vehicles", method= RequestMethod.GET)
 	public List<Vehicle> vehiclesIndex(@PathVariable Integer userId) {
 		return userDAO.vehiclesIndex(userId);
-	}
-	
-	// creditCards methods
-	@RequestMapping(value="user/{userId}/creditcards", method= RequestMethod.GET)
-	public List<CreditCard> creditCardIndex(@PathVariable Integer userId) {
-		return userDAO.creditCardsIndex(userId);
 	}
 	
 	// reservations methods

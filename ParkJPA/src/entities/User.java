@@ -10,7 +10,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class User {
@@ -35,16 +34,8 @@ public class User {
 	private Boolean isLister;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy="user")
-	private Lister lister;
-	
-	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Vehicle> vehicles;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy="user")
-	private List<CreditCard> creditCards;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="user")
@@ -115,28 +106,12 @@ public class User {
 		this.isLister = isLister;
 	}
 
-	public Lister getLister() {
-		return lister;
-	}
-
-	public void setLister(Lister lister) {
-		this.lister = lister;
-	}
-
 	public List<Vehicle> getVehicles() {
 		return vehicles;
 	}
 
 	public void setVehicles(List<Vehicle> vehicles) {
 		this.vehicles = vehicles;
-	}
-
-	public List<CreditCard> getCreditCards() {
-		return creditCards;
-	}
-
-	public void setCreditCard(List<CreditCard> creditCards) {
-		this.creditCards = creditCards;
 	}
 
 	public List<Reservation> getReservations() {
@@ -160,7 +135,6 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber
 				+ ", email=" + email + ", username=" + username + ", password=" + password + ", isLister=" + isLister
-				+ ", lister=" + lister + ", vehicles=" + vehicles + ", creditCards="
-				+ creditCards + ", reservations=" + reservations + ", userPayments=" + userPayments + "]";
+				+ ", vehicles=" + vehicles + ", reservations=" + reservations + ", userPayments=" + userPayments + "]";
 	}
 }

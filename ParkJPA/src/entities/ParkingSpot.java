@@ -1,13 +1,18 @@
 package entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class ParkingSpot {
@@ -18,21 +23,28 @@ public class ParkingSpot {
 	private Integer id;
 	
 	private String description;
-	
-	private String pictureURL;
-	
+		
 	private Double rate;
 	
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="listerId") 
 	private Lister lister;
 	
-	@JsonIgnore
-	@ManyToOne
+	@JsonBackReference
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name="addressId")  
 	private Address address;
-
+	
+	@JsonBackReference
+	@OneToOne
+	@JoinColumn(name="parkingSensorId")
+	private ParkingSensor parkingSensor;
+	
+	@JsonBackReference
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	private List<Photo> photos;
+	
 	// gets and sets
 	public Integer getId() {
 		return id;
@@ -44,14 +56,6 @@ public class ParkingSpot {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getPictureURL() {
-		return pictureURL;
-	}
-
-	public void setPictureURL(String pictureURL) {
-		this.pictureURL = pictureURL;
 	}
 
 	public Double getRate() {
@@ -81,7 +85,7 @@ public class ParkingSpot {
 	// toString
 	@Override
 	public String toString() {
-		return "ParkingSpot [id=" + id + ", description=" + description + ", pictureURL=" + pictureURL + ", rate="
+		return "ParkingSpot [id=" + id + ", description=" + description + ", rate="
 				+ rate + ", lister=" + lister + ", address=" + address + "]";
 	}
 }
