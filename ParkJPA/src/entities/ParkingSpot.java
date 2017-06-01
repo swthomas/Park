@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class ParkingSpot {
@@ -26,23 +29,22 @@ public class ParkingSpot {
 		
 	private Double rate;
 	
-	@JsonBackReference
+	@JsonBackReference(value="listerToParkingSpots")
 	@ManyToOne
 	@JoinColumn(name="listerId") 
 	private Lister lister;
 	
-	@JsonBackReference
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="addressId")  
 	private Address address;
 	
-	@JsonBackReference
-	@OneToOne
-	@JoinColumn(name="parkingSensorId")
+	@JsonManagedReference(value="parkingSpotToParkingSensor")
+	@OneToOne(mappedBy="parkingSpot")
 	private ParkingSensor parkingSensor;
 	
-	@JsonBackReference
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@JsonManagedReference(value="parkingSpotToPhotos")
+	@OneToMany(mappedBy="parkingSpot", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch= FetchType.EAGER)
 	private List<Photo> photos;
 	
 	// gets and sets
@@ -82,10 +84,26 @@ public class ParkingSpot {
 		this.address = address;
 	}
 
+	public ParkingSensor getParkingSensor() {
+		return parkingSensor;
+	}
+
+	public void setParkingSensor(ParkingSensor parkingSensor) {
+		this.parkingSensor = parkingSensor;
+	}
+
+	public List<Photo> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
+	}
+
 	// toString
 	@Override
 	public String toString() {
-		return "ParkingSpot [id=" + id + ", description=" + description + ", rate="
-				+ rate + ", lister=" + lister + ", address=" + address + "]";
+		return "ParkingSpot [id=" + id + ", description=" + description + ", rate=" + rate + ", lister=" + lister
+				+ ", address=" + address + ", parkingSensor=" + parkingSensor + ", photos=" + photos + "]";
 	}
 }

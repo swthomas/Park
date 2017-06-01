@@ -8,14 +8,16 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 		<class>entities.Address</class>
-		<class>entities.CreditCard</class>
 		<class>entities.Lister</class>
-		<class>entities.ParkingSpot</class>
 		<class>entities.PaymentToLister</class>
 		<class>entities.Reservation</class>
 		<class>entities.User</class>
 		<class>entities.UserPayment</class>
 		<class>entities.Vehicle</class>
+		<class>entities.Photo</class>
+		<class>entities.ParkingSpot</class>
+		<class>entities.ParkingTag</class>
+		<class>entities.ParkingSensor</class>
 
 		
 		<!-- Put entity classes in here -->

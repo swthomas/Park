@@ -12,14 +12,13 @@
 
 	<mvc:annotation-driven />
 	
-  	<bean id="userdao" class="data.UserDAOImpl" />
-   	<bean id="creditcarddao" class="data.CreditCardDAOImpl" /> 	
+  	<bean id="addressdao" class="data.AddressDAOImpl" /> 	
    	<bean id="listerdao" class="data.ListerDAOImpl" /> 	
-   	<bean id="vehicledao" class="data.VehicleDAOImpl" /> 	
-   	<bean id="addressdao" class="data.AddressDAOImpl" /> 	
    	<bean id="parkingspotdao" class="data.ParkingSpotDAOImpl" /> 	
    	<bean id="reservationdao" class="data.ReservationDAOImpl" /> 	
-   	<bean id="userpaymentdao" class="data.UserPaymentDAOImpl" /> 	
+  	<bean id="userdao" class="data.UserDAOImpl" />
+   	<bean id="vehicledao" class="data.VehicleDAOImpl" /> 	
+
   
 	<context:component-scan base-package="controllers" />
 

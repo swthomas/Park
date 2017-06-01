@@ -23,10 +23,6 @@ public class ParkingTag {
 	@OneToOne
     @JoinColumn(name="userId")
 	private User user;
-	
-	@JsonIgnore
-	@OneToOne(mappedBy="parkingTag")
-	private ParkingSpot parkingSpot;
 
 	// gets and sets
 	public Integer getSerialNumber() {
@@ -49,18 +45,9 @@ public class ParkingTag {
 		return id;
 	}
 
-	public ParkingSpot getParkingSpot() {
-		return parkingSpot;
-	}
-
-	public void setParkingSpot(ParkingSpot parkingSpot) {
-		this.parkingSpot = parkingSpot;
-	}
-
 	// toString
 	@Override
 	public String toString() {
-		return "ParkingTag [id=" + id + ", serialNumber=" + serialNumber + ", user=" + user + ", parkingSpot="
-				+ parkingSpot + "]";
+		return "ParkingTag [id=" + id + ", serialNumber=" + serialNumber + ", user=" + user + "]";
 	}
 }

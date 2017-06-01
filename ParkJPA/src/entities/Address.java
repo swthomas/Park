@@ -27,6 +27,10 @@ public class Address {
 	private String city;
 	
 	private String state;
+	
+	private Integer latitude;
+	
+	private Integer longitude;
 
 	@JsonIgnore
 	@OneToMany(mappedBy="address")
@@ -85,10 +89,27 @@ public class Address {
 		this.parkingSpot = parkingSpot;
 	}
 
+	public Integer getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Integer latitude) {
+		this.latitude = latitude;
+	}
+
+	public Integer getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Integer longitude) {
+		this.longitude = longitude;
+	}
+
 	// toString
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", street=" + street + ", street2=" + street2 + ", postalCode=" + postalCode
-				+ ", city=" + city + ", state=" + state + ", parkingSpot=" + parkingSpot + "]";
+				+ ", city=" + city + ", state=" + state + ", latitude=" + latitude + ", longitude=" + longitude
+				+ ", parkingSpot=" + parkingSpot + "]";
 	}
 }

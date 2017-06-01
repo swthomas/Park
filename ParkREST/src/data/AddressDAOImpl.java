@@ -1,5 +1,8 @@
 package data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -21,31 +24,28 @@ public class AddressDAOImpl implements AddressDAO {
 	public Address show(Integer id) {
 		return em.find(Address.class, id);
 	}
-
-	@Override
-	public Address create(Integer userId, Address a) {
-		em.persist(a);
-		em.flush();
-		return a;
-	}
 	
 	@Override
 	public Address createListerAddress(Integer listerId, Address a) {
 		Lister l = em.find(Lister.class, listerId);
+		a.setParkingSpot(null);
 		em.persist(a);
 		em.flush();
 		l.setAddress(a);
 		return a;
 	}
 	
-	public Address createParkingSpotAddress(Integer parkingSpotId, Address a) {
-		ParkingSpot p = em.find(ParkingSpot.class, parkingSpotId);
-		em.persist(a);
-		em.flush();
-		p.setAddress(a);
-		return a;
-	}
-
+//	public Address createParkingSpotAddress(Integer parkingSpotId, Address a) {
+//		List<ParkingSpot> parkingSpots = new ArrayList<>();
+//		a.setParkingSpot(parkingSpots);
+//		
+//		em.persist(a);
+//		em.flush();
+//		
+//		ParkingSpot p = em.find(ParkingSpot.class, parkingSpotId);
+//		p.setAddress(a);
+//		return a;
+//	}
 
 	@Override
 	public Address update(Integer id, Address a) {
@@ -55,6 +55,8 @@ public class AddressDAOImpl implements AddressDAO {
 		address.setCity(a.getCity());
 		address.setState(a.getState());
 		address.setPostalCode(a.getPostalCode());
+		address.setLatitude(a.getLatitude());
+		address.setLongitude(a.getLongitude());
 		return address;
 	}
 	

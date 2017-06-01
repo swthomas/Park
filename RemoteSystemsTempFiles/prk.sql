@@ -276,16 +276,10 @@ CREATE TABLE IF NOT EXISTS `parkingSensor` (
   `id` INT NOT NULL,
   `occupied` TINYINT(1) NOT NULL,
   `parkingSpotId` INT NOT NULL,
-  `parkingTagId` INT NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_parkingSensor_parkingSpot1`
     FOREIGN KEY (`parkingSpotId`)
     REFERENCES `parkingSpot` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_parkingSensor_parkingTag1`
-    FOREIGN KEY (`parkingTagId`)
-    REFERENCES `parkingTag` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -293,8 +287,6 @@ ENGINE = InnoDB;
 CREATE UNIQUE INDEX `parkingSensorId_UNIQUE` ON `parkingSensor` (`id` ASC);
 
 CREATE INDEX `fk_parkingSensor_parkingSpot1_idx` ON `parkingSensor` (`parkingSpotId` ASC);
-
-CREATE INDEX `fk_parkingSensor_parkingTag1_idx` ON `parkingSensor` (`parkingTagId` ASC);
 
 
 -- -----------------------------------------------------
@@ -417,7 +409,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `prk`;
-INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`, `parkingTagId`) VALUES (1, 1, 1, 1);
+INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`) VALUES (1, 1, 1);
 
 COMMIT;
 

@@ -35,7 +35,6 @@ public class ParkingSpotDAOImpl implements ParkingSpotDAO{
 	public ParkingSpot update(Integer id, ParkingSpot spot) {
 		ParkingSpot p = em.find(ParkingSpot.class, id);
 		p.setDescription(spot.getDescription());
-		p.setPictureURL(spot.getPictureURL());
 		p.setRate(spot.getRate());
 		return p;
 	}

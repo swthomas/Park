@@ -41,8 +41,7 @@ public class UserPayment {
 	private ParkingSpot parkingSpot;
 	
 	@JsonIgnore
-	@OneToOne
-	@JoinColumn(name="userPaymentId")
+	@OneToOne(mappedBy="userPayment")
 	private PaymentToLister paymentToLister;
 	
 	// gets and sets

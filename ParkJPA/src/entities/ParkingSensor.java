@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -19,10 +20,15 @@ public class ParkingSensor {
 	
 	private Boolean occupied;
 	
-	@JsonIgnore
+	@JsonBackReference(value="parkingSpotToParkingSensor")
 	@OneToOne
     @JoinColumn(name="parkingSpotId")
 	private ParkingSpot parkingSpot;
+	
+	@JsonIgnore
+	@OneToOne
+	@JoinColumn(name="parkingTagId")
+	private ParkingTag parkingTag;
 
 	// gets and sets
 	public Boolean getOccupied() {
@@ -44,10 +50,19 @@ public class ParkingSensor {
 	public Integer getId() {
 		return id;
 	}
+	
+	public ParkingTag getParkingTag() {
+		return parkingTag;
+	}
+
+	public void setParkingTag(ParkingTag parkingTag) {
+		this.parkingTag = parkingTag;
+	}
 
 	// toString
 	@Override
 	public String toString() {
-		return "ParkingSensor [id=" + id + ", occupied=" + occupied + ", parkingSpot=" + parkingSpot + "]";
+		return "ParkingSensor [id=" + id + ", occupied=" + occupied + ", parkingSpot=" + parkingSpot + ", parkingTag="
+				+ parkingTag + "]";
 	}
 }

@@ -3,6 +3,7 @@ package entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Lister {
@@ -29,11 +31,11 @@ public class Lister {
 	@JoinColumn(name="userId")
 	private User user;
 
-	@JsonIgnore
-	@OneToMany(mappedBy="lister")
-	private List<ParkingSpot> parkingSpot;
+	@JsonManagedReference(value="listerToParkingSpots")
+	@OneToMany(mappedBy="lister", fetch= FetchType.EAGER)
+	private List<ParkingSpot> parkingSpots;
 	
-	@JsonIgnore
+	@JsonManagedReference
 	@OneToOne
     @JoinColumn(name="addressId")
 	private Address address;
@@ -68,11 +70,11 @@ public class Lister {
 	}
 
 	public List<ParkingSpot> getParkingSpot() {
-		return parkingSpot;
+		return parkingSpots;
 	}
 
 	public void setParkingSpot(List<ParkingSpot> parkingSpot) {
-		this.parkingSpot = parkingSpot;
+		this.parkingSpots = parkingSpot;
 	}
 
 	public Address getAddress() {
@@ -87,6 +89,6 @@ public class Lister {
 	@Override
 	public String toString() {
 		return "Lister [id=" + id + ", socialSecurity=" + socialSecurity + ", payPalAccount=" + payPalAccount
-				+ ", user=" + user + ", parkingSpot=" + parkingSpot + "]";
+				+ ", user=" + user + ", parkingSpot=" + parkingSpots + "]";
 	}
 }

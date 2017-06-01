@@ -1,5 +1,8 @@
 package data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Lister;
+import entities.ParkingSpot;
 import entities.User;
 
 @Transactional
@@ -23,8 +27,11 @@ public class ListerDAOImpl implements ListerDAO{
 
 	@Override
 	public Lister create(Integer userId, Lister lister) {
-		Lister l = lister;
-		l.setUser(em.find(User.class, userId));
+		List<ParkingSpot> parkingSpots = new ArrayList<>();
+
+		lister.setUser(em.find(User.class, userId));
+		lister.setParkingSpot(parkingSpots);
+		
 		em.persist(lister);
 		em.flush();
 		return lister;
@@ -33,8 +40,10 @@ public class ListerDAOImpl implements ListerDAO{
 	@Override
 	public Lister update(Integer id, Lister lister) {
 		Lister l = em.find(Lister.class, id);
+		
 		l.setParkingSpot(lister.getParkingSpot());
 		l.setPayPalAccount(lister.getPayPalAccount());
+		
 		return l;
 	}
 
