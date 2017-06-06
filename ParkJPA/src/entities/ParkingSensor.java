@@ -20,6 +20,8 @@ public class ParkingSensor {
 	
 	private Boolean occupied;
 	
+	private String serialNumber;
+	
 	@JsonBackReference(value="parkingSpotToParkingSensor")
 	@OneToOne
     @JoinColumn(name="parkingSpotId")
@@ -59,10 +61,18 @@ public class ParkingSensor {
 		this.parkingTag = parkingTag;
 	}
 
+	public String getSerialNumber() {
+		return serialNumber;
+	}
+
+	public void setSerialNumber(String serialNumber) {
+		this.serialNumber = serialNumber;
+	}
+
 	// toString
 	@Override
 	public String toString() {
-		return "ParkingSensor [id=" + id + ", occupied=" + occupied + ", parkingSpot=" + parkingSpot + ", parkingTag="
-				+ parkingTag + "]";
+		return "ParkingSensor [id=" + id + ", occupied=" + occupied + ", serialNumber=" + serialNumber
+				+ ", parkingSpot=" + parkingSpot + ", parkingTag=" + parkingTag + "]";
 	}
 }

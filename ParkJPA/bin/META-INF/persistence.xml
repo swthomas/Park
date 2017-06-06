@@ -7,7 +7,8 @@
 
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-		<class>entities.Address</class>
+		<class>entities.ListerAddress</class>
+		<class>entities.ParkingSpotAddress</class>
 		<class>entities.Lister</class>
 		<class>entities.PaymentToLister</class>
 		<class>entities.Reservation</class>

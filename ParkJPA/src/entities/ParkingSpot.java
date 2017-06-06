@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,24 +33,19 @@ public class ParkingSpot {
 	@JoinColumn(name="listerId") 
 	private Lister lister;
 	
-	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="addressId")  
-	private Address address;
+	@JsonManagedReference(value="parkingSpotToParkingSpotAddress")
+	@OneToOne(mappedBy="parkingSpot", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	private ParkingSpotAddress parkingSpotAddress;
 	
 	@JsonManagedReference(value="parkingSpotToParkingSensor")
 	@OneToOne(mappedBy="parkingSpot")
 	private ParkingSensor parkingSensor;
 	
-	@JsonManagedReference(value="parkingSpotToPhotos")
-	@OneToMany(mappedBy="parkingSpot", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch= FetchType.EAGER)
+	@JsonIgnore
+	@OneToMany(mappedBy="parkingSpot")
 	private List<Photo> photos;
-	
-	// gets and sets
-	public Integer getId() {
-		return id;
-	}
 
+	// gets and sets
 	public String getDescription() {
 		return description;
 	}
@@ -76,12 +70,12 @@ public class ParkingSpot {
 		this.lister = lister;
 	}
 
-	public Address getAddress() {
-		return address;
+	public ParkingSpotAddress getAddress() {
+		return parkingSpotAddress;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setAddress(ParkingSpotAddress address) {
+		this.parkingSpotAddress = address;
 	}
 
 	public ParkingSensor getParkingSensor() {
@@ -100,10 +94,14 @@ public class ParkingSpot {
 		this.photos = photos;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
 	// toString
 	@Override
 	public String toString() {
 		return "ParkingSpot [id=" + id + ", description=" + description + ", rate=" + rate + ", lister=" + lister
-				+ ", address=" + address + ", parkingSensor=" + parkingSensor + ", photos=" + photos + "]";
+				+ ", address=" + parkingSpotAddress + ", parkingSensor=" + parkingSensor + ", photos=" + photos + "]";
 	}
 }

@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.Address;
+import entities.ListerAddress;
 
 public class AddressTest {
 	private EntityManagerFactory emf = null;
@@ -33,7 +33,7 @@ public class AddressTest {
 	
 	@Test
 	public void test_address_mapping() {
-		assertEquals("111 1st st.",em.find(Address.class, 1).getStreet());
+		assertEquals("111 1st st.",em.find(ListerAddress.class, 1).getStreet());
 	}
 	
 	//----------------------------------------------------------------------------// 

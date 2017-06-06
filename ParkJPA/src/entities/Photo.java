@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Photo {
@@ -23,7 +23,7 @@ public class Photo {
 	@Lob
 	private byte[] image;
 	
-	@JsonBackReference(value="parkingSpotToPhotos")
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="parkingSpotId")
 	private ParkingSpot parkingSpot;

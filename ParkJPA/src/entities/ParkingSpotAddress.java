@@ -1,17 +1,16 @@
 package entities;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-public class Address {
+public class ParkingSpotAddress {
 	
 	// fields
 	@Id
@@ -32,15 +31,12 @@ public class Address {
 	
 	private Integer longitude;
 
-	@JsonIgnore
-	@OneToMany(mappedBy="address")
-	private List<ParkingSpot> parkingSpot;
+	@JsonBackReference(value="parkingSpotToParkingSpotAddress")
+	@OneToOne
+	@JoinColumn(name="parkingSpotId")
+	private ParkingSpot parkingSpot;
 
 	// gets and sets
-	public Integer getId() {
-		return id;
-	}
-
 	public String getStreet() {
 		return street;
 	}
@@ -81,14 +77,6 @@ public class Address {
 		this.state = state;
 	}
 
-	public List<ParkingSpot> getParkingSpot() {
-		return parkingSpot;
-	}
-
-	public void setParkingSpot(List<ParkingSpot> parkingSpot) {
-		this.parkingSpot = parkingSpot;
-	}
-
 	public Integer getLatitude() {
 		return latitude;
 	}
@@ -105,11 +93,24 @@ public class Address {
 		this.longitude = longitude;
 	}
 
+	public ParkingSpot getParkingSpot() {
+		return parkingSpot;
+	}
+
+	public void setParkingSpot(ParkingSpot parkingSpot) {
+		this.parkingSpot = parkingSpot;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
 	// toString
 	@Override
 	public String toString() {
-		return "Address [id=" + id + ", street=" + street + ", street2=" + street2 + ", postalCode=" + postalCode
-				+ ", city=" + city + ", state=" + state + ", latitude=" + latitude + ", longitude=" + longitude
-				+ ", parkingSpot=" + parkingSpot + "]";
+		return "ParkingSpotAddress [id=" + id + ", street=" + street + ", street2=" + street2 + ", postalCode="
+				+ postalCode + ", city=" + city + ", state=" + state + ", latitude=" + latitude + ", longitude="
+				+ longitude + ", parkingSpot=" + parkingSpot + "]";
 	}
 }
+	

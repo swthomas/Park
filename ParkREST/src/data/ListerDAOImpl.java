@@ -30,7 +30,7 @@ public class ListerDAOImpl implements ListerDAO{
 		List<ParkingSpot> parkingSpots = new ArrayList<>();
 
 		lister.setUser(em.find(User.class, userId));
-		lister.setParkingSpot(parkingSpots);
+		lister.setParkingSpots(parkingSpots);
 		
 		em.persist(lister);
 		em.flush();
@@ -41,7 +41,7 @@ public class ListerDAOImpl implements ListerDAO{
 	public Lister update(Integer id, Lister lister) {
 		Lister l = em.find(Lister.class, id);
 		
-		l.setParkingSpot(lister.getParkingSpot());
+		l.setParkingSpots(lister.getParkingSpots());
 		l.setPayPalAccount(lister.getPayPalAccount());
 		
 		return l;

@@ -6,7 +6,6 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import entities.Address;
 import entities.Lister;
 import entities.ParkingSpot;
 
@@ -25,7 +24,7 @@ public class ParkingSpotDAOImpl implements ParkingSpotDAO{
 	@Override
 	public ParkingSpot create(Integer listerId, Integer addressId, ParkingSpot p) {
 		p.setLister(em.find(Lister.class, listerId));
-		p.setAddress(em.find(Address.class, addressId));
+		p.setAddress(p.getAddress());
 		em.persist(p);
 		em.flush();
 		return p;

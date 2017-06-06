@@ -2,6 +2,7 @@ package entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -35,16 +36,11 @@ public class Lister {
 	@OneToMany(mappedBy="lister", fetch= FetchType.EAGER)
 	private List<ParkingSpot> parkingSpots;
 	
-	@JsonManagedReference
-	@OneToOne
-    @JoinColumn(name="addressId")
-	private Address address;
+	@JsonManagedReference(value="listerToAddress")
+	@OneToOne(mappedBy="lister", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	private ListerAddress address;
 
 	// gets and sets
-	public Integer getId() {
-		return id;
-	}
-
 	public Integer getSocialSecurity() {
 		return socialSecurity;
 	}
@@ -69,26 +65,30 @@ public class Lister {
 		this.user = user;
 	}
 
-	public List<ParkingSpot> getParkingSpot() {
+	public List<ParkingSpot> getParkingSpots() {
 		return parkingSpots;
 	}
 
-	public void setParkingSpot(List<ParkingSpot> parkingSpot) {
-		this.parkingSpots = parkingSpot;
+	public void setParkingSpots(List<ParkingSpot> parkingSpots) {
+		this.parkingSpots = parkingSpots;
 	}
 
-	public Address getAddress() {
+	public ListerAddress getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(ListerAddress address) {
 		this.address = address;
+	}
+
+	public Integer getId() {
+		return id;
 	}
 
 	// toString
 	@Override
 	public String toString() {
 		return "Lister [id=" + id + ", socialSecurity=" + socialSecurity + ", payPalAccount=" + payPalAccount
-				+ ", user=" + user + ", parkingSpot=" + parkingSpots + "]";
+				+ ", user=" + user + ", parkingSpots=" + parkingSpots + ", address=" + address + "]";
 	}
 }

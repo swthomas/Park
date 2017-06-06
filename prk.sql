@@ -40,24 +40,6 @@ CREATE UNIQUE INDEX `id_UNIQUE` ON `user` (`id` ASC);
 
 
 -- -----------------------------------------------------
--- Table `address`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `address` ;
-
-CREATE TABLE IF NOT EXISTS `address` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `street` VARCHAR(45) NOT NULL,
-  `street2` VARCHAR(45) NULL,
-  `postalCode` INT NOT NULL,
-  `city` VARCHAR(45) NOT NULL,
-  `state` VARCHAR(45) NOT NULL,
-  `latitude` DOUBLE NOT NULL,
-  `longitude` DOUBLE NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `lister`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `lister` ;
@@ -67,14 +49,8 @@ CREATE TABLE IF NOT EXISTS `lister` (
   `socialSecurity` INT NOT NULL,
   `paypalAccount` VARCHAR(45) NOT NULL,
   `userId` INT NOT NULL,
-  `parkingSpotId` INT NOT NULL,
-  `addressId` INT NOT NULL,
+  `parkingSpotId` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_lister_address1`
-    FOREIGN KEY (`addressId`)
-    REFERENCES `address` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_lister_user1`
     FOREIGN KEY (`userId`)
     REFERENCES `user` (`id`)
@@ -85,8 +61,6 @@ ENGINE = InnoDB;
 CREATE UNIQUE INDEX `parkingSpotId_UNIQUE` ON `lister` (`parkingSpotId` ASC);
 
 CREATE UNIQUE INDEX `socialSecurity_UNIQUE` ON `lister` (`socialSecurity` ASC);
-
-CREATE INDEX `fk_lister_address1_idx` ON `lister` (`addressId` ASC);
 
 CREATE UNIQUE INDEX `id_UNIQUE` ON `lister` (`id` ASC);
 
@@ -129,23 +103,15 @@ CREATE TABLE IF NOT EXISTS `parkingSpot` (
   `description` VARCHAR(45) NOT NULL,
   `rate` DOUBLE NOT NULL,
   `listerId` INT NOT NULL,
-  `addressId` INT NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_parkingSpot_lister1`
     FOREIGN KEY (`listerId`)
     REFERENCES `lister` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_parkingSpot_address1`
-    FOREIGN KEY (`addressId`)
-    REFERENCES `address` (`id`)
-    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 CREATE INDEX `fk_parkingSpot_lister1_idx` ON `parkingSpot` (`listerId` ASC);
-
-CREATE INDEX `fk_parkingSpot_address1_idx` ON `parkingSpot` (`addressId` ASC);
 
 
 -- -----------------------------------------------------
@@ -205,6 +171,32 @@ ENGINE = InnoDB;
 CREATE INDEX `fk_payment_lister1_idx` ON `paymentToLister` (`listerId` ASC);
 
 CREATE INDEX `fk_paymentToLister_userPayment1_idx` ON `paymentToLister` (`userPaymentId` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `listerAddress`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `listerAddress` ;
+
+CREATE TABLE IF NOT EXISTS `listerAddress` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `street` VARCHAR(45) NOT NULL,
+  `street2` VARCHAR(45) NULL,
+  `postalCode` INT NOT NULL,
+  `city` VARCHAR(45) NOT NULL,
+  `state` VARCHAR(45) NOT NULL,
+  `latitude` DOUBLE NOT NULL,
+  `longitude` DOUBLE NOT NULL,
+  `listerId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_listerAddress_lister1`
+    FOREIGN KEY (`listerId`)
+    REFERENCES `lister` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_listerAddress_lister1_idx` ON `listerAddress` (`listerId` ASC);
 
 
 -- -----------------------------------------------------
@@ -277,6 +269,7 @@ CREATE TABLE IF NOT EXISTS `parkingSensor` (
   `occupied` TINYINT(1) NOT NULL,
   `parkingSpotId` INT NOT NULL,
   `parkingTagId` INT NOT NULL,
+  `serialNumber` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_parkingSensor_parkingSpot1`
     FOREIGN KEY (`parkingSpotId`)
@@ -317,6 +310,32 @@ ENGINE = InnoDB;
 CREATE INDEX `fk_photos_parkingSpot1_idx` ON `photo` (`parkingSpotId` ASC);
 
 
+-- -----------------------------------------------------
+-- Table `parkingSpotAddress`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `parkingSpotAddress` ;
+
+CREATE TABLE IF NOT EXISTS `parkingSpotAddress` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `street` VARCHAR(45) NOT NULL,
+  `street2` VARCHAR(45) NULL,
+  `postalCode` INT NOT NULL,
+  `city` VARCHAR(45) NOT NULL,
+  `state` VARCHAR(45) NOT NULL,
+  `latitude` DOUBLE NOT NULL,
+  `longitude` DOUBLE NOT NULL,
+  `parkingSpotId` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_parkingSpotAddress_parkingSpot1`
+    FOREIGN KEY (`parkingSpotId`)
+    REFERENCES `parkingSpot` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_parkingSpotAddress_parkingSpot1_idx` ON `parkingSpotAddress` (`parkingSpotId` ASC);
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
@@ -332,21 +351,11 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `address`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `prk`;
-INSERT INTO `address` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (1, '111 1st st.', NULL, 809231, 'Denver', 'CO', DEFAULT, DEFAULT);
-
-COMMIT;
-
-
--- -----------------------------------------------------
 -- Data for table `lister`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `prk`;
-INSERT INTO `lister` (`id`, `socialSecurity`, `paypalAccount`, `userId`, `parkingSpotId`, `addressId`) VALUES (1, 111223333, DEFAULT, 1, 1, 1);
+INSERT INTO `lister` (`id`, `socialSecurity`, `paypalAccount`, `userId`, `parkingSpotId`) VALUES (1, 111223333, DEFAULT, 1, 1);
 
 COMMIT;
 
@@ -367,7 +376,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `prk`;
-INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `addressId`) VALUES (1, 'Parking spot for your car at my house', 2.99, 1, 1);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`) VALUES (1, 'Parking spot for your car at my house', 2.99, 1);
 
 COMMIT;
 
@@ -388,6 +397,16 @@ COMMIT;
 START TRANSACTION;
 USE `prk`;
 INSERT INTO `paymentToLister` (`id`, `listerId`, `date`, `amount`, `userPaymentId`) VALUES (1, 1, '2017-01-01', 45.54, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `listerAddress`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `prk`;
+INSERT INTO `listerAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`, `listerId`) VALUES (1, '111 1st st.', NULL, 809231, 'Denver', 'CO', DEFAULT, DEFAULT, 1);
 
 COMMIT;
 
@@ -417,7 +436,17 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `prk`;
-INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`, `parkingTagId`) VALUES (1, 1, 1, 1);
+INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`, `parkingTagId`, `serialNumber`) VALUES (1, 1, 1, 1, '111111111');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `parkingSpotAddress`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `prk`;
+INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`, `parkingSpotId`) VALUES (1, '111 1st st.', NULL, 809231, 'Denver', 'CO', DEFAULT, DEFAULT, 1);
 
 COMMIT;
 
