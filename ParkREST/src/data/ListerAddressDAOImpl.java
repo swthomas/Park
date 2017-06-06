@@ -20,18 +20,10 @@ public class ListerAddressDAOImpl implements ListerAddressDAO {
 	public ListerAddress show(Integer id) {
 		return em.find(ListerAddress.class, id);
 	}
-	
-	@Override
-	public ListerAddress createListerAddress(Integer listerId, ListerAddress a) {
-		Lister l = em.find(Lister.class, listerId);
-		em.flush();
-		l.setAddress(a);
-		return a;
-	}
 
 	@Override
-	public ListerAddress update(Integer id, ListerAddress a) {
-		Lister l = em.find(Lister.class, id);
+	public ListerAddress update(Integer listerId, ListerAddress a) {
+		Lister l = em.find(Lister.class, listerId);
 		ListerAddress address = em.find(ListerAddress.class, l.getAddress().getId());
 		address.setStreet(a.getStreet());
 		address.setStreet2(a.getStreet2());
@@ -41,14 +33,5 @@ public class ListerAddressDAOImpl implements ListerAddressDAO {
 		address.setLatitude(a.getLatitude());
 		address.setLongitude(a.getLongitude());
 		return address;
-	}
-	
-	@Override
-	public Boolean destroy(Integer id) {
-		em.remove(em.find(ListerAddress.class, id));
-		if (em.find(ListerAddress.class, id) == null) {
-			return true;
-		}
-		return false;
 	}
 }

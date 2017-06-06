@@ -12,9 +12,11 @@
 
 	<mvc:annotation-driven />
 	
-  	<bean id="addressdao" class="data.AddressDAOImpl" /> 	
    	<bean id="listerdao" class="data.ListerDAOImpl" /> 	
+  	<bean id="listeraddressdao" class="data.ListerAddressDAOImpl" /> 	
+  	<bean id="parkingspotaddressdao" class="data.ParkingSpotAddressDAOImpl" /> 	
    	<bean id="parkingspotdao" class="data.ParkingSpotDAOImpl" /> 	
+   	<bean id="paymenttolisterdao" class="data.PaymentToListerDAOImpl" /> 	
    	<bean id="reservationdao" class="data.ReservationDAOImpl" /> 	
   	<bean id="userdao" class="data.UserDAOImpl" />
    	<bean id="vehicledao" class="data.VehicleDAOImpl" /> 	

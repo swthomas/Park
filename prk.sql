@@ -38,6 +38,8 @@ CREATE UNIQUE INDEX `email_UNIQUE` ON `user` (`email` ASC);
 
 CREATE UNIQUE INDEX `id_UNIQUE` ON `user` (`id` ASC);
 
+CREATE UNIQUE INDEX `username_UNIQUE` ON `user` (`username` ASC);
+
 
 -- -----------------------------------------------------
 -- Table `lister`
