@@ -1,5 +1,7 @@
 package data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -17,16 +19,22 @@ public class ParkingSpotDAOImpl implements ParkingSpotDAO{
 	private EntityManager em;
 	
 	@Override
+	public List<ParkingSpot> index() { 
+		String q = "SELECT p FROM ParkingSpot p";
+		return em.createQuery(q, ParkingSpot.class).getResultList();
+	}
+	
+	@Override
 	public ParkingSpot show(Integer id) { 
 		return em.find(ParkingSpot.class, id);
 	}
 
 	@Override
-	public ParkingSpot create(Integer listerId, Integer addressId, ParkingSpot p) {
+	public ParkingSpot create(Integer listerId, ParkingSpot p) {
 		p.setLister(em.find(Lister.class, listerId));
-		p.setAddress(p.getAddress());
 		em.persist(p);
 		em.flush();
+		
 		return p;
 	}
 

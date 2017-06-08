@@ -38,7 +38,7 @@ public class ParkingSpot {
 	private ParkingSpotAddress parkingSpotAddress;
 	
 	@JsonManagedReference(value="parkingSpotToParkingSensor")
-	@OneToOne(mappedBy="parkingSpot")
+	@OneToOne(mappedBy="parkingSpot", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private ParkingSensor parkingSensor;
 	
 	@JsonIgnore
@@ -70,12 +70,12 @@ public class ParkingSpot {
 		this.lister = lister;
 	}
 
-	public ParkingSpotAddress getAddress() {
+	public ParkingSpotAddress getParkingSpotAddress() {
 		return parkingSpotAddress;
 	}
 
-	public void setAddress(ParkingSpotAddress address) {
-		this.parkingSpotAddress = address;
+	public void setParkingSpotAddress(ParkingSpotAddress parkingSpotAddress) {
+		this.parkingSpotAddress = parkingSpotAddress;
 	}
 
 	public ParkingSensor getParkingSensor() {
@@ -102,6 +102,7 @@ public class ParkingSpot {
 	@Override
 	public String toString() {
 		return "ParkingSpot [id=" + id + ", description=" + description + ", rate=" + rate + ", lister=" + lister
-				+ ", address=" + parkingSpotAddress + ", parkingSensor=" + parkingSensor + ", photos=" + photos + "]";
+				+ ", parkingSpotAddress=" + parkingSpotAddress + ", parkingSensor=" + parkingSensor + ", photos="
+				+ photos + "]";
 	}
 }

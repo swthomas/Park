@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Lister;
-import entities.ParkingSpot;
 import entities.ParkingSpotAddress;
 
 @Transactional
@@ -22,14 +21,14 @@ public class ParkingSpotAddressDAOImpl implements ParkingSpotAddressDAO {
 		return em.find(ParkingSpotAddress.class, id);
 	}
 	
-	@Override
-	public ParkingSpotAddress create(Integer parkingSpotId, ParkingSpotAddress a) {
-		ParkingSpot p = em.find(ParkingSpot.class, parkingSpotId);
-		em.persist(a);
-		em.flush();
-		p.setAddress(a);
-		return a;
-	}
+//	@Override
+//	public ParkingSpotAddress create(Integer parkingSpotId, ParkingSpotAddress a) {
+//		ParkingSpot p = em.find(ParkingSpot.class, parkingSpotId);
+//		em.persist(a);
+//		em.flush();
+//		p.setAddress(a);
+//		return a;
+//	}
 
 	@Override
 	public ParkingSpotAddress update(Integer id, ParkingSpotAddress a) {

@@ -267,10 +267,10 @@ CREATE INDEX `fk_parkingTag_user1_idx` ON `parkingTag` (`userId` ASC);
 DROP TABLE IF EXISTS `parkingSensor` ;
 
 CREATE TABLE IF NOT EXISTS `parkingSensor` (
-  `id` INT NOT NULL,
-  `occupied` TINYINT(1) NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `occupied` TINYINT(1) NOT NULL DEFAULT 0,
   `parkingSpotId` INT NOT NULL,
-  `parkingTagId` INT NOT NULL,
+  `parkingTagId` INT NULL DEFAULT NULL,
   `serialNumber` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_parkingSensor_parkingSpot1`

@@ -22,6 +22,25 @@ public class ListerController {
 	public Lister show(@PathVariable Integer id) {
 		return listerDAO.show(id);
 	}
+	
+	/*  AJAX POST request -- address is required and persisted with lister
+	 * 					   - social security is unique
+	 * 						 
+	 * 
+	 * 	{
+  			"socialSecurity": 177229933,
+  			"payPalAccount": "987kjgj",
+  			"address": {
+    			"street": "111 1st st.",
+    			"street2": null,
+    			"postalCode": 809231,
+    			"city": "Denver",
+    			"state": "CO",
+    			"latitude": 0,
+    			"longitude": 0
+  			}
+		}
+	 */
 
 	@RequestMapping(value="lister/{userId}", method=RequestMethod.POST)
 	public Lister create(@PathVariable Integer userId, @RequestBody String jsonLister) {

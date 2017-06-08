@@ -23,6 +23,16 @@ public class VehicleController {
 		return vehicleDAO.show(id);
 	}
 	
+	/*   AJAX POST request -- licensePlate is unique
+	 * 
+	 *   {
+  			"year": 1981,
+  			"color": "Red",
+  			"make": "Porsche",
+  			"model": "911 Targa",
+  			"licensePlate": "test181"
+		  }
+	 */
 	@RequestMapping(value="vehicle/{userId}", method=RequestMethod.POST)
 	public Vehicle create(@PathVariable Integer userId, @RequestBody String jsonVehicle) {
 		try {

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Lister;
+import entities.ListerAddress;
 import entities.ParkingSpot;
 import entities.User;
 
@@ -40,9 +41,18 @@ public class ListerDAOImpl implements ListerDAO{
 	@Override
 	public Lister update(Integer id, Lister lister) {
 		Lister l = em.find(Lister.class, id);
+		ListerAddress a = em.find(ListerAddress.class, l.getAddress().getId());
 		
 		l.setParkingSpots(lister.getParkingSpots());
 		l.setPayPalAccount(lister.getPayPalAccount());
+		
+		a.setStreet(l.getAddress().getStreet());
+		a.setStreet2(l.getAddress().getStreet2());
+		a.setPostalCode(l.getAddress().getPostalCode());
+		a.setCity(l.getAddress().getCity());
+		a.setState(l.getAddress().getState());
+		a.setLatitude(l.getAddress().getLatitude());
+		a.setLongitude(l.getAddress().getLongitude());
 		
 		return l;
 	}

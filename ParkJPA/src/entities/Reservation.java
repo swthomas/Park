@@ -26,6 +26,10 @@ public class Reservation {
 	
 	private Double rate;
 	
+	@OneToOne
+	@JoinColumn(name="vehicleId")
+	private Vehicle vehicle;
+	
 	@JsonIgnore
 	@OneToOne
     @JoinColumn(name="parkingSpotId")
@@ -37,10 +41,6 @@ public class Reservation {
 	private User user;
 
 	// gets and sets
-	public Integer getId() {
-		return id;
-	}
-
 	public Date getReservedFromDate() {
 		return reservedFromDate;
 	}
@@ -65,6 +65,14 @@ public class Reservation {
 		this.rate = rate;
 	}
 
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
+	}
+
 	public ParkingSpot getParkingSpot() {
 		return parkingSpot;
 	}
@@ -81,12 +89,15 @@ public class Reservation {
 		this.user = user;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
 	// toString
 	@Override
 	public String toString() {
 		return "Reservation [id=" + id + ", reservedFromDate=" + reservedFromDate + ", reservedToDate=" + reservedToDate
-				+ ", rate=" + rate + ", parkingSpot=" + parkingSpot + ", user=" + user
-				+ "]";
-	}	
+				+ ", rate=" + rate + ", vehicle=" + vehicle + ", parkingSpot=" + parkingSpot + ", user=" + user + "]";
+	}
 }
 

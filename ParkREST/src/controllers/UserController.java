@@ -32,12 +32,22 @@ public class UserController {
 	@RequestMapping(value="user/{id}", method= RequestMethod.GET)
 	public User show(@PathVariable Integer id) {
 		return userDAO.show(id);
-	}
+	} 
 	
-	@RequestMapping(value="user/{username}{password}", method= RequestMethod.GET)
-	public User show(@PathVariable String username, @PathVariable String password) {
-		return userDAO.show(username, password);
-	}
+	/*	AJAX POST request -- isLister to be set to false initially
+	 *                     - phone number, email and username have to be unique
+	 * 
+	 * {
+  			"firstName": "Steve",
+  			"lastName": "Thompson",
+  			"phoneNumber": 11122883333,
+  			"email": "steveThomjhgpson@sd.com",
+  			"username": "sthompskjhon",
+  			"password": "password",
+  			"isLister": false
+		}
+	 * 
+	*/
 	
 	@RequestMapping(value="user", method=RequestMethod.POST)
 	public User create(@RequestBody String jsonUser) {
