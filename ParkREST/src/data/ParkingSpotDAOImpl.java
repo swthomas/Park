@@ -24,57 +24,13 @@ public class ParkingSpotDAOImpl implements ParkingSpotDAO{
 		return em.createQuery(q, ParkingSpot.class).getResultList();
 	}
 	
-// 		https://stackoverflow.com/questions/8994718/mysql-longitude-and-latitude-query-for-other-rows-within-x-mile-radius
-//		https://developers.google.com/maps/solutions/store-locator/clothing-store-locator#findnearsql	
-	
-//				SELECT
-//			    `id`,
-//			    (
-//			        6371 *
-//			        acos(
-//			            cos( radians( :lat ) ) *
-//			            cos( radians( `lat` ) ) *
-//			            cos(
-//			                radians( `long` ) - radians( :long )
-//			            ) +
-//			            sin(radians(:lat)) *
-//			            sin(radians(`lat`))
-//			        )
-//			    ) `distance`
-//			FROM
-//			    `location`
-//			HAVING
-//			    `distance` < :distance
-//			ORDER BY
-//			    `distance`
-//			LIMIT
-//			    25
-	
-	
-// 		https://gis.stackexchange.com/questions/31628/find-points-within-a-distance-using-mysql
-	
-//			SELECT
-//			  id, (
-//			    3959 * acos (
-//			      cos ( radians(78.3232) )
-//			      * cos( radians( lat ) )
-//			      * cos( radians( lng ) - radians(65.3234) )
-//			      + sin ( radians(78.3232) )
-//			      * sin( radians( lat ) )
-//			    )
-//			  ) AS distance
-//			FROM markers
-//			HAVING distance < 30
-//			ORDER BY distance
-//			LIMIT 0 , 20;
-	
 	@Override
 	public List<ParkingSpot> distance(Double lat, Double lng) {
 		String q = "SELECT p FROM ParkingSpot p " 
 				 + "JOIN FETCH ParkingSpotAddress a "
 				 + "ON p.parkingSpotAddress.id = a.id  " 
-				 + "WHERE 1.0 > :lat";
-		return em.createQuery(q, ParkingSpot.class).setParameter("lat", lat).getResultList();
+				 + "WHERE 1 > ( SELECT (6371 * acos(cos(radians(:lat)) * cos(radians(p.parkingSpotAddress.latitude)) * cos(radians(p.parkingSpotAddress.longitude) - radians(:lng)) + sin(radians(:lat)) * sin(radians(p.parkingSpotAddress.latitude)))))";
+		return em.createQuery(q, ParkingSpot.class).setParameter("lat", lat).setParameter("lng", lng).getResultList();
 	}
 	
 	
