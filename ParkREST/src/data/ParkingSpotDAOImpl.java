@@ -72,9 +72,9 @@ public class ParkingSpotDAOImpl implements ParkingSpotDAO{
 	public List<ParkingSpot> distance(Double lat, Double lng) {
 		String q = "SELECT p FROM ParkingSpot p " 
 				 + "JOIN FETCH ParkingSpotAddress a "
-				 + "ON p.parkingSpotAddressId = a.id  " 
-				 + "WHERE 1 > ( SELECT (6371 * acos(cos(radians(:lat)) * cos( radians(latitude)) * cos(radians(longitude) - radians(:lng)) + sin(radians(:lat)) * sin(radians(latitude)))))";
-		return em.createQuery(q, ParkingSpot.class).setParameter("lat", lat).setParameter("lng", lng).getResultList();
+				 + "ON p.parkingSpotAddress.id = a.id  " 
+				 + "WHERE 1.0 > :lat";
+		return em.createQuery(q, ParkingSpot.class).setParameter("lat", lat).getResultList();
 	}
 	
 	
