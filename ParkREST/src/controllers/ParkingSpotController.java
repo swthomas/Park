@@ -25,11 +25,15 @@ public class ParkingSpotController {
 		return parkingSpotDAO.index();
 	}
 	
+	@RequestMapping(value="parkingspot/lat/{lat}/lng/{lng}", method= RequestMethod.GET)
+	public List<ParkingSpot> distance(@PathVariable Double lat, @PathVariable Double lng) {
+		return parkingSpotDAO.distance(lat, lng);
+	}
+	
 	@RequestMapping(value="parkingspot/{id}", method= RequestMethod.GET)
 	public ParkingSpot show(@PathVariable Integer id) {
 		return parkingSpotDAO.show(id);
 	}
-	
 	
 	/* Example AJAX POST -- The address and the sensor are persisted with the parking spot so the information has to be sent as well.  
 	 *                      "OCCUPIED" field is to be set to false when first created

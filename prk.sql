@@ -96,6 +96,24 @@ CREATE INDEX `fk_vehicle_customer1_idx` ON `vehicle` (`userId` ASC);
 
 
 -- -----------------------------------------------------
+-- Table `parkingSpotAddress`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `parkingSpotAddress` ;
+
+CREATE TABLE IF NOT EXISTS `parkingSpotAddress` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `street` VARCHAR(45) NOT NULL,
+  `street2` VARCHAR(45) NULL,
+  `postalCode` INT NOT NULL,
+  `city` VARCHAR(45) NOT NULL,
+  `state` VARCHAR(45) NOT NULL,
+  `latitude` DOUBLE NOT NULL,
+  `longitude` DOUBLE NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `parkingSpot`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `parkingSpot` ;
@@ -105,15 +123,23 @@ CREATE TABLE IF NOT EXISTS `parkingSpot` (
   `description` VARCHAR(45) NOT NULL,
   `rate` DOUBLE NOT NULL,
   `listerId` INT NOT NULL,
+  `parkingSpotAddressId` INT NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_parkingSpot_lister1`
     FOREIGN KEY (`listerId`)
     REFERENCES `lister` (`id`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_parkingSpot_parkingSpotAddress1`
+    FOREIGN KEY (`parkingSpotAddressId`)
+    REFERENCES `parkingSpotAddress` (`id`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 CREATE INDEX `fk_parkingSpot_lister1_idx` ON `parkingSpot` (`listerId` ASC);
+
+CREATE INDEX `fk_parkingSpot_parkingSpotAddress1_idx` ON `parkingSpot` (`parkingSpotAddressId` ASC);
 
 
 -- -----------------------------------------------------
@@ -312,32 +338,6 @@ ENGINE = InnoDB;
 CREATE INDEX `fk_photos_parkingSpot1_idx` ON `photo` (`parkingSpotId` ASC);
 
 
--- -----------------------------------------------------
--- Table `parkingSpotAddress`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `parkingSpotAddress` ;
-
-CREATE TABLE IF NOT EXISTS `parkingSpotAddress` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `street` VARCHAR(45) NOT NULL,
-  `street2` VARCHAR(45) NULL,
-  `postalCode` INT NOT NULL,
-  `city` VARCHAR(45) NOT NULL,
-  `state` VARCHAR(45) NOT NULL,
-  `latitude` DOUBLE NOT NULL,
-  `longitude` DOUBLE NOT NULL,
-  `parkingSpotId` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `fk_parkingSpotAddress_parkingSpot1`
-    FOREIGN KEY (`parkingSpotId`)
-    REFERENCES `parkingSpot` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-CREATE INDEX `fk_parkingSpotAddress_parkingSpot1_idx` ON `parkingSpotAddress` (`parkingSpotId` ASC);
-
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
@@ -374,11 +374,39 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `parkingSpotAddress`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `prk`;
+INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (1, '32 S Tejon St.', NULL, 80903, 'Colorado Springs', 'CO', 38.832697, -104.824003);
+INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (2, '20 E Colorado Ave', NULL, 80903, 'Colorado Springs', 'CO', 38.832504, -104.824278);
+INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (3, '17 S Tejon St', NULL, 80903, 'Colorado Springs', 'CO', 38.833065, 104.823034);
+INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (4, '21 S Tejon St', NULL, 80903, 'Colorado Springs', 'CO', 38.832959, -104.823043);
+INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (5, '1 S Nevada Ave', NULL, 80903, 'Colorado Springs', 'CO', 38.832799, -104.821202);
+INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (6, '18 S Nevada Ave', NULL, 80903, 'Colorado Springs', 'CO', 38.833053, -104.822296);
+INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (7, '211 E Colorado Ave', NULL, 80903, 'Colorado Springs', 'CO', 36.155835, -115.151762);
+INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (8, '123 S Weber St', NULL, 80903, 'Colorado Springs', 'CO', 38.831477, -104.819694);
+INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (9, '1 S Nevada Ave #110', NULL, 80903, 'Colorado Springs', 'CO', 38.832799, -104.821202);
+INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (10, '117 E Pikes Peak Ave', NULL, 80903, 'Colorado Springs', 'CO', 38.833416, -104.822589);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `parkingSpot`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `prk`;
-INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`) VALUES (1, 'Parking spot for your car at my house', 2.99, 1);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (1, 'Parking spot for your car at my house', 2.99, 1, 1);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (2, 'Parking spot for your car at my house', 2.99, 1, 2);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (3, 'Parking spot for your car at my house', 2.99, 1, 3);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (4, 'Parking spot for your car at my house', 2.99, 1, 4);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (5, 'Parking spot for your car at my house', 2.99, 1, 5);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (6, 'Parking spot for your car at my house', 4, 1, 6);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (7, 'Parking spot for your car at my house', 4, 1, 7);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (8, 'Parking spot for your car at my house', 5, 1, 8);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (9, 'Parking spot for your car at my house', 10, 1, 9);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (10, 'Parking spot for your car at my house', 10, 1, 10);
 
 COMMIT;
 
@@ -418,7 +446,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `prk`;
-INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `parkingSpotId`, `userId`, `vehicleId`) VALUES (1, '2017-01-01 12:00:00', '2017-01-01 02:00:00', 2.99, 1, 1, 1);
+INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `parkingSpotId`, `userId`, `vehicleId`) VALUES (1, '2017-07-01 12:00:00', '2017-07-01 02:00:00', 2.99, 1, 1, 1);
+INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `parkingSpotId`, `userId`, `vehicleId`) VALUES (2, '2017-07-01 03:00:00', '2017-07-01 03:15:00', 2.99, 3, 1, 1);
+INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `parkingSpotId`, `userId`, `vehicleId`) VALUES (3, '2017-01-01 12:00:00', '2017-01-01 01:00:00', 2.99, 4, 1, 1);
+INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `parkingSpotId`, `userId`, `vehicleId`) VALUES (4, '2017-01-01 12:00:00', '2017-01-01 12:45:00', 2.99, 5, 1, 1);
 
 COMMIT;
 
@@ -438,17 +469,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `prk`;
-INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`, `parkingTagId`, `serialNumber`) VALUES (1, 1, 1, 1, '111111111');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `parkingSpotAddress`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `prk`;
-INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`, `parkingSpotId`) VALUES (1, '111 1st st.', NULL, 809231, 'Denver', 'CO', DEFAULT, DEFAULT, 1);
+INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`, `parkingTagId`, `serialNumber`) VALUES (1, 0, 1, 1, '111111111');
+INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`, `parkingTagId`, `serialNumber`) VALUES (2, 0, 2, NULL, '1234');
+INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`, `parkingTagId`, `serialNumber`) VALUES (3, 0, 3, NULL, '2345sdfg');
+INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`, `parkingTagId`, `serialNumber`) VALUES (4, 0, 4, NULL, '2345weg');
+INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`, `parkingTagId`, `serialNumber`) VALUES (5, 0, 5, NULL, '3456sdfg');
+INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`, `parkingTagId`, `serialNumber`) VALUES (6, 0, 6, NULL, '234sdf');
+INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`, `parkingTagId`, `serialNumber`) VALUES (7, 0, 7, NULL, 'sdf2345');
+INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`, `parkingTagId`, `serialNumber`) VALUES (8, 0, 8, NULL, 'sdf4sdf');
+INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`, `parkingTagId`, `serialNumber`) VALUES (9, 0, 9, NULL, '234sdf234');
+INSERT INTO `parkingSensor` (`id`, `occupied`, `parkingSpotId`, `parkingTagId`, `serialNumber`) VALUES (10, 0, 10, NULL, 'asd1342');
 
 COMMIT;
 

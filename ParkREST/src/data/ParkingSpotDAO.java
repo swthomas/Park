@@ -11,4 +11,5 @@ public interface ParkingSpotDAO {
 	public ParkingSpot create(Integer listerId, ParkingSpot p);
 	public ParkingSpot update(Integer id, ParkingSpot parkingSpot);
 	public Boolean destroy(Integer id);
+	public List<ParkingSpot> distance(Double lat, Double lng);
 }
