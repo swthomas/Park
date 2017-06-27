@@ -1,10 +1,10 @@
 package entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -27,13 +27,12 @@ public class ParkingSpotAddress {
 	
 	private String state;
 	
-	private Integer latitude;
+	private Double latitude;
 	
-	private Integer longitude;
+	private Double longitude;
 
 	@JsonBackReference(value="parkingSpotToParkingSpotAddress")
-	@OneToOne
-	@JoinColumn(name="parkingSpotId")
+	@OneToOne(mappedBy="parkingSpotAddress", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private ParkingSpot parkingSpot;
 
 	// gets and sets
@@ -77,19 +76,19 @@ public class ParkingSpotAddress {
 		this.state = state;
 	}
 
-	public Integer getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(Integer latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
-	public Integer getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(Integer longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 

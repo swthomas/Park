@@ -26,20 +26,42 @@ public class ParkingSpotDAOImpl implements ParkingSpotDAO{
 	
 	@Override
 	public List<ParkingSpot> distance(Double lat, Double lng) {
+		
+		System.out.println(lat + "    " + lng);
+		
+		String haversine = "(6371 * acos(cos(radians(:lat)) * cos(radians(p.parkingSpotAddress.latitude)) * cos(radians(p.parkingSpotAddress.longitude) - radians(:lng)) + sin(radians(:lat)) * sin(radians(p.parkingSpotAddress.latitude))))";
+		
 		String q = "SELECT p FROM ParkingSpot p " 
 				 + "JOIN FETCH p.parkingSpotAddress a "
-//				 + "ON p.parkingSpotAddress.id = a.id  " 
-				 + "WHERE 1 > ( SELECT (6371 * acos(cos(radians(:lat)) * cos(radians(p.parkingSpotAddress.latitude)) * cos(radians(p.parkingSpotAddress.longitude) - radians(:lng)) + sin(radians(:lat)) * sin(radians(p.parkingSpotAddress.latitude)))))";
+				 + "WHERE " + haversine + " < 1";
+		
 		return em.createQuery(q, ParkingSpot.class).setParameter("lat", lat).setParameter("lng", lng).getResultList();
-	}
+	}	
 	
+	
+	@Override
+	public List<ParkingSpot> distanceTEST(Double lat, Double lng) {
+		
+		System.out.println(lat + "    " + lng);
+		
+		String haversine = "(6371 * acos(cos(radians(:lat)) * cos(radians(p.parkingSpotAddress.latitude)) * cos(radians(p.parkingSpotAddress.longitude) - radians(:lng)) + sin(radians(:lat)) * sin(radians(p.parkingSpotAddress.latitude))))";
+		
+		String q = "SELECT p FROM ParkingSpot p " 
+				 + "JOIN FETCH p.parkingSpotAddress a "
+				 + "WHERE " + haversine + " < 1";
+		
+		return em.createQuery(q, ParkingSpot.class).setParameter("lat", lat).setParameter("lng", lng).getResultList();
+	}	
+	
+	
+	
+// *** Search for parking spots without Reservation Between certain times ***	
+// *** Will need to be added to above search once we figure some shit out ***	
 	
 //	public List<ParkingSpot> initialLoad() {
 //		String q = "SELECT p FROM ParkingSpot p WHERE NOT EXISTS (SELECT * FROM Reservation r WHERE r.parkingSpotId = :p.id BETWEEN r.reservedFromDate AND reservedToDate)";
 //		return em.createQuery(q, ParkingSpot.class).getResultList();
 //	}
-	
-	
 	
 	@Override
 	public ParkingSpot show(Integer id) { 

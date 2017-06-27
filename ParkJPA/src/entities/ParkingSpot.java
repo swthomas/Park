@@ -34,7 +34,8 @@ public class ParkingSpot {
 	private Lister lister;
 	
 	@JsonManagedReference(value="parkingSpotToParkingSpotAddress")
-	@OneToOne(mappedBy="parkingSpot", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@OneToOne
+	@JoinColumn(name="parkingSpotAddressId")
 	private ParkingSpotAddress parkingSpotAddress;
 	
 	@JsonManagedReference(value="parkingSpotToParkingSensor")

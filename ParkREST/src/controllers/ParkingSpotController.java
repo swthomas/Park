@@ -25,9 +25,14 @@ public class ParkingSpotController {
 		return parkingSpotDAO.index();
 	}
 	
-	@RequestMapping(value="parkingspot/lat/{lat}/lng/{lng}", method= RequestMethod.GET)
+	@RequestMapping(value="parkingspot/lat/{lat}/lng/{lng}/", method= RequestMethod.GET)
 	public List<ParkingSpot> distance(@PathVariable Double lat, @PathVariable Double lng) {
 		return parkingSpotDAO.distance(lat, lng);
+	}
+	
+	@RequestMapping(value="parkingspotTEST/lat/{lat}/lng/{lng}/", method= RequestMethod.GET)
+	public List<ParkingSpot> distanceTEST(@PathVariable Double lat, @PathVariable Double lng) {
+		return parkingSpotDAO.distanceTEST(lat, lng);
 	}
 	
 	@RequestMapping(value="parkingspot/{id}", method= RequestMethod.GET)
