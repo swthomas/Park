@@ -35,6 +35,11 @@ public class ParkingSpotController {
 		return parkingSpotDAO.distanceTEST(lat, lng);
 	}
 	
+	@RequestMapping(value="parkingspotTEST/", method= RequestMethod.GET)
+	public List<ParkingSpot> reservationTEST() {
+		return parkingSpotDAO.reservationTEST();
+	}
+	
 	@RequestMapping(value="parkingspot/{id}", method= RequestMethod.GET)
 	public ParkingSpot show(@PathVariable Integer id) {
 		return parkingSpotDAO.show(id);

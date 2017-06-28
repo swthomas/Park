@@ -237,15 +237,10 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `reservedFromDate` DATETIME NOT NULL,
   `reservedToDate` DATETIME NOT NULL,
   `rate` DOUBLE NOT NULL,
-  `parkingSpotId` INT NOT NULL,
   `userId` INT NOT NULL,
   `vehicleId` INT NOT NULL,
+  `parkingSpotId` INT NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_reservation_parkingSpot1`
-    FOREIGN KEY (`parkingSpotId`)
-    REFERENCES `parkingSpot` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_reservation_user1`
     FOREIGN KEY (`userId`)
     REFERENCES `user` (`id`)
@@ -255,14 +250,19 @@ CREATE TABLE IF NOT EXISTS `reservation` (
     FOREIGN KEY (`vehicleId`)
     REFERENCES `vehicle` (`id`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_reservation_parkingSpot1`
+    FOREIGN KEY (`parkingSpotId`)
+    REFERENCES `parkingSpot` (`id`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-CREATE INDEX `fk_reservation_parkingSpot1_idx` ON `reservation` (`parkingSpotId` ASC);
 
 CREATE INDEX `fk_reservation_user1_idx` ON `reservation` (`userId` ASC);
 
 CREATE INDEX `fk_reservation_vehicle1_idx` ON `reservation` (`vehicleId` ASC);
+
+CREATE INDEX `fk_reservation_parkingSpot1_idx` ON `reservation` (`parkingSpotId` ASC);
 
 
 -- -----------------------------------------------------
@@ -388,6 +388,7 @@ INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city
 INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (8, '123 S Weber St', NULL, 80903, 'Colorado Springs', 'CO', 38.831477, -104.819694);
 INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (9, '1 S Nevada Ave #110', NULL, 80903, 'Colorado Springs', 'CO', 38.832799, -104.821202);
 INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (10, '117 E Pikes Peak Ave', NULL, 80903, 'Colorado Springs', 'CO', 38.833416, -104.822589);
+INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (11, '14205 E. Coachman Dr.', NULL, 80908, 'Colorado Springs', 'CO', 39.042988, -104.662546);
 
 COMMIT;
 
@@ -407,6 +408,7 @@ INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpot
 INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (8, 'Parking spot for your car at my house', 5, 1, 8);
 INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (9, 'Parking spot for your car at my house', 10, 1, 9);
 INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (10, 'Parking spot for your car at my house', 10, 1, 10);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (11, 'Parking spot for your car at my house', 11, 1, 11);
 
 COMMIT;
 
@@ -446,10 +448,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `prk`;
-INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `parkingSpotId`, `userId`, `vehicleId`) VALUES (1, '2017-07-01 12:00:00', '2017-07-01 02:00:00', 2.99, 1, 1, 1);
-INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `parkingSpotId`, `userId`, `vehicleId`) VALUES (2, '2017-07-01 03:00:00', '2017-07-01 03:15:00', 2.99, 3, 1, 1);
-INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `parkingSpotId`, `userId`, `vehicleId`) VALUES (3, '2017-01-01 12:00:00', '2017-01-01 01:00:00', 2.99, 4, 1, 1);
-INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `parkingSpotId`, `userId`, `vehicleId`) VALUES (4, '2017-01-01 12:00:00', '2017-01-01 12:45:00', 2.99, 5, 1, 1);
+INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `userId`, `vehicleId`, `parkingSpotId`) VALUES (1, '2017-07-01 12:00:00', '2017-07-01 02:00:00', 2.99, 1, 1, 1);
+INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `userId`, `vehicleId`, `parkingSpotId`) VALUES (2, '2017-07-01 03:00:00', '2017-07-01 03:15:00', 2.99, 1, 1, 1);
+INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `userId`, `vehicleId`, `parkingSpotId`) VALUES (3, '2017-01-01 12:00:00', '2017-01-01 01:00:00', 2.99, 1, 1, 1);
+INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `userId`, `vehicleId`, `parkingSpotId`) VALUES (4, '2017-01-01 12:00:00', '2017-01-01 12:45:00', 2.99, 1, 1, 1);
 
 COMMIT;
 

@@ -1,6 +1,6 @@
 package entities;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -20,9 +21,9 @@ public class Reservation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private Date reservedFromDate;
+	private LocalDateTime reservedFromDate;
 	
-	private Date reservedToDate;
+	private LocalDateTime reservedToDate;
 	
 	private Double rate;
 	
@@ -30,8 +31,8 @@ public class Reservation {
 	@JoinColumn(name="vehicleId")
 	private Vehicle vehicle;
 	
-	@JsonIgnore
-	@OneToOne
+	@JsonBackReference(value="parkingSpotToReservation")
+	@ManyToOne
     @JoinColumn(name="parkingSpotId")
 	private ParkingSpot parkingSpot;
 
@@ -40,20 +41,21 @@ public class Reservation {
 	@JoinColumn(name="userId")
 	private User user;
 
+	
 	// gets and sets
-	public Date getReservedFromDate() {
+	public LocalDateTime getReservedFromDate() {
 		return reservedFromDate;
 	}
 
-	public void setReservedFromDate(Date reservedFromDate) {
+	public void setReservedFromDate(LocalDateTime reservedFromDate) {
 		this.reservedFromDate = reservedFromDate;
 	}
 
-	public Date getReservedToDate() {
+	public LocalDateTime getReservedToDate() {
 		return reservedToDate;
 	}
 
-	public void setReservedToDate(Date reservedToDate) {
+	public void setReservedToDate(LocalDateTime reservedToDate) {
 		this.reservedToDate = reservedToDate;
 	}
 

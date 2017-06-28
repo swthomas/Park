@@ -45,7 +45,12 @@ public class ParkingSpot {
 	@JsonIgnore
 	@OneToMany(mappedBy="parkingSpot")
 	private List<Photo> photos;
+	
+//	@JsonManagedReference(value="parkingSpotToReservation")
+//	@OneToMany(mappedBy="parkingSpot")
+//	private List<Reservation> reservations;
 
+	
 	// gets and sets
 	public String getDescription() {
 		return description;
@@ -94,6 +99,14 @@ public class ParkingSpot {
 	public void setPhotos(List<Photo> photos) {
 		this.photos = photos;
 	}
+
+//	public List<Reservation> getReservations() {
+//		return reservations;
+//	}
+//
+//	public void setReservations(List<Reservation> reservations) {
+//		this.reservations = reservations;
+//	}
 
 	public Integer getId() {
 		return id;
