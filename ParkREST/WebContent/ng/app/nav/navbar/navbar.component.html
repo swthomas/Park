@@ -1,0 +1,23 @@
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+                <!-- navbar brand goes here -->
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="bold" href="index.html">home</a></li>
+                	<li ng-show="vm.isLister"><a class="bold" href="#bizStats">Manage Parking Spaces</a></li>
+                    <li><a class="bold" href="about.html">about ParkR</a></li>
+                    <li><a class="bold" href="contact.html">Help</a></li>
+                    <li ng-hide="vm.isLoggedIn" ng-click="vm.signIn()"><a class="bold">Sign In</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    

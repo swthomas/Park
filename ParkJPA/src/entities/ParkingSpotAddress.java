@@ -1,11 +1,13 @@
 package entities;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -32,8 +34,8 @@ public class ParkingSpotAddress {
 	private Double longitude;
 
 	@JsonBackReference(value="parkingSpotToParkingSpotAddress")
-	@OneToOne(mappedBy="parkingSpotAddress", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-	private ParkingSpot parkingSpot;
+	@OneToMany(mappedBy="parkingSpotAddress", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	private List<ParkingSpot> parkingSpots;
 
 	// gets and sets
 	public String getStreet() {
@@ -92,12 +94,12 @@ public class ParkingSpotAddress {
 		this.longitude = longitude;
 	}
 
-	public ParkingSpot getParkingSpot() {
-		return parkingSpot;
+	public List<ParkingSpot> getParkingSpots() {
+		return parkingSpots;
 	}
 
-	public void setParkingSpot(ParkingSpot parkingSpot) {
-		this.parkingSpot = parkingSpot;
+	public void setParkingSpots(List<ParkingSpot> parkingSpots) {
+		this.parkingSpots = parkingSpots;
 	}
 
 	public Integer getId() {
@@ -109,7 +111,7 @@ public class ParkingSpotAddress {
 	public String toString() {
 		return "ParkingSpotAddress [id=" + id + ", street=" + street + ", street2=" + street2 + ", postalCode="
 				+ postalCode + ", city=" + city + ", state=" + state + ", latitude=" + latitude + ", longitude="
-				+ longitude + ", parkingSpot=" + parkingSpot + "]";
+				+ longitude + ", parkingSpots=" + parkingSpots + "]";
 	}
 }
-	
+

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,21 +35,20 @@ public class ParkingSpot {
 	private Lister lister;
 	
 	@JsonManagedReference(value="parkingSpotToParkingSpotAddress")
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="parkingSpotAddressId")
 	private ParkingSpotAddress parkingSpotAddress;
 	
-	@JsonManagedReference(value="parkingSpotToParkingSensor")
-	@OneToOne(mappedBy="parkingSpot", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@JsonIgnore	@OneToOne(mappedBy="parkingSpot", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private ParkingSensor parkingSensor;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="parkingSpot")
 	private List<Photo> photos;
 	
-//	@JsonManagedReference(value="parkingSpotToReservation")
-//	@OneToMany(mappedBy="parkingSpot")
-//	private List<Reservation> reservations;
+	@JsonIgnore
+	@OneToMany(mappedBy="parkingSpot", fetch= FetchType.EAGER)
+	private List<Reservation> reservations;
 
 	
 	// gets and sets

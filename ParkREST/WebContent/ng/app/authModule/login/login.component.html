@@ -1,0 +1,50 @@
+<div id="listerLogin">
+	<button type="submit" class="btn btn-danger btn-md"
+		ng-click="vm.displayListerLogin()" ng-show="vm.showListerLoginButton">Login
+		as Lister</button>
+	<!-- ng-show lister login form? -->
+	<form ng-show="vm.showListerLogin">
+		<input type="text" placeholder="username" ng-model="lister.username">
+		<input type="password" placeholder="password"
+			ng-model="lister.password">
+		<button type="submit" class="btn btn-primary btn-sm"
+			ng-click="vm.loginLister(lister)">Submit</button>
+	</form>
+</div>
+
+
+<div class="modal-dialog" id="login">
+	<div class="modal-content">
+		<div class="modal-heading">
+			<h2 class="text-center">Welcome to picSure!</h2>
+			<div class="modal-body">
+				<form class="form">
+
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span class="fa fa-user"></span>
+							</span> <input type="text" class="form-control" placeholder="Username"
+								ng-model="user.username">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span class="fa fa-lock"></span>
+							</span> <input type="password" class="form-control"
+								placeholder="Password" ng-model="user.password">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<button id="loginButton" type="submit"
+							class="btn btn-primary btn-md" ng-click="vm.loginUser(user)">Submit</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</div>

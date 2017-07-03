@@ -27,15 +27,15 @@ public class Reservation {
 	
 	private Double rate;
 	
-	@OneToOne
-	@JoinColumn(name="vehicleId")
-	private Vehicle vehicle;
-	
 	@JsonBackReference(value="parkingSpotToReservation")
 	@ManyToOne
     @JoinColumn(name="parkingSpotId")
 	private ParkingSpot parkingSpot;
-
+	
+	@OneToOne
+	@JoinColumn(name="vehicleId")
+	private Vehicle vehicle;
+	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="userId")

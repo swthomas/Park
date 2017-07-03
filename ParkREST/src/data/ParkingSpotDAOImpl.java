@@ -1,6 +1,5 @@
 package data;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -26,7 +25,7 @@ public class ParkingSpotDAOImpl implements ParkingSpotDAO{
 	}
 	
 	@Override
-	public List<ParkingSpot> distance(Double lat, Double lng) {
+	public List<ParkingSpot> initialLoad(Double lat, Double lng) {
 		
 		String haversine = "(6371 * acos(cos(radians(:lat)) "
 				+ "* cos(radians(p.parkingSpotAddress.latitude)) "
@@ -34,54 +33,32 @@ public class ParkingSpotDAOImpl implements ParkingSpotDAO{
 				+ "- radians(:lng)) + sin(radians(:lat)) "
 				+ "* sin(radians(p.parkingSpotAddress.latitude))))";	
 		
-		String q = "SELECT p FROM ParkingSpot p " 
-				 + "JOIN FETCH p.parkingSpotAddress a "
-				 + "WHERE " + haversine + " < 1";
+		String q = "SELECT p FROM ParkingSpot p "
+				 + "WHERE NOT EXISTS (SELECT r FROM Reservation r "
+				 + "WHERE r.parkingSpot.id = p.id "
+				 + "AND (NOW() BETWEEN reservedFromDate AND reservedToDate "
+				 + "OR NOW()+2 BETWEEN reservedFromDate AND reservedToDate "
+				 + "OR (reservedFromDate BETWEEN NOW() AND NOW()+2 AND "
+				 + "reservedToDate BETWEEN Now() AND NOW()+2))) "
+				 + "AND " + haversine + " < 1";
 		
-		return em.createQuery(q, ParkingSpot.class).setParameter("lat", lat).setParameter("lng", lng).getResultList();
+		return em.createQuery(q, ParkingSpot.class).setParameter("lat", lat)
+				.setParameter("lng", lng).getResultList();
 	}	
 	
 	
 	@Override
 	public List<ParkingSpot> distanceTEST(Double lat, Double lng) {
-				
-		String haversine = "(6371 * acos(cos(radians(:lat)) "
-							+ "* cos(radians(p.parkingSpotAddress.latitude)) "
-							+ "* cos(radians(p.parkingSpotAddress.longitude) "
-							+ "- radians(:lng)) + sin(radians(:lat)) "
-							+ "* sin(radians(p.parkingSpotAddress.latitude))))";
-		
-		String q = "SELECT p FROM ParkingSpot p " 
-				 + "JOIN FETCH p.parkingSpotAddress "
-				 + "WHERE " + haversine + " < .01";
-		
-		return em.createQuery(q, ParkingSpot.class).setParameter("lat", lat).setParameter("lng", lng).getResultList();
-	}	
-	
-	
-	
-// *** Search for parking spots without Reservation Between certain times ***	
-// *** Will need to be added to above search once we figure some shit out ***	
+			
+		return null;
+
+	}
 	
 	@Override
 	public List<ParkingSpot> reservationTEST() {
-		LocalDateTime currentDateTime = LocalDateTime.now();
-		LocalDateTime currentDateTimeMinus2Hours = currentDateTime.minusHours(2);
-		LocalDateTime currentDateTimePlus2Hours = currentDateTime.plusHours(2);
 		
-		System.out.println(currentDateTime + "****" + currentDateTimeMinus2Hours + "****" + currentDateTimePlus2Hours);
-		
-		
-		String q = "SELECT p FROM ParkingSpot p "
-				 + "WHERE NOT EXISTS (SELECT r FROM Reservation r "
-				 + "WHERE r.parkingSpotId = p.id "
-				 + "AND r.reservedFromDate BETWEEN :currentDateTimeMinus2Hours AND :currentDateTimePlus2Hours "
-				 + "AND r.reservedToDate BETWEEN :currentDateTime AND :currentDateTimePlus2Hours)";
-		
-		return em.createQuery(q, ParkingSpot.class).setParameter("currentDateTime", currentDateTime).setParameter("currentDateTimePlus2Hours", currentDateTimePlus2Hours).setParameter("currentDateTimeMinus2Hours", currentDateTimeMinus2Hours).getResultList();
-	}
-	
-	
+		return null;
+	}	
 	
 	@Override
 	public ParkingSpot show(Integer id) { 

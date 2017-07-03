@@ -1,1 +1,1 @@
-angular.module('static', [])
+angular.module('static', ['ngMap'])

@@ -1,1 +1,99 @@
-<login></login>
+<div id="mainDiv">
+
+	<div id="topImage">
+
+		<div class="body-background">
+			<div class="overlay">
+
+				<h1 class="title">
+					Park<span class="orange">R</span>
+				</h1>
+				<p class="titleSlogan"> a new way to park</p>
+
+				<div class="container-fluid">
+					<div class="main">
+
+						<div class="col-sm-12 col-md-5 col-lg-5 pull-right">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-body">
+
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon"> <i
+													class="glyphicon glyphicon-user" aria-hidden="true"> </i>
+												</span> <input type="text" class="form-control" path="firstName"
+													placeholder="First Name" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon"> <i
+													class="glyphicon glyphicon-user" aria-hidden="true"> </i>
+												</span> <input type="text" class="form-control"
+													placeholder="Last Name" path="lastName" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon"> <i
+													class="glyphicon glyphicon-user" aria-hidden="true"> </i>
+												</span> <input type="text" class="form-control"
+													placeholder="User Name" path="username" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon"> <i
+													class="glyphicon glyphicon-lock" aria-hidden="true"> </i>
+												</span> <input type="password" class="form-control"
+													placeholder="Password" path="password" /> <input
+													type="password" class="form-control"
+													placeholder="Password again" path="password" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon"> <i
+													class="glyphicon glyphicon-envelope" aria-hidden="true">
+												</i>
+												</span> <input type="email" class="form-control"
+													placeholder="Email" path="email" />
+											</div>
+										</div>
+
+										<div class="form-group text-left">
+											<button type="submit" class="btn btn-lg">Get Parkr!</button>
+										</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+		<div ng-show="vm.showMap" id="mapDiv">
+			<div id="map" map-lazy-load="https://maps.google.com/maps/api/js"
+				map-lazy-load-params="{{vm.googleMapsUrl}}" style="height: 700px">
+				<ng-map center="<!-- current-location -->Colorado Springs, CO"
+					zoom="17"> <marker ng-repeat="mk in vm.markers"
+					position="{{mk}}" on-click="vm.showParkingSpot(mk,data)">
+			</div>
+		</div>
+
+
+	</div>
+
+
+</div>

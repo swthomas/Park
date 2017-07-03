@@ -380,7 +380,7 @@ START TRANSACTION;
 USE `prk`;
 INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (1, '32 S Tejon St.', NULL, 80903, 'Colorado Springs', 'CO', 38.832697, -104.824003);
 INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (2, '20 E Colorado Ave', NULL, 80903, 'Colorado Springs', 'CO', 38.832504, -104.824278);
-INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (3, '17 S Tejon St', NULL, 80903, 'Colorado Springs', 'CO', 38.833065, 104.823034);
+INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (3, '17 S Tejon St', NULL, 80903, 'Colorado Springs', 'CO', 38.833065, -104.823034);
 INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (4, '21 S Tejon St', NULL, 80903, 'Colorado Springs', 'CO', 38.832959, -104.823043);
 INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (5, '1 S Nevada Ave', NULL, 80903, 'Colorado Springs', 'CO', 38.832799, -104.821202);
 INSERT INTO `parkingSpotAddress` (`id`, `street`, `street2`, `postalCode`, `city`, `state`, `latitude`, `longitude`) VALUES (6, '18 S Nevada Ave', NULL, 80903, 'Colorado Springs', 'CO', 38.833053, -104.822296);
@@ -452,6 +452,8 @@ INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `
 INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `userId`, `vehicleId`, `parkingSpotId`) VALUES (2, '2017-07-01 03:00:00', '2017-07-01 03:15:00', 2.99, 1, 1, 1);
 INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `userId`, `vehicleId`, `parkingSpotId`) VALUES (3, '2017-01-01 12:00:00', '2017-01-01 01:00:00', 2.99, 1, 1, 1);
 INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `userId`, `vehicleId`, `parkingSpotId`) VALUES (4, '2017-01-01 12:00:00', '2017-01-01 12:45:00', 2.99, 1, 1, 1);
+INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `userId`, `vehicleId`, `parkingSpotId`) VALUES (5, '2017-07-02 14:00:00', '2017-07-02 20:16:00', 2.99, 1, 1, 2);
+INSERT INTO `reservation` (`id`, `reservedFromDate`, `reservedToDate`, `rate`, `userId`, `vehicleId`, `parkingSpotId`) VALUES (6, '2017-07-02 14:00:00', '2017-09-02 14:00:00', 2.99, 1, 1, 3);
 
 COMMIT;
 
