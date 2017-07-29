@@ -41,6 +41,7 @@ h1 {
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
     font-size: calc(( 120% + 0.01vw)* 7);
+    color: black;
 }
 
 * h2, h3, h4, p, a, blockquote {
@@ -54,9 +55,55 @@ ng-map {
 	margin: auto;
 	margin-top: 50px;
 	width: 75%;
-	height: 75%;
+	height: 550px;
 	border: 15px solid #084B63;
 }
+
+.ng-map-info-window {
+    border: 5px #ff8800 solid;
+    border-radius: 5px;
+    color: black;
+    font-size: 10px;
+  }
+  
+.ng-map-info-window div:first-child > div:nth-child(1) {
+    color: black;
+    font-size: 1.5em;
+    font-weight: bold;
+  } 
+  
+.ng-map-info-window div:first-child > div:nth-child(3) div {
+    background-color: transparent !important;    
+  }
+   
+.ng-map-info-window div:first-child > div:nth-child(4) {
+    background-color: transparent !important;
+  }
+   
+.ng-map-info-window div:first-child > div:nth-child(4) {
+    background-color: transparent !important;
+  }
+  
+.ng-map-info-window img {
+	width: 275px;
+	border: 2px #084B63 solid;
+	margin: .25em;
+}
+
+.center {
+	text-align: center;
+	margin: auto;
+	margin-top: 50px;
+}
+
+.learn {
+	margin-top: 25px;
+}
+
+.btn-primary {
+	background-color: #084B63;
+}
+
 
 /* NavBar */
 
@@ -128,11 +175,6 @@ ng-map {
     padding-left: 10vw;
 	margin-top: -2.5vw;
 }
-
-.blue {
-    color: #102E82;
-}
-
 .white {
     color: #fff;
 }
@@ -177,6 +219,16 @@ ng-map {
     min-width: 10vw;
 }
 
+.btn-primary {
+	font-weight: normal;
+    font-size: 1.25em;
+    border: 1px solid #084B63;
+    border-radius: 2px;
+    margin: .25em;
+    padding: .25em;
+}
+
+
 .information {
 	text-align: center;
 	width: 100vw;
@@ -191,6 +243,43 @@ ng-map {
 	height: 70px;
 	width: auto;
 }
+
+/* Information Divs */
+
+#infoDivHome {
+	padding: 5em;
+}
+
+#infoDivHome h1 {
+	text-align: center;
+	margin: auto;
+}
+
+#listerDiv {
+	width: 38%;
+	padding: 3em;
+	color: purple;
+	float: right;
+	margin: 6%;
+	border: 2px solid #084B63;
+	
+}
+
+#userDiv {
+	width: 38%;
+	padding: 3em;
+	color: purple;
+	float: left;
+	margin: 6%;
+	border: 2px solid #084B63;
+	
+}
+
+#title {
+	font-size: 5em;
+	margin-top: 50em;
+}
+
 
 
 /* Footer */

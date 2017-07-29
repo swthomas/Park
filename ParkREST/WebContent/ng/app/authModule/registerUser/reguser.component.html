@@ -1,109 +1,68 @@
 <div class="modal-dialog">
 	<div class="modal-content">
 		<div class="modal-heading">
-			<h2 class="text-center">Join picSure!</h2>
+			<h2 class="text-center">Please Review Your Information.</h2>
 			<div class="modal-body">
 				<form class="form" id="createUser">
-				
-				<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon"> <span
-								class="fa fa-user"></span>
-							</span> <input type="text" class="form-control"
-								placeholder="First Name" ng-model="user.fName">
-						</div>
-					</div>
-					
+
 					<div class="form-group">
 						<div class="input-group">
-							<span class="input-group-addon"> <span
-								class="fa fa-user"></span>
-							</span> <input type="text" class="form-control"
-								placeholder="Last Name" ng-model="user.lName">
+							<span class="input-group-addon"> <span class="fa fa-user"></span>
+							</span> <input type="text" class="form-control" placeholder="{{user.firstName}}" ng-model="user.firstName">
 						</div>
 					</div>
-					
-					<!-- <div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon"> <span
-								class="fa fa-home"></span>
-							</span> <input type="text" class="form-control"
-								placeholder="Street Address 1" ng-model="user.street">
-						</div>
-					</div>
-					
+
 					<div class="form-group">
 						<div class="input-group">
-							<span class="input-group-addon"> <span
-								class="fa fa-home"></span>
-							</span> <input type="text" class="form-control"
-								placeholder="Street Address 2" ng-model="user.streetTwo">
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon"> <span
-								class="fa fa-home"></span>
-							</span> <input type="text" class="form-control"
-								placeholder="City" ng-model="user.city">
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon"> <span
-								class="fa fa-home"></span>
-							</span> <input type="text" class="form-control"
-								placeholder="State" ng-model="user.state">
-						</div>
-					</div>
-				
-					
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon"> <span
-								class="fa fa-home"></span>
-							</span> <input type="number" class="form-control"
-								placeholder="Zip" ng-model="user.zip">
-						</div>
-					</div> -->
-					
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon"> <span
-								class="fa fa-envelope"></span>
-							</span> <input type="email" class="form-control"
-								placeholder="Email" ng-model="user.email">
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon"> <span
-								class="fa fa-phone"></span>
-							</span> <input type="text" class="form-control"
-								placeholder="Phone Number (###-###-####)" ng-model="user.phone">
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon"> <span
-								class="fa fa-user"></span>
-							</span> <input type="text" class="form-control"
-								placeholder="Username" ng-model="user.username" required>
+							<span class="input-group-addon"> <span class="fa fa-user"></span>
+							</span> <input type="text" class="form-control" placeholder="{{user.lastName}}" ng-model="user.lastName">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"> <span
-								class="fa fa-lock"></span>
-							</span> <input type="password" class="form-control" placeholder="Password"ng-model="user.password" required>
+								class="fa fa-envelope"></span>
+							</span> <input type="email" class="form-control" placeholder="{{user.userName}}" ng-model="user.userName">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span class="fa fa-phone"></span>
+							</span> <input type="text" class="form-control" placeholder="{{user.phoneNumber}}" ng-model="user.phoneNumber">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span class="fa fa-user"></span>
+							</span> <input type="text" class="form-control" placeholder="{{user.email}}" ng-model="user.email" required>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span class="fa fa-user"></span>
+							</span> <input type="text" class="form-control" placeholder="{{user.username}}" ng-model="{{user.username}}" required>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"> <span class="fa fa-lock"></span>
+							</span> <input type="password" class="form-control" placeholder="{{user.password}}" ng-model="user.password" required>
 						</div>
 					</div>
 					
+					<div class="form-group">
+						<h3>Would you like to list a parking spot with Parkr?</h3>
+						<div class="input-group">
+							<span class="input-group-addon"> <span class="fa fa-lock"></span>
+							</span> <input type="checkbox" class="form-control" required>
+						</div>
+					</div>
+
 
 					<div class="form-group text-center">
 						<button type="submit" class="btn btn-primary btn-lg" ng-click="vm.registerUser(user)">Submit</button>
