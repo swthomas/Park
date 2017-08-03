@@ -80,7 +80,7 @@
 		</div>
 	</div>
 
-	<ng-map center="Colorado Springs, CO" zoom="17"> <marker
+	<ng-map center="current-position" zoom="17"> <marker
 		position="{{mk}}" ng-repeat="mk in vm.markers"
 		on-click="vm.showParkingSpot(mk)"> </marker> <info-window id="foo-iw">
 	<div ng-non-bindable="" id="infoWindow">

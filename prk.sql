@@ -22,13 +22,13 @@ DROP TABLE IF EXISTS `user` ;
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `firstName` VARCHAR(45) NOT NULL,
-  `lastName` VARCHAR(45) NOT NULL,
-  `phoneNumber` DOUBLE NOT NULL,
+  `firstName` VARCHAR(45) NULL,
+  `lastName` VARCHAR(45) NULL,
+  `phoneNumber` DOUBLE NULL,
   `email` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `isLister` TINYINT(1) NOT NULL DEFAULT 0,
+  `isLister` TINYINT(1) NULL DEFAULT 0,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -403,12 +403,12 @@ INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpot
 INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (3, 'Parking spot for your car at my house', 2.99, 1, 3);
 INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (4, 'Parking spot for your car at my house', 2.99, 1, 4);
 INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (5, 'Parking spot for your car at my house', 2.99, 1, 5);
-INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (6, 'Parking spot for your car at my house', 4.25, 1, 6);
-INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (7, 'Parking spot for your car at my house', 4.25, 1, 7);
-INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (8, 'Parking spot for your car at my house', 5.25, 1, 8);
-INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (9, 'Parking spot for your car at my house', 10.25, 1, 9);
-INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (10, 'Parking spot for your car at my house', 10.25, 1, 10);
-INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (11, 'Parking spot for your car at my house', 11.25, 1, 11);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (6, 'Parking spot for your car at my house', 4.00, 1, 6);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (7, 'Parking spot for your car at my house', 4.00, 1, 7);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (8, 'Parking spot for your car at my house', 5.00, 1, 8);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (9, 'Parking spot for your car at my house', 10.00, 1, 9);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (10, 'Parking spot for your car at my house', 10.00, 1, 10);
+INSERT INTO `parkingSpot` (`id`, `description`, `rate`, `listerId`, `parkingSpotAddressId`) VALUES (11, 'Parking spot for your car at my house', 11.00, 1, 11);
 
 COMMIT;
 
