@@ -1,186 +1,751 @@
-<div id="mainDiv">
 
-	<div id="topImage">
+<!--========== SLIDER ==========-->
+<div class="promo-block">
+	<div class="container">
+		<div class="margin-b-40">
+			<h1 class="promo-block-title">
+				Park<span class="orange headlineR">R</span>
+			</h1>
+			<p class="promo-block-text">parking made easier, faster.</p>
+		</div>
+	</div>
+	<!-- login form -->
+	<div id="loginInForm" ng-show="userMenuOpened">
+		<form>
+			<div class="form-group">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="User Name"	ng-model="user.username" required>
+				</div>
+			</div>
 
-		<div class="body-background">
-			<div class="overlay">
+			<div class="form-group">
+				<div class="input-group">
+					<input type="password" class="form-control" placeholder="Password" ng-model="user.password" required>
+				</div>
+			</div>
+			
+			<div class="form-group text-left">
+				<button ng-click="vm.loginU(user)" class="btn-theme btn-theme-sm btn-default-bg text-uppercase">Log in</button>
+				<a class="help close" href="" ng-click="vm.closeLoginU()"> Close</a>
+			</div>
+			
+			<a class="help" href="mailto:stephen@codehammer.design">Trouble logging in?</a>
+		</form>
+	</div>
+	
+	<div id="loginInForm" ng-show="listerMenuOpened">
+		<form>
+			<div class="form-group">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Lister Name"	ng-model="lister.username" required>
+				</div>
+			</div>
 
-				<h1 class="title">
-					Park<span class="orange">R</span>
-				</h1>
-				<p class="titleSlogan">a new way to park</p>
+			<div class="form-group">
+				<div class="input-group">
+					<input type="password" class="form-control" placeholder="Password" ng-model="lister.password" required>
+				</div>
+			</div>
+			
+			<div class="form-group text-left">
+				<button ng-click="vm.loginL(lister)" class="btn-theme btn-theme-sm btn-default-bg text-uppercase">Log in</button>
+				<a class="help close" href="" ng-click="vm.closeLoginL()"> Close</a>
+			</div>
+			
+			<a class="help" href="mailto:stephen@codehammer.design">Trouble logging in?</a>
+		</form>
+	</div>
+</div>
 
-				<div class="container-fluid">
-					<div class="main">
+<!--========== SLIDER ==========-->
 
-						<div class="col-sm-12 col-md-5 col-lg-5 pull-right">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-body">
+<!--========== PAGE LAYOUT ==========-->
+<!-- About -->
+<div id="about">
+	<div class="container content-lg">
+		<div class="row text-center margin-b-40">
+			<div class="col-sm-6 col-sm-offset-3">
+				<h2>What is ParkR?</h2>
+				<p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed
+					tempor incididunt ut laboret dolore magna aliqua enim minim veniam
+					exercitation</p>
+			</div>
+		</div>
+		<!--// end row -->
 
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon"> <i class="glyphicon glyphicon-user" aria-hidden="true"> </i>
-												</span> <input type="text" class="form-control" placeholder="First Name" ng-model="user.firstName" />
-											</div>
-										</div>
-										
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon"> <i class="glyphicon glyphicon-user" aria-hidden="true"> </i>
-												</span> <input type="text" class="form-control" placeholder="Last Name" ng-model="user.lastName" />
-											</div>
-										</div>
+		<div class="row">
+			<!-- Latest Products -->
+			<div class="col-sm-4 sm-margin-b-50">
+				<div class="margin-b-20">
+					<img class="img-responsive wow fadeIn" src="img/970x647/01.jpg"
+						alt="Latest Products Image" data-wow-duration=".3"
+						data-wow-delay=".1s">
+				</div>
+				<h4>
+					<a href="#">Users</a> <span class="text-uppercase margin-l-20">the
+						Search for Parking</span>
+				</h4>
+				<p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed
+					tempor incdidunt ut laboret dolor magna ut consequat siad esqudiat
+					dolor</p>
+				<a class="link" href="">Read More</a>
+			</div>
+			<!-- End Latest Products -->
 
+			<!-- Latest Products -->
+			<div class="col-sm-4 sm-margin-b-50">
+				<div class="margin-b-20">
+					<img class="img-responsive wow fadeIn" src="img/970x647/02.jpg"
+						alt="Latest Products Image" data-wow-duration=".3"
+						data-wow-delay=".2s">
+				</div>
+				<h4>
+					<a href="#">Park<span class="orange">R</span></a> <span
+						class="text-uppercase margin-l-20">Connects Securely</span>
+				</h4>
+				<p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed
+					tempor incdidunt ut laboret dolor magna ut consequat siad esqudiat
+					dolor</p>
+				<a class="link" href="">Read More</a>
+			</div>
+			<!-- End Latest Products -->
 
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon"> <i class="glyphicon glyphicon-envelope" aria-hidden="true"> </i>
-												</span> <input type="phone" class="form-control" placeholder="Phone Number" ng-model="user.phoneNumber" />
-											</div>
-										</div>
+			<!-- Latest Products -->
+			<div class="col-sm-4 sm-margin-b-50">
+				<div class="margin-b-20">
+					<img class="img-responsive wow fadeIn" src="img/970x647/03.jpg"
+						alt="Latest Products Image" data-wow-duration=".3"
+						data-wow-delay=".3s">
+				</div>
+				<h4>
+					<a href="#">Listers</a> <span class="text-uppercase margin-l-20">Manage
+						Spaces, Earn Quick and Easy</span>
+				</h4>
+				<p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed
+					tempor incdidunt ut laboret dolor magna ut consequat siad esqudiat
+					dolor</p>
+				<a class="link" href="">Read More</a>
+			</div>
+			<!-- End Latest Products -->
+		</div>
+		<!--// end row -->
 
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon"> <i class="glyphicon glyphicon-envelope" aria-hidden="true"> </i>
-												</span> <input type="email" class="form-control" placeholder="Email" ng-model="user.email" />
-											</div>
-										</div>
+		<!-- MAP -->
+		<div class="row">
+			<ng-map center="current-position" zoom="17"> <marker
+				position="{{mk}}" ng-repeat="mk in vm.markers"
+				on-click="vm.showParkingSpot(mk)"> </marker> <info-window
+				id="foo-iw">
+			<div ng-non-bindable="" id="infoWindow">
+				${{vm.selectedParkingSpot.rate}} hr<br />
+				{{vm.selectedParkingSpot.parkingSpotAddress.street}}<br />
+				{{vm.selectedParkingSpot.parkingSpotAddress.city}},
+				{{vm.selectedParkingSpot.parkingSpotAddress.state}}<br /> <img
+					src="https://photos.zillowstatic.com/p_f/ISekwqe28rnmks1000000000.jpg"><br />
+				{{vm.selectedParkingSpot.description}}<br />
+				<button type="button" class="btn-primary">Reserve</button>
+				<br />
+			</div></ng-map>
+		</div>
+		<!--// end row -->
+	</div>
+</div>
+<!-- End Products -->
 
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon"> <i class="glyphicon glyphicon-user" aria-hidden="true"> </i>
-												</span> <input type="text" class="form-control" placeholder="User Name" ng-model="user.username" />
-											</div>
-										</div>
+<!-- Spaces -->
+<div id="spaces">
+	<div class="bg-color-sky-light" data-auto-height="true">
+		<div class="content-lg container">
+			<div class="row row-space-2 margin-b-4">
+				<div class="col-sm-4 sm-margin-b-4">
+					<div class="service" data-height="height">
+						<div class="service-element">
+							<i class="service-icon icon-chemistry"></i>
+						</div>
+						<div class="service-info">
+							<h3>Manage multiple spaces</h3>
+							<p class="margin-b-5">Icons and content need changing</p>
+						</div>
+						<a href="#" class="content-wrapper-link"></a>
+					</div>
+				</div>
+				<div class="col-sm-4 sm-margin-b-4">
+					<div class="service bg-color-base wow fadeInDown"
+						data-height="height" data-wow-duration=".3" data-wow-delay=".1s">
+						<div class="service-element">
+							<i class="service-icon color-white icon-screen-tablet"></i>
+						</div>
+						<div class="service-info">
+							<h3 class="color-white">Add as many as you want</h3>
+							<p class="color-white margin-b-5">Lorem ipsum dolor amet
+								consectetur ut consequat siad esqudiat dolor</p>
+						</div>
+						<a href="#" class="content-wrapper-link"></a>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="service" data-height="height">
+						<div class="service-element">
+							<i class="service-icon icon-badge"></i>
+						</div>
+						<div class="service-info">
+							<h3>Real-time check-in/check-out</h3>
+							<p class="margin-b-5">Lorem ipsum dolor amet consectetur ut
+								consequat siad esqudiat dolor</p>
+						</div>
+						<a href="#" class="content-wrapper-link"></a>
+					</div>
+				</div>
+			</div>
+			<!--// end row -->
 
-										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon"> <i class="glyphicon glyphicon-lock" aria-hidden="true"> </i> </span> 
-												<input type="password" class="form-control" placeholder="Password" path="password" /> 
-												<input type="password" class="form-control" placeholder="Password" ng-model="user.password" />
-											</div>
-										</div>
+			<div class="row row-space-2">
+				<div class="col-sm-4 sm-margin-b-4">
+					<div class="service" data-height="height">
+						<div class="service-element">
+							<i class="service-icon icon-notebook"></i>
+						</div>
+						<div class="service-info">
+							<h3>Useful Documentation</h3>
+							<p class="margin-b-5">Lorem ipsum dolor amet consectetur ut
+								consequat siad esqudiat dolor</p>
+						</div>
+						<a href="#" class="content-wrapper-link"></a>
+					</div>
+				</div>
+				<div class="col-sm-4 sm-margin-b-4">
+					<div class="service" data-height="height">
+						<div class="service-element">
+							<i class="service-icon icon-speedometer"></i>
+						</div>
+						<div class="service-info">
+							<h3>Fast Payments</h3>
+							<p class="margin-b-5">Lorem ipsum dolor amet consectetur ut
+								consequat siad esqudiat dolor</p>
+						</div>
+						<a href="#" class="content-wrapper-link"></a>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="service" data-height="height">
+						<div class="service-element">
+							<i class="service-icon icon-badge"></i>
+						</div>
+						<div class="service-info">
+							<h3>Free Support</h3>
+							<p class="margin-b-5">Lorem ipsum dolor amet consectetur ut
+								consequat siad esqudiat dolor</p>
+						</div>
+						<a href="#" class="content-wrapper-link"></a>
+					</div>
+				</div>
+			</div>
+			<!--// end row -->
+		</div>
+	</div>
+</div>
+<!-- End Service -->
 
-										<div class="form-group text-left">
-											<button ng-click="#/registerUser" class="btn btn-lg">Get Parkr!</button>
-										</div>
-		
-										</form>
-										
+<!-- Promo Banner -->
+<div class="promo-banner">
+	<div class="container-sm content-lg">
+		<h2 class="promo-banner-title">Some kind of promo pitch verbiage</h2>
+		<p class="promo-banner-text">Lorem ipsum dolor sit amet,
+			consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+			labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+			exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+	</div>
+</div>
+<!-- End Promo Banner -->
+
+<!-- Work -->
+<div id="find">
+	<div class="content-md container">
+		<!-- Masonry Grid -->
+		<div class="masonry-grid row row-space-2">
+			<div class="masonry-grid-sizer col-xs-6 col-sm-6 col-md-1"></div>
+			<div class="masonry-grid-item col-xs-12 col-sm-6 col-md-8 margin-b-4">
+				<!-- Work -->
+				<div class="work work-popup-trigger">
+					<div class="work-overlay">
+						<img class="full-width img-responsive" src="img/800x400/01.jpg"
+							alt="Portfolio Image">
+					</div>
+					<div class="work-popup-overlay">
+						<div class="work-popup-content">
+							<a href="javascript:void(0);" class="work-popup-close">Hide</a>
+							<div class="margin-b-30">
+								<h3 class="margin-b-5">Art Of Coding</h3>
+								<span>Clean &amp; Minimalistic Design</span>
+							</div>
+							<div class="row">
+								<div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
+									<div class="margin-t-10 sm-margin-t-0">
+										<p>Duis aute irure dolor in reprehenderit in voluptate
+											velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+											sint occaecat cupidatat non proident, sunt in culpa qui
+											officia deserunt mollit anim id est laborum.</p>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+											elit, sed do eiusmod tempor incididunt ut labore et dolore
+											magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+										<ul class="list-inline work-popup-tag">
+											<li class="work-popup-tag-item"><a
+												class="work-popup-tag-link" href="#">Design,</a></li>
+											<li class="work-popup-tag-item"><a
+												class="work-popup-tag-link" href="#">Coding,</a></li>
+											<li class="work-popup-tag-item"><a
+												class="work-popup-tag-link" href="#">Portfolio</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="margin-t-10 sm-margin-t-0">
+										<p class="margin-b-5">
+											<strong>Project Leader:</strong> John Doe
+										</p>
+										<p class="margin-b-5">
+											<strong>Designer:</strong> Alisa Keys
+										</p>
+										<p class="margin-b-5">
+											<strong>Developer:</strong> Mark Doe
+										</p>
+										<p class="margin-b-5">
+											<strong>Customer:</strong> Keenthemes
+										</p>
 									</div>
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
-
+				<!-- End Work -->
+			</div>
+			<div class="masonry-grid-item col-xs-12 col-sm-6 col-md-4 margin-b-4">
+				<!-- Work -->
+				<div class="work work-popup-trigger">
+					<div class="work-overlay">
+						<img class="full-width img-responsive" src="img/397x400/01.jpg"
+							alt="Portfolio Image">
+					</div>
+					<div class="work-popup-overlay">
+						<div class="work-popup-content">
+							<a href="javascript:void(0);" class="work-popup-close">Hide</a>
+							<div class="margin-b-30">
+								<h3 class="margin-b-5">Art Of Coding</h3>
+								<span>Clean &amp; Minimalistic Design</span>
+							</div>
+							<div class="row">
+								<div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
+									<div class="margin-t-10 sm-margin-t-0">
+										<p>Duis aute irure dolor in reprehenderit in voluptate
+											velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+											sint occaecat cupidatat non proident, sunt in culpa qui
+											officia deserunt mollit anim id est laborum.</p>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+											elit, sed do eiusmod tempor incididunt ut labore et dolore
+											magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+										<ul class="list-inline work-popup-tag">
+											<li class="work-popup-tag-item"><a
+												class="work-popup-tag-link" href="#">Design,</a></li>
+											<li class="work-popup-tag-item"><a
+												class="work-popup-tag-link" href="#">Coding,</a></li>
+											<li class="work-popup-tag-item"><a
+												class="work-popup-tag-link" href="#">Portfolio</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="margin-t-10 sm-margin-t-0">
+										<p class="margin-b-5">
+											<strong>Project Leader:</strong> John Doe
+										</p>
+										<p class="margin-b-5">
+											<strong>Designer:</strong> Alisa Keys
+										</p>
+										<p class="margin-b-5">
+											<strong>Developer:</strong> Mark Doe
+										</p>
+										<p class="margin-b-5">
+											<strong>Customer:</strong> Keenthemes
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Work -->
+			</div>
+			<div
+				class="masonry-grid-item col-xs-12 col-sm-6 col-md-4 md-margin-b-4">
+				<!-- Work -->
+				<div class="work work-popup-trigger">
+					<div class="work-overlay">
+						<img class="full-width img-responsive" src="img/397x300/01.jpg"
+							alt="Portfolio Image">
+					</div>
+					<div class="work-popup-overlay">
+						<div class="work-popup-content">
+							<a href="javascript:void(0);" class="work-popup-close">Hide</a>
+							<div class="margin-b-30">
+								<h3 class="margin-b-5">Art Of Coding</h3>
+								<span>Clean &amp; Minimalistic Design</span>
+							</div>
+							<div class="row">
+								<div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
+									<div class="margin-t-10 sm-margin-t-0">
+										<p>Duis aute irure dolor in reprehenderit in voluptate
+											velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+											sint occaecat cupidatat non proident, sunt in culpa qui
+											officia deserunt mollit anim id est laborum.</p>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+											elit, sed do eiusmod tempor incididunt ut labore et dolore
+											magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+										<ul class="list-inline work-popup-tag">
+											<li class="work-popup-tag-item"><a
+												class="work-popup-tag-link" href="#">Design,</a></li>
+											<li class="work-popup-tag-item"><a
+												class="work-popup-tag-link" href="#">Coding,</a></li>
+											<li class="work-popup-tag-item"><a
+												class="work-popup-tag-link" href="#">Portfolio</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="margin-t-10 sm-margin-t-0">
+										<p class="margin-b-5">
+											<strong>Project Leader:</strong> John Doe
+										</p>
+										<p class="margin-b-5">
+											<strong>Designer:</strong> Alisa Keys
+										</p>
+										<p class="margin-b-5">
+											<strong>Developer:</strong> Mark Doe
+										</p>
+										<p class="margin-b-5">
+											<strong>Customer:</strong> Keenthemes
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Work -->
+			</div>
+			<div
+				class="masonry-grid-item col-xs-12 col-sm-6 col-md-4 md-margin-b-4">
+				<!-- Work -->
+				<div class="work work-popup-trigger">
+					<div class="work-overlay">
+						<img class="full-width img-responsive" src="img/397x300/02.jpg"
+							alt="Portfolio Image">
+					</div>
+					<div class="work-popup-overlay">
+						<div class="work-popup-content">
+							<a href="javascript:void(0);" class="work-popup-close">Hide</a>
+							<div class="margin-b-30">
+								<h3 class="margin-b-5">Art Of Coding</h3>
+								<span>Clean &amp; Minimalistic Design</span>
+							</div>
+							<div class="row">
+								<div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
+									<div class="margin-t-10 sm-margin-t-0">
+										<p>Duis aute irure dolor in reprehenderit in voluptate
+											velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+											sint occaecat cupidatat non proident, sunt in culpa qui
+											officia deserunt mollit anim id est laborum.</p>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+											elit, sed do eiusmod tempor incididunt ut labore et dolore
+											magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+										<ul class="list-inline work-popup-tag">
+											<li class="work-popup-tag-item"><a
+												class="work-popup-tag-link" href="#">Design,</a></li>
+											<li class="work-popup-tag-item"><a
+												class="work-popup-tag-link" href="#">Coding,</a></li>
+											<li class="work-popup-tag-item"><a
+												class="work-popup-tag-link" href="#">Portfolio</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="margin-t-10 sm-margin-t-0">
+										<p class="margin-b-5">
+											<strong>Project Leader:</strong> John Doe
+										</p>
+										<p class="margin-b-5">
+											<strong>Designer:</strong> Alisa Keys
+										</p>
+										<p class="margin-b-5">
+											<strong>Developer:</strong> Mark Doe
+										</p>
+										<p class="margin-b-5">
+											<strong>Customer:</strong> Keenthemes
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Work -->
+			</div>
+			<div class="masonry-grid-item col-xs-12 col-sm-6 col-md-4">
+				<!-- Work -->
+				<div class="work work-popup-trigger">
+					<div class="work-overlay">
+						<img class="full-width img-responsive" src="img/397x300/03.jpg"
+							alt="Portfolio Image">
+					</div>
+					<div class="work-popup-overlay">
+						<div class="work-popup-content">
+							<a href="javascript:void(0);" class="work-popup-close">Hide</a>
+							<div class="margin-b-30">
+								<h3 class="margin-b-5">Art Of Coding</h3>
+								<span>Clean &amp; Minimalistic Design</span>
+							</div>
+							<div class="row">
+								<div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
+									<div class="margin-t-10 sm-margin-t-0">
+										<p>Duis aute irure dolor in reprehenderit in voluptate
+											velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+											sint occaecat cupidatat non proident, sunt in culpa qui
+											officia deserunt mollit anim id est laborum.</p>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+											elit, sed do eiusmod tempor incididunt ut labore et dolore
+											magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+										<ul class="list-inline work-popup-tag">
+											<li class="work-popup-tag-item"><a
+												class="work-popup-tag-link" href="#">Design,</a></li>
+											<li class="work-popup-tag-item"><a
+												class="work-popup-tag-link" href="#">Coding,</a></li>
+											<li class="work-popup-tag-item"><a
+												class="work-popup-tag-link" href="#">Portfolio</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="margin-t-10 sm-margin-t-0">
+										<p class="margin-b-5">
+											<strong>Project Leader:</strong> John Doe
+										</p>
+										<p class="margin-b-5">
+											<strong>Designer:</strong> Alisa Keys
+										</p>
+										<p class="margin-b-5">
+											<strong>Developer:</strong> Mark Doe
+										</p>
+										<p class="margin-b-5">
+											<strong>Customer:</strong> Keenthemes
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Work -->
 			</div>
 		</div>
+		<!-- End Masonry Grid -->
 	</div>
-
-	<ng-map center="Colorado Springs, CO" zoom="17"> <marker
-		position="{{mk}}" ng-repeat="mk in vm.markers"
-		on-click="vm.showParkingSpot(mk)"> </marker> <info-window id="foo-iw">
-	<div ng-non-bindable="" id="infoWindow">
-		${{vm.selectedParkingSpot.rate}} hr<br />
-		{{vm.selectedParkingSpot.parkingSpotAddress.street}}<br />
-		{{vm.selectedParkingSpot.parkingSpotAddress.city}},
-		{{vm.selectedParkingSpot.parkingSpotAddress.state}}<br /> <img
-			src="https://photos.zillowstatic.com/p_f/ISekwqe28rnmks1000000000.jpg"><br />
-		{{vm.selectedParkingSpot.description}}<br />
-		<button type="button" class="btn-primary">Reserve</button>
-		<br />
-	</div>
-	</info-window> </ng-map>
-
 </div>
+<!-- End Work -->
 
-<div id="infoDivHome">
-
-	<h1 class="center" id="learn">
-		Learn About Park<span class="orange">R</span>
-	</h1>
-
-	<div id="listerDiv">
-		<h1 id="title">Lister</h1>
-		<p>Contrary to popular belief, Lorem Ipsum is not simply random
-			text. It has roots in a piece of classical Latin literature from 45
-			BC, making it over 2000 years old. Richard McClintock, a Latin
-			professor at Hampden-Sydney College in Virginia, looked up one of the
-			more obscure Latin words, consectetur, from a Lorem Ipsum passage,
-			and going through the cites of the word in classical literature,
-			discovered the undoubtable source. Lorem Ipsum comes from sections
-			1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes
-			of Good and Evil) by Cicero, written in 45 BC. This book is a
-			treatise on the theory of ethics, very popular during the
-			Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
-			amet..", comes from a line in section 1.10.32.</p>
-		<p>Contrary to popular belief, Lorem Ipsum is not simply random
-			text. It has roots in a piece of classical Latin literature from 45
-			BC, making it over 2000 years old. Richard McClintock, a Latin
-			professor at Hampden-Sydney College in Virginia, looked up one of the
-			more obscure Latin words, consectetur, from a Lorem Ipsum passage,
-			and going through the cites of the word in classical literature,
-			discovered the undoubtable source. Lorem Ipsum comes from sections
-			1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes
-			of Good and Evil) by Cicero, written in 45 BC. This book is a
-			treatise on the theory of ethics, very popular during the
-			Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
-			amet..", comes from a line in section 1.10.32.</p>
-		<p>Contrary to popular belief, Lorem Ipsum is not simply random
-			text. It has roots in a piece of classical Latin literature from 45
-			BC, making it over 2000 years old. Richard McClintock, a Latin
-			professor at Hampden-Sydney College in Virginia, looked up one of the
-			more obscure Latin words, consectetur, from a Lorem Ipsum passage,
-			and going through the cites of the word in classical literature,
-			discovered the undoubtable source. Lorem Ipsum comes from sections
-			1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes
-			of Good and Evil) by Cicero, written in 45 BC. This book is a
-			treatise on the theory of ethics, very popular during the
-			Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
-			amet..", comes from a line in section 1.10.32.</p>
+<!-- Pricing -->
+<div id="pricing">
+	<div class="bg-color-sky-light">
+		<div class="content-lg container">
+			<div class="row row-space-2">
+				<div class="col-sm-4 sm-margin-b-4">
+					<!-- Pricing -->
+					<div class="pricing">
+						<div class="margin-b-30">
+							<i class="pricing-icon icon-chemistry"></i>
+							<h3>
+								Starter Kit <span> - $</span> 49
+							</h3>
+							<p>Lorem ipsum dolor amet consectetur ut consequat siad
+								esqudiat dolor</p>
+						</div>
+						<ul class="list-unstyled pricing-list margin-b-50">
+							<li class="pricing-list-item">Basic Features</li>
+							<li class="pricing-list-item">Up to 5 products</li>
+							<li class="pricing-list-item">50 Users Panels</li>
+						</ul>
+						<a href="pricing.html"
+							class="btn-theme btn-theme-sm btn-default-bg text-uppercase">Choose</a>
+					</div>
+					<!-- End Pricing -->
+				</div>
+				<div class="col-sm-4 sm-margin-b-4">
+					<!-- Pricing -->
+					<div class="pricing pricing-active">
+						<div class="margin-b-30">
+							<i class="pricing-icon icon-badge"></i>
+							<h3>
+								Professional <span> - $</span> 149
+							</h3>
+							<p>Lorem ipsum dolor amet consectetur ut consequat siad
+								esqudiat dolor</p>
+						</div>
+						<ul class="list-unstyled pricing-list margin-b-50">
+							<li class="pricing-list-item">Basic Features</li>
+							<li class="pricing-list-item">Up to 100 products</li>
+							<li class="pricing-list-item">100 Users Panels</li>
+						</ul>
+						<a href="pricing.html"
+							class="btn-theme btn-theme-sm btn-default-bg text-uppercase">Choose</a>
+					</div>
+					<!-- End Pricing -->
+				</div>
+				<div class="col-sm-4">
+					<!-- Pricing -->
+					<div class="pricing">
+						<div class="margin-b-30">
+							<i class="pricing-icon icon-shield"></i>
+							<h3>
+								Advanced <span> - $</span> 249
+							</h3>
+							<p>Lorem ipsum dolor amet consectetur ut consequat siad
+								esqudiat dolor</p>
+						</div>
+						<ul class="list-unstyled pricing-list margin-b-50">
+							<li class="pricing-list-item">Extended Features</li>
+							<li class="pricing-list-item">Unlimited products</li>
+							<li class="pricing-list-item">Unlimited Users Panels</li>
+						</ul>
+						<a href="pricing.html"
+							class="btn-theme btn-theme-sm btn-default-bg text-uppercase">Choose</a>
+					</div>
+					<!-- End Pricing -->
+				</div>
+			</div>
+			<!--// end row -->
+		</div>
 	</div>
-
-	<div id="userDiv">
-		<h1 id="title">User</h1>
-		<p>Contrary to popular belief, Lorem Ipsum is not simply random
-			text. It has roots in a piece of classical Latin literature from 45
-			BC, making it over 2000 years old. Richard McClintock, a Latin
-			professor at Hampden-Sydney College in Virginia, looked up one of the
-			more obscure Latin words, consectetur, from a Lorem Ipsum passage,
-			and going through the cites of the word in classical literature,
-			discovered the undoubtable source. Lorem Ipsum comes from sections
-			1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes
-			of Good and Evil) by Cicero, written in 45 BC. This book is a
-			treatise on the theory of ethics, very popular during the
-			Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
-			amet..", comes from a line in section 1.10.32.</p>
-		<p>Contrary to popular belief, Lorem Ipsum is not simply random
-			text. It has roots in a piece of classical Latin literature from 45
-			BC, making it over 2000 years old. Richard McClintock, a Latin
-			professor at Hampden-Sydney College in Virginia, looked up one of the
-			more obscure Latin words, consectetur, from a Lorem Ipsum passage,
-			and going through the cites of the word in classical literature,
-			discovered the undoubtable source. Lorem Ipsum comes from sections
-			1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes
-			of Good and Evil) by Cicero, written in 45 BC. This book is a
-			treatise on the theory of ethics, very popular during the
-			Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
-			amet..", comes from a line in section 1.10.32.</p>
-		<p>Contrary to popular belief, Lorem Ipsum is not simply random
-			text. It has roots in a piece of classical Latin literature from 45
-			BC, making it over 2000 years old. Richard McClintock, a Latin
-			professor at Hampden-Sydney College in Virginia, looked up one of the
-			more obscure Latin words, consectetur, from a Lorem Ipsum passage,
-			and going through the cites of the word in classical literature,
-			discovered the undoubtable source. Lorem Ipsum comes from sections
-			1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes
-			of Good and Evil) by Cicero, written in 45 BC. This book is a
-			treatise on the theory of ethics, very popular during the
-			Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
-			amet..", comes from a line in section 1.10.32.</p>
-	</div>
-
 </div>
+<!-- End Pricing -->
+
+<!-- Testimonials -->
+<div class="content-md container" id="register">
+	<div class="row">
+		<div class="col-sm-9">
+			<h2>Create Your Park<span class="orange">R</span> Account</h2>
+
+			<!-- Swiper Testimonials -->
+			<div class="swiper-slider swiper-testimonials">
+				<!-- Swiper Wrapper -->
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<blockquote class="blockquote">
+							<form id="registerForm">
+								<div class="form-group">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="Lister Name" ng-model="regU.username" required>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="input-group">
+										<input type="password" class="form-control" placeholder="Password" ng-model="regU.password" required>
+										<input type="password" class="form-control" placeholder="Password again" ng-model="regU.password" required>
+									</div>
+								</div>
+			
+								<div class="form-group text-left">
+									<button ng-click="vm.register(regU)" class="btn-theme btn-theme-sm btn-default-bg text-uppercase">Submit</button>
+								</div>
+							</form>
+						</blockquote>
+					</div>		
+				</div>
+				<!-- End Swiper Wrapper -->
+
+				<!-- Pagination -->
+				<div class="swiper-testimonials-pagination"></div>
+			</div>
+			<!-- End Swiper Testimonials -->
+		</div>
+	</div>
+	<!--// end row -->
+</div>
+<!-- End Testimonials -->
+
+<!-- Contact -->
+<div id="contact">
+	<!-- Google Map -->
+	<div class="gmap">
+		<div id="map" class="map height-400"></div>
+		<address class="gmap-address">
+			<p class="color-heading margin-b-0">Address, Denver, CO, USA</p>
+		</address>
+	</div>
+	<!-- End Google Map -->
+</div>
+<!-- End Contact -->
+<!--========== END PAGE LAYOUT ==========-->
+
+<!--========== FOOTER ==========-->
+<footer class="footer">
+	<!-- Links -->
+	<div class="section-seperator">
+		<div class="content-md container">
+			<div class="row">
+				<div class="col-sm-2 sm-margin-b-30">
+					<!-- List -->
+					<ul class="list-unstyled footer-list">
+						<li class="footer-list-item"><a href=""
+							du-smooth-scroll="body">Home</a></li>
+						<li class="footer-list-item"><a href=""
+							du-smooth-scroll="about">About</a></li>
+						<li class="footer-list-item"><a href=""
+							du-smooth-scroll="about">Work</a></li>
+						<li class="footer-list-item"><a href="#contact">Contact</a></li>
+					</ul>
+					<!-- End List -->
+				</div>
+				<div class="col-sm-2 sm-margin-b-30">
+					<!-- List -->
+					<ul class="list-unstyled footer-list">
+						<li class="footer-list-item"><a href="#">Twitter</a></li>
+						<li class="footer-list-item"><a href="#">Facebook</a></li>
+						<li class="footer-list-item"><a href="#">Instagram</a></li>
+						<li class="footer-list-item"><a href="#">LinkedIn</a></li>
+					</ul>
+					<!-- End List -->
+				</div>
+				<div class="col-sm-3">
+					<!-- List -->
+					<ul class="list-unstyled footer-list">
+						<li class="footer-list-item"><a href="#">Cookie Policy</a></li>
+						<li class="footer-list-item"><a href="#">Privacy Policy</a></li>
+						<li class="footer-list-item"><a href="#">Terms &amp;
+								Conditions</a></li>
+					</ul>
+					<!-- End List -->
+				</div>
+			</div>
+			<!--// end row -->
+		</div>
+	</div>
+	<!-- End Links -->
+
+	<!-- Copyright -->
+	<div class="content container">
+		<div class="row">
+			<div class="col-xs-6">
+				<img class="footer-logo" src="" alt="Code & Hammer Logo">
+			</div>
+			<div class="col-xs-6 text-right">
+				<p class="margin-b-0">
+					<a class="fweight-700" href="https://www.codehammer.design">Code
+						& Hammer</a>
+				</p>
+			</div>
+		</div>
+		<!--// end row -->
+	</div>
+	<!-- End Copyright -->
+</footer>
+<!--========== END FOOTER ==========-->

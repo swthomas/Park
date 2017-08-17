@@ -11,18 +11,8 @@
 
 
 	<mvc:annotation-driven />
-	
-   	<bean id="listerdao" class="data.ListerDAOImpl" /> 	
-  	<bean id="listeraddressdao" class="data.ListerAddressDAOImpl" /> 	
-  	<bean id="parkingspotaddressdao" class="data.ParkingSpotAddressDAOImpl" /> 	
-   	<bean id="parkingspotdao" class="data.ParkingSpotDAOImpl" /> 	
-   	<bean id="paymenttolisterdao" class="data.PaymentToListerDAOImpl" /> 	
-   	<bean id="reservationdao" class="data.ReservationDAOImpl" /> 	
-  	<bean id="userdao" class="data.UserDAOImpl" />
-   	<bean id="vehicledao" class="data.VehicleDAOImpl" /> 	
-
-  
-	<context:component-scan base-package="controllers" />
+	<tx:annotation-driven transaction-manager="myTransactionManager" />
+	<context:component-scan base-package="controllers, data" />
 
 	<bean id="myEntityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -33,7 +23,14 @@
 		<property name="entityManagerFactory" ref="myEntityManagerFactory" />
 	</bean>
 
-	<tx:annotation-driven transaction-manager="myTransactionManager" />
-	
+	<bean id="bCryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/*/Parkr/**" />
+			<bean id="DataSecurityInterceptor" class="security.DataSecurityInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 	
 </beans>

@@ -18,5 +18,5 @@ public interface UserDAO {
 	public User show(String username, String password);
 	public Boolean destroy(Integer id);
 	public User create(User u);
-	public User update(Integer id, User u);
+	public User update(Integer id, String userJson);
 }

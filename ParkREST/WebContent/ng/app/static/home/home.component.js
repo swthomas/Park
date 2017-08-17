@@ -1,7 +1,9 @@
 angular.module('static').component('home', {
 	templateUrl : 'ng/app/static/home/home.component.html',
-	controller : function(staticService, $scope, $location, NgMap) {
+	controller : function(authService, staticService, $rootScope, $scope, $location, NgMap) {
 		var vm = this;
+        $scope.userMenuOpened = $rootScope.userMenuOpened;
+        $scope.listerMenuOpened = $rootScope.listerMenuOpened;
 		  
 		NgMap.getMap().then(function(map) {
 			    console.log('map', map);
@@ -16,10 +18,34 @@ angular.module('static').component('home', {
 		vm.selectedParkingSpot = null;
 		vm.showMap = true;
 		
+//		Watches for sign in form state change from navbar and returns it in home	
+		$scope.$watch(function() {
+			return $rootScope.userMenuOpened;
+        }, function() {
+            $scope.userMenuOpened = $rootScope.userMenuOpened;
+        }, true);
 		
+		$scope.$watch(function() {
+			return $rootScope.listerMenuOpened;
+        }, function() {
+            $scope.listerMenuOpened = $rootScope.listerMenuOpened;
+        }, true);
+		
+		
+//		Login User
+		vm.loginU = function(user) {
+			authService.login(user).then(function(){
+				$location.path('/user/userMain/');
+			}).catch(function(){
+				vm.error = "Something went wrong";
+			})
+			
+		}
+		
+
+			
 //		Get array of parkingSpots and address info
 		staticService.listParkingSpots().then(function(res){
-			console.log(res.data);
 			
 			vm.parkingSpots = res.data;
 			for (var i = 0; i < vm.parkingSpots.length; i++) {
@@ -28,9 +54,7 @@ angular.module('static').component('home', {
 			}
 			return vm.markers;
 		})
-		
-		
-		
+				
 		// first argument is metadata from the map 
 		// second argument it marker data provided by 'staticService.listParkingSpots()' above
 		vm.showParkingSpot = function(mk, data) {

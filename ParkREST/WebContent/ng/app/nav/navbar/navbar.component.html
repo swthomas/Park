@@ -1,23 +1,43 @@
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-                <!-- navbar brand goes here -->
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a class="bold" href="index.html">home</a></li>
-                	<li ng-show="vm.isLister"><a class="bold" href="#bizStats">Manage Parking Spaces</a></li>
-                    <li><a class="bold" href="about.html">about ParkR</a></li>
-                    <li><a class="bold" href="contact.html">Help</a></li>
-                    <li ng-hide="vm.isLoggedIn" ng-click="vm.signIn()"><a class="bold">Sign In</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    
-    
+<!--========== HEADER ==========-->
+<header class="header navbar-fixed-top">
+	<!-- Navbar -->
+	<nav class="navbar" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="menu-container js_nav-item">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="sr-only">Toggle navigation</span> <span class="toggle-icon"></span>
+				</button>
+
+				<!-- Logo -->
+				<div class="logo">
+					<a class="logo-wrap" href="/"> <img
+						class="logo-img logo-img-main" src="img/favicon.ico"
+						alt="ParkR Logo">
+					</a>
+				</div>
+				<!-- End Logo -->
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse nav-collapse">
+				<div class="menu-container">
+					<ul class="nav navbar-nav navbar-nav-right">
+						<li class="js_nav-item nav-item"><a
+							class="nav-item-child nav-item-hover" href="" du-smooth-scroll="body">Home</a></li>
+						<li class="js_nav-item nav-item"><a	class="nav-item-child nav-item-hover" href="" du-smooth-scroll="about">ParkR?</a></li>
+						<li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="" du-smooth-scroll="spaces">Manage Spaces</a></li>
+						<li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="" du-smooth-scroll="find">Find Parking</a></li>
+						<li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="" du-smooth-scroll="pricing">Pricing</a></li>
+						<li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="" du-smooth-scroll="register">Get ParkR</a></li>
+						<li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="" ng-click="vm.signInU($event)">User Sign In</a></li>
+						<li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="" ng-click="vm.signInL($event)">Lister Sign In</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- End Navbar Collapse -->
+		</div>
+	</nav>
+	<!-- Navbar -->
+</header>
+

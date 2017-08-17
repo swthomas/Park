@@ -1,13 +1,21 @@
 package data;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import entities.Lister;
 import entities.Reservation;
@@ -21,6 +29,9 @@ public class UserDAOImpl implements UserDAO {
 	
 	@PersistenceContext
 	private EntityManager em;
+	
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	@Override
 	public List<User> index() {
@@ -53,14 +64,31 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
-	public User update(Integer id, User u) {
-		User user = em.find(User.class, id);
-		user.setFirstName(u.getFirstName());
-		user.setLastName(u.getLastName());
-		user.setEmail(u.getEmail());
-		user.setPassword(u.getPassword());
-		user.setPhoneNumber(u.getPhoneNumber());
-		return user;
+	public User update(Integer id, String userJson) {
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			User mUser = mapper.readValue(userJson, User.class);
+			User uUser = em.find(User.class, id);
+			
+			JsonNode root = mapper.readTree(userJson); 
+			String newPassword = root.at("/password").asText();
+			String newPasswordSha = encoder.encode(newPassword); 
+					
+			uUser.setEmail(mUser.getEmail());
+			uUser.setPassword(newPasswordSha);
+			System.out.println("**********************************");
+			System.out.println(uUser.getPassword());
+			return uUser;
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+			return null;
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override

@@ -2,6 +2,9 @@ package controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -62,12 +65,13 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="user/{id}", method=RequestMethod.PUT)
-	public User update(@PathVariable Integer id, @RequestBody String jsonUser) {
+	public User update(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, @RequestBody String userJson) {
 		try {
-			ObjectMapper mapper = new ObjectMapper();
-			User mappedUser = mapper.readValue(jsonUser, User.class);
-			return userDAO.update(id, mappedUser);
+			System.out.println(userJson);
+			res.setStatus(200);			
+			return userDAO.update(id, userJson);
 		} catch (Exception e) {
+			res.setStatus(400);
 			e.printStackTrace();
 			return null;
 		}
