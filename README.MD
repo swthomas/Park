@@ -3,15 +3,24 @@
 ### Auth:
 1. Login User - done
 2. Login Lister - SEC
-3. Logout and remove session cookies - SEC
+3. Login U / L routes to - SEC
+4. Logout and remove session cookies - SEC
 
 ### Register:
 1. Create user - SEC
 2. Create lister - SEC
+3. Routes to -
 
-### Misc:
+### Misc & UX/UI:
 1. Error page - DB
 2. Marketing Content for landing - DB
+3. Cookie Policy page - DB
+5. Cookie notice popup on landing - SEC
+6. navbar needs responsive fix
+7. navbar needs onclick toggle back up fix
+8. Remove unused css, check class naming, etc.
+9. Optimise image loading speed
+10. Add Google Analytics
 
 ### DB:
 1. Update user with active column and adjust classes / ctrl - ST
