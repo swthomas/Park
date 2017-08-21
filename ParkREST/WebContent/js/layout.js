@@ -1,5 +1,5 @@
 var Layout = function () {
-    
+
     // detect mobile device
     var isMobileDevice = function() {
         return  ((
@@ -36,7 +36,7 @@ var Layout = function () {
 
         var $offset = 0;
         $offset = $(".navbar-fixed-top").height()-20;
-        
+
         // jQuery for page scrolling feature - requires jQuery Easing plugin
         $('.js_nav-item a').bind('click', function(event) {
             var $position = $($(this).attr('href')).offset().top;
@@ -56,10 +56,10 @@ var Layout = function () {
 
     // handle carousel
     var handleCarousel = function() {
-        var $item = $('.carousel .item'); 
+        var $item = $('.carousel .item');
         var $wHeight = $(window).height();
         $item.eq(0).addClass('active');
-        $item.height($wHeight); 
+        $item.height($wHeight);
         $item.addClass('full-screen');
 
         $('.carousel img').each(function() {
@@ -141,7 +141,7 @@ var Layout = function () {
             handleCarousel(); // initial setup for carousel
             handleHeight(); // initial setup for group element height
             handleWorkPopup(); // initial setup for group work popup
-            
+
             // handle minimized header on page scroll
             $(window).scroll(function() {
                 handleHeaderOnScroll();
