@@ -1,4 +1,4 @@
-angular.module('navbar').component('navbar', {
+angular.module('nav').component('navbar', {
 	templateUrl : 'ng/app/nav/navbar/navbar.component.html',
 	controller : function($rootScope, $scope, $location) {
 		var vm = this;
@@ -32,6 +32,7 @@ angular.module('navbar').component('navbar', {
 		        $('.navbar').removeClass('past-main');
 		    }
 		})
+		
 	
 	},
 	controllerAs : 'vm'

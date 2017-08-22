@@ -52,6 +52,19 @@ public class UserController {
 	 * 
 	*/
 	
+	
+	@RequestMapping(value="newUser/{id}", method=RequestMethod.PUT)
+	public User updateNew(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, @RequestBody String userJson) {
+		try {
+			res.setStatus(200);			
+			return userDAO.updateNew(id, userJson);
+		} catch (Exception e) {
+			res.setStatus(400);
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	@RequestMapping(value="user", method=RequestMethod.POST)
 	public User create(@RequestBody String jsonUser) {
 		try {

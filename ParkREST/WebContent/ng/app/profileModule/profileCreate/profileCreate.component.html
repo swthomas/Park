@@ -1,0 +1,58 @@
+<div class="promo-block">
+	<div class="container">
+		<div class="margin-b-40">
+			<h1 class="promo-block-title">
+				Park<span class="orange headlineR">R</span>
+			</h1>
+			<p class="promo-block-text">parking made easier, faster.</p>
+			<p class="promo-block-text">Update your profile!</p>
+		</div>
+	</div>
+</div>
+<div class="content-md container" id="updater">
+	<div class="row">
+		<div class="col-sm-12">
+
+
+			<form id="updateForm">
+				<div class="form-group">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="First Name"
+							ng-model="regU.firstName" required>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Last Name"
+							ng-model="regU.lastName" required>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Phone Number"
+							ng-model="regU.phoneNumber" required>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="input-group">
+						<label for="listerSelect" class="checkbox-inline">I want to list my parking
+							spaces.</label>
+							<input type="checkbox" class="form-control" id="listerSelect" ng-model="regU.isLister" ng-init='regU.isLister=false'>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<button ng-click="vm.updateProfile(regU)"
+						class="btn-theme btn-theme-sm btn-default-bg text-uppercase">
+						Start Park<span class="orange">R</span>'ing!
+					</button>
+				</div>
+			</form>
+
+		</div>
+	</div>
+	<!--// end row -->
+</div>

@@ -1,1 +1,1 @@
-angular.module('navbar', ['ngAnimate', 'authModule'])
+angular.module('nav', ['ngAnimate', 'authModule'])

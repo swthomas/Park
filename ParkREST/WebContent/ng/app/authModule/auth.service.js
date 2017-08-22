@@ -36,7 +36,7 @@ angular.module('authModule')
       // On success, use saveToken to store the users id/email
     	return $http({
 			method : 'POST',
-			url : BASE_URL + 'login',
+			url : BASE_URL + '/registerGeneric',
 			headers : {
 				'Content-Type' : 'application/json'
 			},
@@ -60,8 +60,24 @@ angular.module('authModule')
   			saveToken(res.data);
   		})
       }
-
+    
     service.register = function(user) {
+        // TODO : Use the auth/register route to create and authenticate the user
+        // On success, use saveToken to store the users id/email
+      	user.admin = false;
+      	return $http({
+  			method : 'POST',
+  			url : BASE_URL + 'registerGeneric',
+  			headers : {
+  				'Content-Type' : 'application/json'
+  			},
+  			data : user
+  		}).then(function(res){
+  			saveToken(res.data);
+  		})
+      }
+
+    service.registerUser = function(user) {
       // TODO : Use the auth/register route to create and authenticate the user
       // On success, use saveToken to store the users id/email
     	user.admin = false;

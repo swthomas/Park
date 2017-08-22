@@ -64,6 +64,30 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	@Override
+	public User updateNew(Integer id, String userJson) {
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			User mUser = mapper.readValue(userJson, User.class);
+			User uUser = em.find(User.class, id);
+			
+			uUser.setFirstName(mUser.getFirstName());					
+			uUser.setLastName(mUser.getLastName());
+			uUser.setPhoneNumber(mUser.getPhoneNumber());
+			uUser.setIsLister(mUser.getIsLister());
+			return uUser;
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+			return null;
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Override
 	public User update(Integer id, String userJson) {
 		try {
 			ObjectMapper mapper = new ObjectMapper();

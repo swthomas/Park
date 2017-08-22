@@ -27,6 +27,7 @@ public class AuthDAOImpl implements AuthDAO {
 	public User register(User u) {
 		String passwordSha = encoder.encode(u.getPassword());
 		u.setPassword(passwordSha);
+		u.setIsLister(false);
 		em.persist(u);
 		em.flush();
 		return u;

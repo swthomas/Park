@@ -1,9 +1,13 @@
-angular.module('appModule',	[ 'ngRoute', 'navbar', 'static', 'ngAnimate', 'duScroll', 'authModule', 'userModule']).value('duScrollDuration', 1900).config(
+angular.module('appModule',	[ 'ngRoute', 'nav', 'static', 'ngAnimate', 'duScroll', 'authModule', 'userModule', 'listerModule', 'profile']).value('duScrollDuration', 1900).config(
 		function($routeProvider) {
 			$routeProvider.when('/', {
 				template : '<home></home>'
-			}).when('/user/userMain/', {
-				template : '<userMain></userMain>'
+			}).when('/userModule/userMain', {
+				template : '<user-main></user-main>'
+			}).when('/listerModule/listerMain', {
+				template : '<lister-main></lister-main>'
+			}).when('/user/profileUpdate', {
+				template : '<profile-create></profile-create>'
 			}).otherwise({
 	            template: '<error></error>'
 	        });

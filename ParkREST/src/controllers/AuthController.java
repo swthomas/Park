@@ -19,8 +19,15 @@ public class AuthController {
 	@Autowired
 	private AuthDAO authDAO;
 	
-	@RequestMapping(path="/registerUser", method=RequestMethod.POST)
+	@RequestMapping(path="/registerGeneric", method=RequestMethod.POST)
 	public User register(HttpSession session, @RequestBody User user) {
+		User genUser = authDAO.register(user);
+		session.setAttribute("sessionUser", genUser);
+		return genUser;
+	}
+	
+	@RequestMapping(path="/registerUser", method=RequestMethod.POST)
+	public User registerUser(HttpSession session, @RequestBody User user) {
 		User newUser = authDAO.register(user);
 		session.setAttribute("sessionUser", newUser);
 		return newUser;

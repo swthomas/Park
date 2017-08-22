@@ -1,15 +1,14 @@
 ## Roadmap:
 
 ### Auth:
-1. Login User - done
+1. Login User - done (needs active user check implemented, db update first)
 2. Login Lister - SEC
 3. Login U / L routes to - SEC
 4. Logout and remove session cookies - SEC
 
 ### Register:
-1. Create user - SEC
-2. Create lister - SEC
-3. Routes to -
+1. Create generic user, routes to fill out profile, user can select lister, then routes to u/l side.
+2. phoneNumber attribute is Double...can it be plain text?
 
 ### Misc & UX/UI:
 1. Error page - DB
@@ -21,6 +20,7 @@
 8. Remove unused css, check class naming, etc.
 9. Optimise image loading speed
 10. Add Google Analytics
+11. Better error catching / status returns / error messages
 
 ### DB:
 1. Update user with active column and adjust classes / ctrl - ST

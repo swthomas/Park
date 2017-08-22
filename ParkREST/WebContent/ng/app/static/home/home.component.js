@@ -39,7 +39,15 @@ angular.module('static').component('home', {
 			}).catch(function(){
 				vm.error = "Something went wrong";
 			})
-			
+		}
+		
+//		Create generic user
+		vm.register = function(newUser) {
+			authService.register(newUser).then(function() {
+				$location.path('/user/profileUpdate');
+			}).catch(function(){
+				vm.error = "Something went wrong";
+			})
 		}
 		
 
