@@ -9,7 +9,6 @@ angular.module('profile').component('profileCreate', {
 		
 //		Update profile of new user and route to userMain
 		vm.updateProfile = function(newUser) {
-			console.log(newUser);
 			staticService.updateProfile(newUser).then(function(){
 				if (newUser.isLister) {
 					$location.path('/listerModule/listerMain')

@@ -10,62 +10,7 @@
 			<p class="promo-block-text">COMING SOON</p>
 		</div>
 	</div>
-	<!-- login form -->
-	<div id="loginInForm" ng-show="userMenuOpened">
-		<form>
-			<div class="form-group">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="User Name"
-						ng-model="user.username" required>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<div class="input-group">
-					<input type="password" class="form-control" placeholder="Password"
-						ng-model="user.password" required>
-				</div>
-			</div>
-
-			<div class="form-group text-left">
-				<button ng-click="vm.loginU(user)"
-					class="btn-theme btn-theme-sm btn-default-bg text-uppercase">Log
-					in</button>
-				<a class="help close" href="" ng-click="vm.closeLoginU()"> Close</a>
-			</div>
-
-			<a class="help" href="mailto:stephen@codehammer.design">Trouble
-				logging in?</a>
-		</form>
-	</div>
-
-	<div id="loginInForm" ng-show="listerMenuOpened">
-		<form>
-			<div class="form-group">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Lister Name"
-						ng-model="lister.username" required>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<div class="input-group">
-					<input type="password" class="form-control" placeholder="Password"
-						ng-model="lister.password" required>
-				</div>
-			</div>
-
-			<div class="form-group text-left">
-				<button ng-click="vm.loginL(lister)"
-					class="btn-theme btn-theme-sm btn-default-bg text-uppercase">Log
-					in</button>
-				<a class="help close" href="" ng-click="vm.closeLoginL()"> Close</a>
-			</div>
-
-			<a class="help" href="mailto:stephen@codehammer.design">Trouble
-				logging in?</a>
-		</form>
-	</div>
+	
 </div>
 
 <!--========== SLIDER ==========-->
@@ -143,7 +88,7 @@
 
 		<!-- MAP -->
 		<div class="row">
-			<ng-map center="current-position" zoom="17"> <marker
+			<ng-map center="Denver, Co" zoom="17"> <marker
 				position="{{mk}}" ng-repeat="mk in vm.markers"
 				on-click="vm.showParkingSpot(mk)"> </marker> <info-window
 				id="foo-iw">
@@ -269,301 +214,6 @@
 </div>
 <!-- End Promo Banner -->
 
-<!-- Work -->
-<div id="find">
-	<div class="content-md container">
-		<!-- Masonry Grid -->
-		<div class="masonry-grid row row-space-2">
-			<div class="masonry-grid-sizer col-xs-6 col-sm-6 col-md-1"></div>
-			<div class="masonry-grid-item col-xs-12 col-sm-6 col-md-8 margin-b-4">
-				<!-- Work -->
-				<div class="work work-popup-trigger">
-					<div class="work-overlay">
-						<img class="full-width img-responsive" src="img/800x400/01.jpg"
-							alt="Portfolio Image">
-					</div>
-					<div class="work-popup-overlay">
-						<div class="work-popup-content">
-							<a href="javascript:void(0);" class="work-popup-close">Hide</a>
-							<div class="margin-b-30">
-								<h3 class="margin-b-5">Art Of Coding</h3>
-								<span>Clean &amp; Minimalistic Design</span>
-							</div>
-							<div class="row">
-								<div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
-									<div class="margin-t-10 sm-margin-t-0">
-										<p>Duis aute irure dolor in reprehenderit in voluptate
-											velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-											sint occaecat cupidatat non proident, sunt in culpa qui
-											officia deserunt mollit anim id est laborum.</p>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit, sed do eiusmod tempor incididunt ut labore et dolore
-											magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-										<ul class="list-inline work-popup-tag">
-											<li class="work-popup-tag-item"><a
-												class="work-popup-tag-link" href="#">Design,</a></li>
-											<li class="work-popup-tag-item"><a
-												class="work-popup-tag-link" href="#">Coding,</a></li>
-											<li class="work-popup-tag-item"><a
-												class="work-popup-tag-link" href="#">Portfolio</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="margin-t-10 sm-margin-t-0">
-										<p class="margin-b-5">
-											<strong>Project Leader:</strong> John Doe
-										</p>
-										<p class="margin-b-5">
-											<strong>Designer:</strong> Alisa Keys
-										</p>
-										<p class="margin-b-5">
-											<strong>Developer:</strong> Mark Doe
-										</p>
-										<p class="margin-b-5">
-											<strong>Customer:</strong> Keenthemes
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End Work -->
-			</div>
-			<div class="masonry-grid-item col-xs-12 col-sm-6 col-md-4 margin-b-4">
-				<!-- Work -->
-				<div class="work work-popup-trigger">
-					<div class="work-overlay">
-						<img class="full-width img-responsive" src="img/397x400/01.jpg"
-							alt="Portfolio Image">
-					</div>
-					<div class="work-popup-overlay">
-						<div class="work-popup-content">
-							<a href="javascript:void(0);" class="work-popup-close">Hide</a>
-							<div class="margin-b-30">
-								<h3 class="margin-b-5">Art Of Coding</h3>
-								<span>Clean &amp; Minimalistic Design</span>
-							</div>
-							<div class="row">
-								<div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
-									<div class="margin-t-10 sm-margin-t-0">
-										<p>Duis aute irure dolor in reprehenderit in voluptate
-											velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-											sint occaecat cupidatat non proident, sunt in culpa qui
-											officia deserunt mollit anim id est laborum.</p>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit, sed do eiusmod tempor incididunt ut labore et dolore
-											magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-										<ul class="list-inline work-popup-tag">
-											<li class="work-popup-tag-item"><a
-												class="work-popup-tag-link" href="#">Design,</a></li>
-											<li class="work-popup-tag-item"><a
-												class="work-popup-tag-link" href="#">Coding,</a></li>
-											<li class="work-popup-tag-item"><a
-												class="work-popup-tag-link" href="#">Portfolio</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="margin-t-10 sm-margin-t-0">
-										<p class="margin-b-5">
-											<strong>Project Leader:</strong> John Doe
-										</p>
-										<p class="margin-b-5">
-											<strong>Designer:</strong> Alisa Keys
-										</p>
-										<p class="margin-b-5">
-											<strong>Developer:</strong> Mark Doe
-										</p>
-										<p class="margin-b-5">
-											<strong>Customer:</strong> Keenthemes
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End Work -->
-			</div>
-			<div
-				class="masonry-grid-item col-xs-12 col-sm-6 col-md-4 md-margin-b-4">
-				<!-- Work -->
-				<div class="work work-popup-trigger">
-					<div class="work-overlay">
-						<img class="full-width img-responsive" src="img/397x300/01.jpg"
-							alt="Portfolio Image">
-					</div>
-					<div class="work-popup-overlay">
-						<div class="work-popup-content">
-							<a href="javascript:void(0);" class="work-popup-close">Hide</a>
-							<div class="margin-b-30">
-								<h3 class="margin-b-5">Art Of Coding</h3>
-								<span>Clean &amp; Minimalistic Design</span>
-							</div>
-							<div class="row">
-								<div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
-									<div class="margin-t-10 sm-margin-t-0">
-										<p>Duis aute irure dolor in reprehenderit in voluptate
-											velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-											sint occaecat cupidatat non proident, sunt in culpa qui
-											officia deserunt mollit anim id est laborum.</p>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit, sed do eiusmod tempor incididunt ut labore et dolore
-											magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-										<ul class="list-inline work-popup-tag">
-											<li class="work-popup-tag-item"><a
-												class="work-popup-tag-link" href="#">Design,</a></li>
-											<li class="work-popup-tag-item"><a
-												class="work-popup-tag-link" href="#">Coding,</a></li>
-											<li class="work-popup-tag-item"><a
-												class="work-popup-tag-link" href="#">Portfolio</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="margin-t-10 sm-margin-t-0">
-										<p class="margin-b-5">
-											<strong>Project Leader:</strong> John Doe
-										</p>
-										<p class="margin-b-5">
-											<strong>Designer:</strong> Alisa Keys
-										</p>
-										<p class="margin-b-5">
-											<strong>Developer:</strong> Mark Doe
-										</p>
-										<p class="margin-b-5">
-											<strong>Customer:</strong> Keenthemes
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End Work -->
-			</div>
-			<div
-				class="masonry-grid-item col-xs-12 col-sm-6 col-md-4 md-margin-b-4">
-				<!-- Work -->
-				<div class="work work-popup-trigger">
-					<div class="work-overlay">
-						<img class="full-width img-responsive" src="img/397x300/02.jpg"
-							alt="Portfolio Image">
-					</div>
-					<div class="work-popup-overlay">
-						<div class="work-popup-content">
-							<a href="javascript:void(0);" class="work-popup-close">Hide</a>
-							<div class="margin-b-30">
-								<h3 class="margin-b-5">Art Of Coding</h3>
-								<span>Clean &amp; Minimalistic Design</span>
-							</div>
-							<div class="row">
-								<div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
-									<div class="margin-t-10 sm-margin-t-0">
-										<p>Duis aute irure dolor in reprehenderit in voluptate
-											velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-											sint occaecat cupidatat non proident, sunt in culpa qui
-											officia deserunt mollit anim id est laborum.</p>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit, sed do eiusmod tempor incididunt ut labore et dolore
-											magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-										<ul class="list-inline work-popup-tag">
-											<li class="work-popup-tag-item"><a
-												class="work-popup-tag-link" href="#">Design,</a></li>
-											<li class="work-popup-tag-item"><a
-												class="work-popup-tag-link" href="#">Coding,</a></li>
-											<li class="work-popup-tag-item"><a
-												class="work-popup-tag-link" href="#">Portfolio</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="margin-t-10 sm-margin-t-0">
-										<p class="margin-b-5">
-											<strong>Project Leader:</strong> John Doe
-										</p>
-										<p class="margin-b-5">
-											<strong>Designer:</strong> Alisa Keys
-										</p>
-										<p class="margin-b-5">
-											<strong>Developer:</strong> Mark Doe
-										</p>
-										<p class="margin-b-5">
-											<strong>Customer:</strong> Keenthemes
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End Work -->
-			</div>
-			<div class="masonry-grid-item col-xs-12 col-sm-6 col-md-4">
-				<!-- Work -->
-				<div class="work work-popup-trigger">
-					<div class="work-overlay">
-						<img class="full-width img-responsive" src="img/397x300/03.jpg"
-							alt="Portfolio Image">
-					</div>
-					<div class="work-popup-overlay">
-						<div class="work-popup-content">
-							<a href="javascript:void(0);" class="work-popup-close">Hide</a>
-							<div class="margin-b-30">
-								<h3 class="margin-b-5">Art Of Coding</h3>
-								<span>Clean &amp; Minimalistic Design</span>
-							</div>
-							<div class="row">
-								<div class="col-sm-8 work-popup-content-divider sm-margin-b-20">
-									<div class="margin-t-10 sm-margin-t-0">
-										<p>Duis aute irure dolor in reprehenderit in voluptate
-											velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-											sint occaecat cupidatat non proident, sunt in culpa qui
-											officia deserunt mollit anim id est laborum.</p>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit, sed do eiusmod tempor incididunt ut labore et dolore
-											magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-										<ul class="list-inline work-popup-tag">
-											<li class="work-popup-tag-item"><a
-												class="work-popup-tag-link" href="#">Design,</a></li>
-											<li class="work-popup-tag-item"><a
-												class="work-popup-tag-link" href="#">Coding,</a></li>
-											<li class="work-popup-tag-item"><a
-												class="work-popup-tag-link" href="#">Portfolio</a></li>
-										</ul>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="margin-t-10 sm-margin-t-0">
-										<p class="margin-b-5">
-											<strong>Project Leader:</strong> John Doe
-										</p>
-										<p class="margin-b-5">
-											<strong>Designer:</strong> Alisa Keys
-										</p>
-										<p class="margin-b-5">
-											<strong>Developer:</strong> Mark Doe
-										</p>
-										<p class="margin-b-5">
-											<strong>Customer:</strong> Keenthemes
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End Work -->
-			</div>
-		</div>
-		<!-- End Masonry Grid -->
-	</div>
-</div>
-<!-- End Work -->
-
-
 <!-- Pricing -->
 <div id="pricing">
 	<div class="bg-color-sky-light">
@@ -637,7 +287,7 @@
 		</div>
 	</div>
 	<!-- End Pricing -->
-
+</div>
 	<!-- Register -->
 	<div class="content-md container" id="register">
 		<div class="row">
@@ -646,32 +296,37 @@
 					Create Your Park<span class="orange">R</span> Account
 				</h3>
 
-				<form id="registerForm">
+				<form class="form" id="registerForm" name="registerForm">
 					<div class="form-group">
 						<div class="input-group">
 							<input type="text" class="form-control"
-								placeholder="Enter a username" ng-model="regU.username" required>
+								placeholder="Enter a username" name="username" ng-model="regU.username" ng-minlength="4" ng-required="true">
+							<p class="errorMessage" ng-show="registerForm.username.$invalid && registerForm.username.$touched">Username cannot be blank and longer than 4 characters</p>
+							<p class="errorMessage" ng-show="something">Username is not available</p> <!-- Implement when username unique returns error -->
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="input-group">
 							<input type="email" class="form-control"
-								placeholder="Enter your email" ng-model="regU.email" required>
+								placeholder="Enter your email" name="email" ng-model="regU.email" ng-required="true">
+							<p class="errorMessage" ng-show="registerForm.email.$invalid && registerForm.email.$touched">Cannot be blank and in email@email.email format</p>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<div class="input-group">
 							<input type="password" class="form-control"
-								placeholder="Enter a password" ng-model="regU.password" required>
+								placeholder="Enter a password" name="password" ng-model="regU.password" ng-minlength="7" ng-required="true">
 							<!-- <input type="password" class="form-control" placeholder="Re-enter Password" ng-model="regU.password" required> -->
+							<p class="errorMessage" ng-show="registerForm.password.$invalid && registerForm.password.$touched">Cannot be blank, minimum 7 characters</p>
+							<p class="errorMessage" ng-show="doesNotMatch">Passwords do not match</p> <!-- Implement when re-enter password works -->
 						</div>
 					</div>
 
 					<div class="form-group">
 						<button ng-click="vm.register(regU)"
-							class="btn-theme btn-theme-sm btn-default-bg text-uppercase">Get Park<span class="orange">R</span>!</button>
+							class="btn-theme btn-theme-sm btn-default-bg text-uppercase" ng-disabled="registerForm.$invalid">Get Park<span class="orange">R</span>!</button>
 					</div>
 				</form>
 

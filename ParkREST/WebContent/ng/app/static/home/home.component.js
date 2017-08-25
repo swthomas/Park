@@ -3,7 +3,7 @@ angular.module('static').component('home', {
 	controller : function(authService, staticService, $rootScope, $scope, $location, NgMap) {
 		var vm = this;
         $scope.userMenuOpened = $rootScope.userMenuOpened;
-        $scope.listerMenuOpened = $rootScope.listerMenuOpened;
+		$rootScope.isLoggedIn = false;
 		  
 		NgMap.getMap().then(function(map) {
 			    console.log('map', map);
@@ -17,30 +17,7 @@ angular.module('static').component('home', {
 		
 		vm.selectedParkingSpot = null;
 		vm.showMap = true;
-		
-//		Watches for sign in form state change from navbar and returns it in home	
-		$scope.$watch(function() {
-			return $rootScope.userMenuOpened;
-        }, function() {
-            $scope.userMenuOpened = $rootScope.userMenuOpened;
-        }, true);
-		
-		$scope.$watch(function() {
-			return $rootScope.listerMenuOpened;
-        }, function() {
-            $scope.listerMenuOpened = $rootScope.listerMenuOpened;
-        }, true);
-		
-		
-//		Login User
-		vm.loginU = function(user) {
-			authService.login(user).then(function(){
-				$location.path('/user/userMain/');
-			}).catch(function(){
-				vm.error = "Something went wrong";
-			})
-		}
-		
+				
 //		Create generic user
 		vm.register = function(newUser) {
 			authService.register(newUser).then(function() {

@@ -1,0 +1,58 @@
+<div class="content-md container" id="userProfileForm">
+	<div class="row">
+		<div class="col-sm-12">
+			<form id="updateUserForm" name="updateUserForm">
+				<div class="form-group">
+					<div class="input-group">
+						<input type="text" class="form-control" name="firstName"
+							ng-model="vm.user.firstName" ng-required="true">
+							<p class="errorMessage" ng-show="updateUserForm.firstName.$invalid && updateUserForm.firstName.$touched">Cannot be blank</p> <!-- Implement when re-enter password works -->
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="input-group">
+						<input type="text" class="form-control" name="lastName"
+							ng-model="vm.user.lastName" ng-required="true">
+						<p class="errorMessage" ng-show="updateUserForm.lastName.$invalid && updateUserForm.lastName.$touched">Cannot be blank</p> <!-- Implement when re-enter password works -->
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="input-group">
+						<input type="number" class="form-control" name="phoneNumber"
+							ng-model="vm.user.phoneNumber" ng-minlength="4" ng-required="true">
+						<p class="errorMessage" ng-show="updateUserForm.phoneNumber.$invalid && updateUserForm.phoneNumber.$touched">Numbers only</p> <!-- Implement when re-enter password works -->
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="input-group">
+						<input type="email" class="form-control" name="email"
+							ng-model="vm.user.email" ng-required="true">
+						<p class="errorMessage" ng-show="updateUserForm.email.$invalid && updateUserForm.email.$touched">Proper email please</p> <!-- Implement when re-enter password works -->
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<div class="input-group">
+						<input type="password" class="form-control" placeholder="Password" name="password"
+						ng-model="vm.user.password" ng-minlength="7" ng-attr-type="{{ showPassword ? 'text':'password'}}" ng-required="true">
+						<div class="input-icon" ng-click="toggleShowPassword()" ng-class="{'fa fa-eye fa-lg': showPassword,'fa fa-eye-slash fa-lg': !showPassword}" style="cursor: pointer;">
+    					</div>
+    					<p class="errorMessage orange" ng-show="updateUserForm.password.$invalid && updateUserForm.password.$touched">Please enter password</p>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<button ng-click="vm.updateUser(user)"
+						class="btn-theme btn-theme-sm btn-default-bg text-uppercase" ng-disabled="updateUserForm.$invalid">
+						Submit Changes
+					</button>
+				</div>
+			</form>
+
+		</div>
+	</div>
+	<!--// end row -->
+</div>

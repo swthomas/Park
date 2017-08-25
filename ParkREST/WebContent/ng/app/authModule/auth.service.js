@@ -36,7 +36,7 @@ angular.module('authModule')
       // On success, use saveToken to store the users id/email
     	return $http({
 			method : 'POST',
-			url : BASE_URL + '/registerGeneric',
+			url : BASE_URL + '/login',
 			headers : {
 				'Content-Type' : 'application/json'
 			},
@@ -45,21 +45,6 @@ angular.module('authModule')
 			saveToken(res.data);
 		})
     }
-    
-    service.loginLister = function(user) {
-        // TODO : Use the auth/login route to authenticate the user
-        // On success, use saveToken to store the users id/email
-      	return $http({
-  			method : 'POST',
-  			url : BASE_URL + 'listerlogin',
-  			headers : {
-  				'Content-Type' : 'application/json'
-  			},
-  			data : user
-  		}).then(function(res){
-  			saveToken(res.data);
-  		})
-      }
     
     service.register = function(user) {
         // TODO : Use the auth/register route to create and authenticate the user

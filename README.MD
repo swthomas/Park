@@ -7,8 +7,8 @@
 4. Logout and remove session cookies - SEC
 
 ### Register:
-1. Create generic user, routes to fill out profile, user can select lister, then routes to u/l side.
-2. phoneNumber attribute is Double...can it be plain text?
+1. Create generic user, routes to fill out profile, user can select lister, then routes to user main
+2. Form validation working, needs double password match and unique username check
 
 ### Misc & UX/UI:
 1. Error page - DB
@@ -21,6 +21,7 @@
 9. Optimise image loading speed
 10. Add Google Analytics
 11. Better error catching / status returns / error messages
+12. Form Validation, regex for checking and converting phone numbers
 
 ### DB:
 1. Update user with active column and adjust classes / ctrl - ST

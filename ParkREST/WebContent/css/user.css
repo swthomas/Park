@@ -1,0 +1,16 @@
+/* User Profile */
+#updateUserForm {
+	top: 50vh;	
+}
+
+#userProfileUpdate {
+	width: 100%;
+}
+
+#updateUserForm {
+	padding: 10vw 0 0 25vw;
+}
+
+#updateUserForm input {
+	width: 50vw;
+}
