@@ -24,6 +24,15 @@ angular.module('userModule').component('userProfile', {
 			})
 		}
 		
+//		Update password
+		vm.updatePassword = function(pass) {
+			console.log(pass)
+			userService.updatePassword(pass).then(function(res){
+				vm.data=res.data;
+				vm.reload();
+			})
+		}
+		
 		vm.reload();
 	},
 	controllerAs : 'vm'

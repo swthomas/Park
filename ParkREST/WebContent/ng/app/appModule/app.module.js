@@ -2,11 +2,11 @@ angular.module('appModule',	[ 'ngRoute', 'nav', 'static', 'ngAnimate', 'duScroll
 		function($routeProvider) {
 			$routeProvider.when('/', {
 				template : '<home></home>'
-			}).when('/userMain', {
+			}).when('/userMain/:id', {
 				template : '<user-main></user-main>'
-			}).when('/userProfile', {
+			}).when('/userProfile/', {
 				template : '<user-profile></user-profile>'
-			}).when('/listerMain', {
+			}).when('/listerMain/:id', {
 				template : '<lister-main></lister-main>'
 			}).when('/user/profileUpdate', {
 				template : '<profile-create></profile-create>'

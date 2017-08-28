@@ -93,15 +93,34 @@ public class UserDAOImpl implements UserDAO {
 			ObjectMapper mapper = new ObjectMapper();
 			User mUser = mapper.readValue(userJson, User.class);
 			User uUser = em.find(User.class, id);
+							
+			uUser.setEmail(mUser.getEmail());
+			uUser.setFirstName(mUser.getFirstName());
+			uUser.setLastName(mUser.getLastName());
+			uUser.setPhoneNumber(mUser.getPhoneNumber());	
+			return uUser;
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+			return null;
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Override
+	public User updatePassword(Integer id, String userJson) {
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			User uUser = em.find(User.class, id);
 			
 			JsonNode root = mapper.readTree(userJson); 
 			String newPassword = root.at("/password").asText();
-			String newPasswordSha = encoder.encode(newPassword); 
-					
-			uUser.setEmail(mUser.getEmail());
+			String newPasswordSha = encoder.encode(newPassword);
 			uUser.setPassword(newPasswordSha);
-			System.out.println("**********************************");
-			System.out.println(uUser.getPassword());
 			return uUser;
 		} catch (JsonParseException e) {
 			e.printStackTrace();

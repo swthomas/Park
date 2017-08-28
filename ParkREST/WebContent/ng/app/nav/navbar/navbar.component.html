@@ -1,5 +1,5 @@
 <!--========== notLoggedIn ==========-->
-<header class="header navbar-fixed-top" ng-hide="vm.isLoggedIn">
+<header class="header navbar-fixed-top" ng-hide="vm.isLoggedIn()">
 	<!-- Navbar -->
 	<nav class="navbar" role="navigation">
 		<div class="container">
@@ -40,9 +40,9 @@
 </header>
 
 <!--===== isLoggedIn ======= -->
-<header class="header navbar-fixed-top" ng-show="vm.isLoggedIn">
+<header class="header navbar-fixed-top past-main" ng-show="vm.isLoggedIn()">
 	<!-- Navbar -->
-	<nav class="navbar past-main" role="navigation">
+	<nav class="navbar" role="navigation">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="menu-container js_nav-item">

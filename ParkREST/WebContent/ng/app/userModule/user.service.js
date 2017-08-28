@@ -35,6 +35,20 @@ angular.module('userModule')
 		})
 	}
 	
+	service.updatePassword = function(pass) {
+		checkLogin();
+		return $http({
+			method : 'PUT',
+			url : BASE_URL + 'updatePass/' + authService.getToken().id,
+			headers : {
+				'Content-Type' : 'application/json'
+			},
+			data : pass
+		}).then(function(res) {
+			return res;
+		})
+	}
+	
 	
 
     return service;

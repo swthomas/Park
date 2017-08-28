@@ -2,9 +2,8 @@
 
 ### Auth:
 1. Login User - done (needs active user check implemented, db update first)
-2. Login Lister - SEC
-3. Login U / L routes to - SEC
-4. Logout and remove session cookies - SEC
+2. Login U / L routes to UserMain - DONE
+3. Logout and remove session cookies - DONE
 
 ### Register:
 1. Create generic user, routes to fill out profile, user can select lister, then routes to user main
@@ -21,7 +20,9 @@
 9. Optimise image loading speed
 10. Add Google Analytics
 11. Better error catching / status returns / error messages
-12. Form Validation, regex for checking and converting phone numbers
+12. Form Validation, regex for checking and converting phone numbers - DONE
+13. Form Val / reroute on incorrect login cred.
+15. How to allow user to become lister after-the-fact?
 
 ### DB:
 1. Update user with active column and adjust classes / ctrl - ST

@@ -90,11 +90,23 @@ public class UserController {
 		}
 	}
 	
+	@RequestMapping(value="user/updatePass/{id}", method=RequestMethod.PUT)
+	public User updatePassword(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, @RequestBody String userJson) {
+		try {
+			System.out.println(userJson);
+			res.setStatus(200);			
+			return userDAO.updatePassword(id, userJson);
+		} catch (Exception e) {
+			res.setStatus(400);
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	@RequestMapping(value="user/{id}", method= RequestMethod.DELETE)
 	public Boolean destroy(@PathVariable Integer id) {
 		return userDAO.destroy(id);
 	}
-	
 	
 	
 	// listers methods

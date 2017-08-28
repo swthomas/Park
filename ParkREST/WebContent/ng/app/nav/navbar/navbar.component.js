@@ -18,9 +18,8 @@ angular.module('nav').component('navbar', {
 //		Sign in
 		vm.login = function(user) {
 			authService.login(user).then(function(){
-				vm.isLoggedIn = true;
 				vm.loginFormVisible = false;
-				$location.path('/userMain/');
+				$location.path('/userMain/' + authService.getToken().id);
 			}).catch(function(){
 				vm.error = "Something went wrong";
 			})
@@ -37,11 +36,14 @@ angular.module('nav').component('navbar', {
 		}
 		
 //		isLoggedIn navbar switcher
-		$scope.$watch(function() {
-			return $rootScope.isLoggedIn;
-        }, function() {
-            $scope.isLoggedIn = $rootScope.isLoggedIn;
-        }, false);
+        vm.isLoggedIn = function() {
+			if (authService.getToken().id) {
+				vm.username = authService.getToken().username;
+				vm.id = authService.getToken().id;
+				return true;
+			}
+			return false;
+		}
 				
 //		scroll change effect
 		var mainbottom = $('#main').offset().top + $('#main').height();

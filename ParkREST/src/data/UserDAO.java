@@ -20,4 +20,5 @@ public interface UserDAO {
 	public User create(User u);
 	public User update(Integer id, String userJson);
 	public User updateNew(Integer id, String userJson);
+	public User updatePassword(Integer id, String userJson);
 }
