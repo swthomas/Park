@@ -72,13 +72,13 @@
 					</div>
 					<div class="input-group">
 						<input type="text" class="form-control" name="password2" placeholder="Re-enter Password" ng-model="pass.password2" ng-required="true">
-						<p class="errorMessage"
-							ng-show="updatePassForm.password2.$invalid && updatePassForm.password1.$touched">Cannot be blank and must match</p>
+						<p class="errorMessage"	ng-show="updatePassForm.password2.$invalid && updatePassForm.password2.$touched">Cannot be blank</p>
+						<p class="errorMessage"	ng-show="pass.password1 != pass.password2">Passwords must match</p>
 					</div>
 					
 				</div>
 				<div class="form-group">
-					<button ng-click="vm.updatePassword(pass.password1)"
+					<button ng-click="vm.updatePassword(pass)"
 						class="btn-theme btn-theme-sm btn-default-bg text-uppercase"
 						ng-disabled="pass.password1 != pass.password2">Submit Changes</button>
 				</div>

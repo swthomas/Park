@@ -27,7 +27,10 @@ angular.module('static').component('home', {
 			})
 		}
 		
-
+//		toggles show password or hide
+		$scope.toggleShowPassword = function() {
+	        $scope.showPassword = !$scope.showPassword;
+	    }
 			
 //		Get array of parkingSpots and address info
 		staticService.listParkingSpots().then(function(res){

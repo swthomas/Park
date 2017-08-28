@@ -317,10 +317,18 @@
 					<div class="form-group">
 						<div class="input-group">
 							<input type="password" class="form-control"
-								placeholder="Enter a password" name="password" ng-model="regU.password" ng-minlength="7" ng-required="true">
-							<!-- <input type="password" class="form-control" placeholder="Re-enter Password" ng-model="regU.password" required> -->
-							<p class="errorMessage" ng-show="registerForm.password.$invalid && registerForm.password.$touched">Cannot be blank, minimum 7 characters</p>
-							<p class="errorMessage" ng-show="doesNotMatch">Passwords do not match</p> <!-- Implement when re-enter password works -->
+								placeholder="Enter a password" name="password1" ng-model="regU.password1" ng-minlength="7" ng-attr-type="{{ showPassword ? 'text':'password'}}" ng-required="true">
+							<div class="input-icon" ng-click="toggleShowPassword()" ng-class="{'fa fa-eye fa-lg': showPassword,'fa fa-eye-slash fa-lg': !showPassword}" style="cursor: pointer;">
+		    				</div>
+							<p class="errorMessage" ng-show="registerForm.password1.$invalid && registerForm.password1.$touched">Cannot be blank, minimum 7 characters</p>
+						</div>
+						<div class="input-group">
+							<input type="password" class="form-control"
+								placeholder="Re-enter password" name="password2" ng-model="regU.password2" ng-minlength="7" ng-attr-type="{{ showPassword ? 'text':'password'}}" ng-required="true">
+							<div class="input-icon" ng-click="toggleShowPassword()" ng-class="{'fa fa-eye fa-lg': showPassword,'fa fa-eye-slash fa-lg': !showPassword}" style="cursor: pointer;">
+    						</div>
+							<p class="errorMessage" ng-show="registerForm.password2.$invalid && registerForm.password2.$touched">Cannot be blank</p>
+							<p class="errorMessage" ng-show="regU.password1 != regU.password2">Passwords to not match</p>
 						</div>
 					</div>
 

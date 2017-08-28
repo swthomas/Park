@@ -118,7 +118,7 @@ public class UserDAOImpl implements UserDAO {
 			User uUser = em.find(User.class, id);
 			
 			JsonNode root = mapper.readTree(userJson); 
-			String newPassword = root.at("/password").asText();
+			String newPassword = root.at("/password1").asText();
 			String newPasswordSha = encoder.encode(newPassword);
 			uUser.setPassword(newPasswordSha);
 			return uUser;
