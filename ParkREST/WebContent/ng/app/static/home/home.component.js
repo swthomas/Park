@@ -4,7 +4,7 @@ angular.module('static').component('home', {
 		var vm = this;
         $scope.userMenuOpened = $rootScope.userMenuOpened;
 		$rootScope.isLoggedIn = false;
-		  
+  
 		NgMap.getMap().then(function(map) {
 			    console.log('map', map);
 			    vm.map = map;
@@ -17,7 +17,7 @@ angular.module('static').component('home', {
 		
 		vm.selectedParkingSpot = null;
 		vm.showMap = true;
-				
+		
 //		Create generic user
 		vm.register = function(newUser) {
 			authService.register(newUser).then(function() {

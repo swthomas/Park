@@ -26,7 +26,12 @@ public class ParkingSpotController {
 	}
 	
 	@RequestMapping(value="parkingspot/lat/{lat}/lng/{lng}/", method= RequestMethod.GET)
-	public List<ParkingSpot> distance(@PathVariable Double lat, @PathVariable Double lng) {
+	public List<ParkingSpot> initialLoad(@PathVariable Double lat, @PathVariable Double lng) {
+		return parkingSpotDAO.initialLoad(lat, lng);
+	}
+	
+	@RequestMapping(value="user/parkingspot/initialLoad/lat/{lat}/lng/{lng}/", method= RequestMethod.GET)
+	public List<ParkingSpot> initialLoadUser(@PathVariable Double lat, @PathVariable Double lng) {
 		return parkingSpotDAO.initialLoad(lat, lng);
 	}
 	
