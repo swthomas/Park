@@ -1,4 +1,4 @@
-angular.module('appModule',	[ 'ngRoute', 'nav', 'static', 'ngAnimate', 'duScroll', 'authModule', 'userModule', 'listerModule', 'profile']).value('duScrollDuration', 1900).config(
+angular.module('appModule',	[ 'ngRoute', 'nav', 'static', 'ngAnimate', 'duScroll', 'authModule', 'userModule', 'listerModule', 'profile', 'mapModule']).value('duScrollDuration', 1900).config(
 		function($routeProvider) {
 			$routeProvider.when('/', {
 				template : '<home></home>'

@@ -1,34 +1,5 @@
 <div class="promo-block">
 	<div class="container">
-		<div class="margin-b-40">
-			<h1 class="promo-block-title">
-				Park<span class="orange headlineR">R</span>
-			</h1>
-			<p class="promo-block-text">parking made easier, faster.</p>
-			
-			
-			<div class="row">
-			<input type="text" name="search" placeholder="Adress or City"><br/><br/>
-			<input type="text" name="search" placeholder="date">
-			<input type="text" name="search" placeholder="time">
-			<input type="text" name="search" placeholder="time"><br/><br/>
-			<button type="button">Search</button>
-						
-			<ng-map center={{vm.mapCenter}} zoom="17"> <marker
-				position="{{mk}}" ng-repeat="mk in vm.markers"
-				on-click="vm.showParkingSpot(mk)"> </marker> <info-window
-				id="foo-iw">
-			<div ng-non-bindable="" id="infoWindow">
-				${{vm.selectedParkingSpot.rate}} hr<br />
-				{{vm.selectedParkingSpot.parkingSpotAddress.street}}<br />
-				{{vm.selectedParkingSpot.parkingSpotAddress.city}},
-				{{vm.selectedParkingSpot.parkingSpotAddress.state}}<br /> <img
-					src="https://photos.zillowstatic.com/p_f/ISekwqe28rnmks1000000000.jpg"><br />
-				{{vm.selectedParkingSpot.description}}<br />
-				<button type="button" class="btn-primary">Reserve</button>
-				<br />
-			</div></ng-map>
-		</div>
-		</div>
+		<userMap></userMap>
 	</div>
 </div>
