@@ -1,0 +1,1 @@
+angular.module('map', ['ngMap', 'ngAnimate'])
