@@ -1,6 +1,5 @@
-angular.module('map').factory(
-		'mapService',
-		function($http, $cookies, $location) {
+angular.module('map')
+.factory('mapService', function($http, $cookies, $location) {
 			var service = {};
 
 			var BASE_URL = 'rest/';

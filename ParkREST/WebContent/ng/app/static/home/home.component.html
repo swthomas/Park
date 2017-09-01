@@ -87,26 +87,9 @@
 		<!--// end row -->
 
 		<!-- MAP Component-->
-
-							
-		<ng-map center={{vm.mapCenter}} zoom="17"> 
-					
-			<marker position="{{mk}}" ng-repeat="mk in vm.markers" on-click="vm.showParkingSpot(mk)"> </marker> 
-					
-			<info-window id="foo-iw">
-					
-				<div ng-non-bindable="" id="infoWindow">
-					${{vm.selectedParkingSpot.rate}} hr<br/>
-					{{vm.selectedParkingSpot.parkingSpotAddress.street}}<br/>
-					{{vm.selectedParkingSpot.parkingSpotAddress.city}},
-					{{vm.selectedParkingSpot.parkingSpotAddress.state}}<br/> 
-					<img src="https://photos.zillowstatic.com/p_f/ISekwqe28rnmks1000000000.jpg"><br/>
-					{{vm.selectedParkingSpot.description}}<br/>
-					<button type="button" class="btn-primary">Reserve</button> <br/>
-				</div>
-				
-			</info-window>
-		
+		<div id="find">			
+			<map-home></map-home>
+		</div>
 
 		<!--// end row -->
 	</div>
