@@ -11,3 +11,13 @@
 #userProfileUpdate {
 	width: 100%;
 }
+
+/* userMain */
+#resultsPane {
+	border: 1px solid blue;	
+}
+
+#userMapPane {
+	border: 1px solid red;
+}
+

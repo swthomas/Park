@@ -16,6 +16,7 @@
         <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css"/>
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="js/node_modules/angular-material/angular-material.css" rel="stylesheet" >
+        <link rel="stylesheet" href="bower_components/angular-cookie-law/dist/angular-cookie-law.min.css">
 
         <!-- PAGE LEVEL PLUGIN STYLES -->
         <link href="css/animate.css" rel="stylesheet">
@@ -38,50 +39,37 @@
   <script src="https://maps.google.com/maps/api/js?key=AIzaSyB-eCSz4m2r6WczpOcJANrtbF8xps8EDuU"></script>
   <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.16/angular-filter.js"></script>
+  <script src="bower_components/angular-cookie-law/dist/angular-cookie-law.min.js"></script>
 
   <!-- Angular Modules Services and Components -->
   <script src="ng/app/appModule/app.module.js"></script>
   <script src="ng/app/appModule/appComponent/app.component.js"></script>
   <script src="ng/app/nav/navbar.module.js"></script>
-  <script src="ng/app/nav/navbar/navbar.component.js"></script>
-
+  <script src="ng/app/nav/navbar/navbar.component.js"></script> 
   <script src="ng/app/map/map.module.js"></script>
   <script src="ng/app/map/map.service.js"></script>
   <script src="ng/app/map/mapHome/mapHome.component.js"></script>
-  
-  
-<!--  <script src="ng/app/mapModule/map.module.js"></script>
-	  <script src="ng/app/mapModule/map.service.js"></script>
-	  <script src="ng/app/mapModule/homeMap/homeMap.component.html"></script>
-	  <script src="ng/app/mapModule/homeMap/homeMap.component.js"></script>
-	  <script src="ng/app/mapModule/listerMap/listerMap.component.html"></script>
-	  <script src="ng/app/mapModule/listerMap/listerMap.component.js"></script>
-	  <script src="ng/app/mapModule/userMap/userMap.component.html"></script>
-	  <script src="ng/app/mapModule/userMap/userMap.component.js"></script> -->
-  
-  
-  
   <script src="ng/app/static/static.module.js"></script>
   <script src="ng/app/static/static.service.js"></script>
   <script src="ng/app/static/home/home.component.js"></script>
   <script src="ng/app/static/error/error.component.js"></script>
   <script src="ng/app/authModule/auth.module.js"></script>
   <script src="ng/app/authModule/auth.service.js"></script>
+  <script src="ng/app/profileModule/profile.module.js"></script>
+  <script src="ng/app/profileModule/profileCreate/profileCreate.component.js"></script>
   <script src="ng/app/userModule/user.module.js"></script>
   <script src="ng/app/userModule/user.service.js"></script>
   <script src="ng/app/userModule/userMain/userMain.component.js"></script>
-  <script src="ng/app/userModule/userProfile/userProfile.component.js"></script>
   <script src="ng/app/listerModule/lister.module.js"></script>
   <script src="ng/app/listerModule/lister.service.js"></script>
   <script src="ng/app/listerModule/listerMain/listerMain.component.js"></script>
-  <script src="ng/app/profileModule/profile.module.js"></script>
-  <script src="ng/app/profileModule/profileCreate/profileCreate.component.js"></script>
-
+  
 
 <!-- favicon -->
 <link href="images/favicon.ico" rel="icon">
 </head>
 <body  id="body" data-spy="scroll" data-target=".header">
+	<cookie-law-banner></cookie-law-banner>
 	<app-component>Load...</app-component>
 	  <!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
         <!-- CORE PLUGINS -->
